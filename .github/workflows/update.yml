@@ -51,7 +51,7 @@ jobs:
 
       - name: Build site and check the tables against match results
         env:
-          SITE_URL: https://truone626.github.io/ea-tracker/
+          SITE_URL: https://ealtracker.com/
           GOATCOUNTER_CODE: ${{ vars.GOATCOUNTER_CODE }}
         run: |
           if [ -f data/latest.json ]; then
