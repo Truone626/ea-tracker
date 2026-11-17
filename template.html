@@ -356,6 +356,71 @@ tr.me:hover td{background:rgba(79,140,255,.16)}
 .common .c{display:flex;gap:6px;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-size:.8rem;min-width:0}
 .common .c span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .common .a{text-align:right}
+
+/* head-to-head */
+:root{--ca:#2dd4bf;--cb:#f59e5b}
+.ca{color:var(--ca)}.cb{color:var(--cb)}
+.btn.sm{padding:5px 11px;font-size:.78rem}
+.cmp-pick .cslots{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:14px;align-items:center;margin:14px 0}
+.cslot{display:grid;justify-items:center;gap:8px;text-align:center;padding:14px;border:1px dashed var(--line-2);border-radius:14px;min-height:150px;align-content:center}
+.cslot b{overflow-wrap:anywhere}
+.cslot{min-width:0}.cslot .picker{max-width:100%}.cslot .pk-btn{white-space:normal;max-width:100%;text-align:left}
+.vsb.sm{width:44px;height:44px;font-size:1rem}
+.cmp-head{padding:22px 18px;display:grid;gap:16px;position:relative;overflow:hidden;background:radial-gradient(420px 220px at 18% 30%,rgba(45,212,191,.16),transparent 70%),radial-gradient(420px 220px at 82% 30%,rgba(245,158,91,.16),transparent 70%),var(--card)}
+.ch-grid{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:16px;align-items:center}
+.ch-side{display:grid;justify-items:center;gap:8px;text-align:center;min-width:0}
+.ch-side h1{font-size:clamp(1.4rem,3.6vw,2.4rem);font-weight:800;text-transform:uppercase;line-height:1;overflow-wrap:anywhere}
+.ch-rec{font-size:1.05rem;font-weight:700}.ch-rec small{color:var(--muted);font-family:var(--body);font-weight:500;font-size:.72rem}
+.ch-ppg{display:grid;justify-items:center}.ch-ppg .num{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1}.ch-ppg small{color:var(--muted);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase}
+.ch-mid{display:grid;justify-items:center;gap:10px}
+.ch-foot{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;align-items:center}
+.tw2{display:flex;height:8px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.06);gap:2px}
+.tw2 i{display:block;height:100%}.tw2 .ea{background:var(--ca);border-radius:999px 0 0 999px}.tw2 .eb{background:var(--cb);border-radius:0 999px 999px 0}.tw2 .lv{background:rgba(255,255,255,.18)}
+.tw2.big{height:14px;flex:1}
+.edgebar{display:flex;gap:12px;align-items:center;margin:14px 0 6px;font-family:var(--display);font-weight:800;font-size:1.6rem}
+.mhead{display:flex;justify-content:space-between;gap:10px;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:14px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.mrow2{display:grid;grid-template-columns:90px minmax(0,1fr) 90px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.mrow2:last-child{border-bottom:0}
+.mrow2 .v{font-family:var(--mono);font-weight:700;font-size:1.02rem;color:var(--muted)}
+.mrow2 .v.r{text-align:right}
+.mrow2 .v.win{color:var(--ink)}
+.mrow2 .v.win::after{content:" ●";font-size:.6em;vertical-align:2px}
+.mrow2 .v:first-child.win::after{color:var(--ca)}.mrow2 .v.r.win::after{color:var(--cb)}
+.mrow2 .lab2{text-align:center;font-size:.84rem;font-weight:600;color:#d4deec;margin-bottom:6px}
+.mrow2 .lab2 small{color:var(--dim);font-weight:500}
+.agrid{display:grid;margin-top:10px}
+.ahd{display:grid;grid-template-columns:minmax(0,1fr) 110px minmax(0,1fr);gap:10px;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.ahd span:last-child{text-align:right}
+.arow{display:grid;grid-template-columns:minmax(0,1fr) 110px minmax(0,1fr);gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.arow:last-child{border-bottom:0}
+.amid{display:grid;justify-items:center;gap:4px;text-align:center}
+.age.big{font-size:1.2rem;min-width:58px;padding:4px 10px}
+.edge{font-size:.74rem;font-weight:800;letter-spacing:.06em;color:var(--dim)}
+.edge.a{color:var(--ca)}.edge.b{color:var(--cb)}
+.amid .same{color:var(--muted);font-size:.68rem}
+.aside{display:grid;gap:5px;text-decoration:none;color:var(--ink);padding:8px 10px;border-radius:12px;min-width:0}
+a.aside:hover{background:rgba(255,255,255,.035)}
+.aside.r{text-align:right;justify-items:end}
+.aside.none{color:var(--dim);font-size:.86rem}
+.aside .ar1 b{display:block}.aside .ar1 small{color:var(--muted);font-size:.76rem}
+.aside .ar2{display:flex;gap:12px;flex-wrap:wrap;font-size:.86rem}.aside.r .ar2{justify-content:flex-end}
+.aside .ar2 small{color:var(--muted);font-family:var(--body);font-size:.68rem}
+.aside .ppg{font-weight:700}
+@media (max-width:640px){
+  .ch-grid{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px}
+  .ch-side .crest.lg{--s:64px;border-radius:16px}
+  .ch-side h1{font-size:1.05rem}
+  .ch-mid .vsb{width:38px;height:38px;font-size:.9rem}
+  .mrow2{grid-template-columns:64px minmax(0,1fr) 64px;gap:8px}
+  .mrow2 .v{font-size:.9rem}
+  .arow,.ahd{grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr);gap:6px}
+  .aside{padding:6px 4px}
+  .aside .ar2{gap:6px;font-size:.8rem}
+  .aside .ar2 span:nth-child(3){display:none}
+  .aside .pill{width:16px;height:16px;font-size:.58rem}
+  .cmp-pick .cslots{gap:8px}.cslot{min-height:120px;padding:10px 6px}
+  .ch-side .pk-btn{font-size:.76rem;padding:6px 26px 6px 10px}
+}
 /* rankings */
 .rhead{text-align:center;padding:24px 18px;display:grid;justify-items:center;gap:10px;grid-template-columns:minmax(0,1fr)}
 .rhead>*{max-width:100%;min-width:0}
@@ -716,7 +781,7 @@ function viewClub(c,comp){
   const latest=`<section class="glass pad"><div class="card-h"><h2>Latest results</h2>${lr.length?`<p>${(()=>{const d0=lr[0].dt;const same=lr.filter(m=>sameDay(m.dt,d0));const w=same.filter(m=>resFor(teamOf(m),m)==='W').length,d=same.filter(m=>resFor(teamOf(m),m)==='D').length,l=same.filter(m=>resFor(teamOf(m),m)==='L').length;return `${dayS(d0)}: ${w} win${w!==1?'s':''}, ${d} draw${d!==1?'s':''}, ${l} loss${l!==1?'es':''}`})()}</p>`:''}</div>
     <div class="ml" style="margin-top:6px">${lr.map(m=>{const t=teamOf(m),o=opp(t,m),r=resFor(t,m);return `<button type="button" class="mrow" data-m="${mref(m)}"><span class="d"><b>${m.dt.toLocaleDateString('en-US',{weekday:'short'})}</b>${m.dt.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span><span class="age">${esc(t.age)}</span><span class="va">${m.h===t?'vs':'@'}</span>${crest(o.club,'xs',o.name)}<span class="on-name">${esc(o.name)}</span><span class="sc">${gfor(t,m)}–${gag(t,m)}</span><span class="pill ${r}">${r}</span></button>`}).join('')||'<div class="empty">No results yet.</div>'}</div></section>`;
   const firstTeam=ts.find(t=>t.tid);
-  return header(c,comp,c.name,`Club overview · ${ts.length} ${cmpName(comp)} team${ts.length!==1?'s':''}`,clubTabs(c,comp,'ov'),compSeg(c,comp,x=>'#club-'+c.id+'-'+CK[x]),`<a class="btn" href="#rankings" data-rk="${comp}|${firstTeam?firstTeam.age:'U14'}">${I.trophy} Rankings</a>`,clubUrl(c),favBtn('c',c.id,c.name)+calBtn('c',c.id+'-'+comp)+`<a class="btn" href="#club-table" data-ct="${comp}|${esc(firstTeam?firstTeam.div:'')}">${I.bars} Club vs Club</a>`)+
+  return header(c,comp,c.name,`Club overview · ${ts.length} ${cmpName(comp)} team${ts.length!==1?'s':''}`,clubTabs(c,comp,'ov'),compSeg(c,comp,x=>'#club-'+c.id+'-'+CK[x]),`<a class="btn" href="#rankings" data-rk="${comp}|${firstTeam?firstTeam.age:'U14'}">${I.trophy} Rankings</a>`,clubUrl(c),favBtn('c',c.id,c.name)+calBtn('c',c.id+'-'+comp)+`<a class="btn" href="#${cmpHash(c.id,0,comp)}">${I.swap} Compare with another club</a><a class="btn" href="#club-table" data-ct="${comp}|${esc(firstTeam?firstTeam.div:'')}">${I.bars} Club table</a>`)+
    tiles+`<div class="cols"><div class="stack">${snap}${charts}${latest}</div><div class="stack">${nmd}${recapCard(c,comp)}${hlH}</div></div>`;
 }
 
@@ -1008,7 +1073,10 @@ function viewClubTable(){
   if(CT.div&&!divs.includes(CT.div))CT.div='';
   const ages=AGES.filter(a=>T.some(t=>t.comp===CT.comp&&t.age===a));
   const scope=CT.div?CT.div:'All divisions';
-  return `<section class="glass rhead"><div class="eyebrow">EA Tracker <span style="color:var(--dim)">|</span> <span style="color:var(--accent-2)">${esc(cmpName(CT.comp))}</span></div>
+  if(!CMP.a){const f=[...FAV.c][0]||+store.get('ea-club');if(clubBy.get(f))CMP.a=f}
+  return `<div style="display:flex;justify-content:center"><nav class="seg accent" aria-label="Club vs Club views"><a href="#${cmpHash(CMP.a,CMP.b,CT.comp)}">Head to head</a><a class="on" href="#club-table">League table</a></nav></div>
+  ${compareSlots()}
+  <section class="glass rhead"><div class="eyebrow">EA Tracker <span style="color:var(--dim)">|</span> <span style="color:var(--accent-2)">${esc(cmpName(CT.comp))}</span></div>
    <div class="ttl"><span class="agebox" style="font-size:clamp(1.6rem,4.4vw,2.6rem)">${CT.age||'All ages'}</span><div><h1>Club <em>vs</em> Club</h1><div class="kick">${esc(scope.toUpperCase())} · EVERY AGE GROUP COMBINED</div></div></div>
    <div style="font-size:.86rem;color:#cbd6e6">Each club's teams added together from the official division tables. Ordered by points per game, since clubs field different numbers of teams.</div></section>
   <section class="rcontrols"><div class="rrow"><nav class="seg accent" id="ctc">${D.comps.map((n,i)=>`<button type="button" data-c="${i}" class="${i===CT.comp?'on':''}">${esc(n)}</button>`).join('')}</nav></div>
@@ -1023,7 +1091,7 @@ function viewClubTable(){
 function drawClubTable(){
   const L=clubAgg();
   document.getElementById('ctcount').textContent=`${L.length} clubs · ${L.reduce((s,a)=>s+a.n,0)} teams`;
-  document.getElementById('ctb').innerHTML=`<table><thead><tr><th>#</th><th class="l">Club</th><th>Teams</th><th>GP</th><th>W-D-L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th><th>PPG</th><th class="l">Best team</th></tr></thead><tbody>${L.map(a=>`<tr class="${FAV.c.has(a.c.id)?'me':''}"><td class="rk">${a.rk??'–'}</td><td class="l t"><a href="#club-${a.c.id}-${CK[CT.comp]}">${crest(a.c.id,'sm')}<span>${esc(a.c.name)}${!CT.div&&a.divs.size===1?`<small>${esc([...a.divs][0])}</small>`:''}</span></a></td><td>${a.n}</td><td>${a.mp}</td><td>${a.w}-${a.d}-${a.l}</td><td>${a.gf}</td><td>${a.ga}</td><td>${sgn(a.gf-a.ga)}</td><td>${a.pts}</td><td class="pts">${a.mp?(a.pts/a.mp).toFixed(2):'–'}</td><td class="l" style="font-family:var(--body);color:var(--muted)">${a.best?`<a href="#${tkey(a.best)}" style="color:var(--ink);text-decoration:none">${a.best.age}</a> · ${ord(a.best.rank)} of ${tableOf(a.best).length}`:'–'}</td></tr>`).join('')||'<tr><td colspan="11" class="l" style="font-family:var(--body)">No clubs match these filters.</td></tr>'}</tbody></table>`;
+  document.getElementById('ctb').innerHTML=`<table><thead><tr><th>#</th><th class="l">Club</th><th>Teams</th><th>GP</th><th>W-D-L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th><th>PPG</th><th class="l">Best team</th><th></th></tr></thead><tbody>${L.map(a=>`<tr class="${FAV.c.has(a.c.id)?'me':''}"><td class="rk">${a.rk??'–'}</td><td class="l t"><a href="#club-${a.c.id}-${CK[CT.comp]}">${crest(a.c.id,'sm')}<span>${esc(a.c.name)}${!CT.div&&a.divs.size===1?`<small>${esc([...a.divs][0])}</small>`:''}</span></a></td><td>${a.n}</td><td>${a.mp}</td><td>${a.w}-${a.d}-${a.l}</td><td>${a.gf}</td><td>${a.ga}</td><td>${sgn(a.gf-a.ga)}</td><td>${a.pts}</td><td class="pts">${a.mp?(a.pts/a.mp).toFixed(2):'–'}</td><td class="l" style="font-family:var(--body);color:var(--muted)">${a.best?`<a href="#${tkey(a.best)}" style="color:var(--ink);text-decoration:none">${a.best.age}</a> · ${ord(a.best.rank)} of ${tableOf(a.best).length}`:'–'}</td><td><a class="btn sm" href="#${cmpHash(CMP.a&&CMP.a!==a.c.id?CMP.a:a.c.id,CMP.a&&CMP.a!==a.c.id?a.c.id:0,CT.comp)}">Compare</a></td></tr>`).join('')||'<tr><td colspan="12" class="l" style="font-family:var(--body)">No clubs match these filters.</td></tr>'}</tbody></table>`;
 }
 function bindClubTable(){
   document.getElementById('ctc').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;CT.comp=+b.dataset.c;CT.div='';CT.age='';render(false)});
@@ -1098,6 +1166,136 @@ async function recapImage(c,comp){
   cv.toBlob(b=>{if(!b){toast('Could not create the image');return}const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`${(D.slugs&&D.slugs[c.id])||'club'}-${CK[comp]}-weekend.png`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);toast('Image saved')},'image/png');
 }
 
+/* ---------- club vs club: head-to-head comparison ---------- */
+const CMP={a:0,b:0,comp:0};
+const cmpHash=(a,b,comp)=>`compare-${a||0}-${b||0}-${CK[comp]}`;
+function clubStats(c,comp){
+  const ts=c.teams.filter(t=>t.comp===comp);
+  const inT=ts.filter(t=>t.mp!=null&&t.mp>0);
+  const S={teams:ts.length,mp:0,w:0,d:0,l:0,gf:0,ga:0,pts:0,cs:0,res:0,top3:0,ranked:0,pctSum:0,pctN:0,nat10:0,f5p:0,f5n:0};
+  inT.forEach(t=>{S.mp+=t.mp;S.w+=t.w;S.d+=t.d;S.l+=t.l;S.gf+=t.gf;S.ga+=t.ga;S.pts+=t.pts;
+    if(t.rank!=null){const n=tableOf(t).length;S.ranked++;if(t.rank<=3)S.top3++;if(n>1){S.pctSum+=(t.rank-1)/(n-1);S.pctN++}}
+    if(t.nr!=null&&t.nr<=10)S.nat10++;});
+  ts.forEach(t=>{const r=results(t);S.res+=r.length;S.cs+=r.filter(m=>gag(t,m)===0).length;form(t).forEach(x=>{S.f5p+=({W:3,D:1,L:0})[x];S.f5n++})});
+  const g=S.mp||0;
+  S.winp=g?S.w/g:null;S.ppg=g?S.pts/g:null;S.gfg=g?S.gf/g:null;S.gag=g?S.ga/g:null;S.gdg=g?(S.gf-S.ga)/g:null;
+  S.csp=S.res?S.cs/S.res:null;S.pos=S.pctN?S.pctSum/S.pctN:null;S.form=S.f5n?S.f5p/(S.f5n*3):null;
+  return S;
+}
+function ageStats(c,comp,age){
+  const ts=c.teams.filter(t=>t.comp===comp&&t.age===age);
+  if(!ts.length)return null;
+  const inT=ts.filter(t=>t.mp!=null);
+  const s={ts,mp:0,w:0,d:0,l:0,gf:0,ga:0,pts:0};
+  inT.forEach(t=>{s.mp+=t.mp;s.w+=t.w;s.d+=t.d;s.l+=t.l;s.gf+=t.gf;s.ga+=t.ga;s.pts+=t.pts});
+  s.ppg=s.mp?s.pts/s.mp:null;s.gdg=s.mp?(s.gf-s.ga)/s.mp:null;
+  s.best=inT.filter(t=>t.rank!=null&&t.mp>0).sort((a,b)=>a.rank-b.rank)[0]||inT[0]||ts[0];
+  s.form=ts.flatMap(t=>form(t)).slice(-5);
+  return s;
+}
+function suggestions(a,comp){
+  const ts=a.teams.filter(t=>t.comp===comp);const keys=new Set(ts.map(t=>t.age+'|'+t.div));
+  const sa=clubStats(a,comp);const score=new Map();
+  T.forEach(t=>{if(t.comp!==comp||t.club===a.id)return;if(keys.has(t.age+'|'+t.div))score.set(t.club,(score.get(t.club)||0)+1)});
+  return [...score].map(([id,n])=>{const c=clubBy.get(id);const s=clubStats(c,comp);return {c,n,s,d:Math.abs((s.ppg??0)-(sa.ppg??0))}}).sort((x,y)=>y.n-x.n||x.d-y.d).slice(0,8);
+}
+function cmpPicker(slot,cur,label){return `<div class="picker" data-picker="cmp-${slot}" data-cur="${cur||''}" data-mode="pick" data-slot="${slot}"><button type="button" class="pk-btn" aria-haspopup="listbox" aria-expanded="false">${I.swap} ${label}</button></div>`}
+function compareSlots(){
+  const a=clubBy.get(CMP.a),b=clubBy.get(CMP.b);
+  const slot=(c,s)=>c?`<div class="cslot">${crest(c.id,'md')}<b>${esc(c.name)}</b>${cmpPicker(s,c.id,'Change')}</div>`:`<div class="cslot empty">${cmpPicker(s,0,s==='a'?'Pick first club':'Pick second club')}</div>`;
+  return `<section class="glass pad cmp-pick"><div class="card-h"><h2>Compare two clubs</h2><p>See how two clubs stack up across every age group and key metric.</p></div>
+   <div class="cslots">${slot(a,'a')}<span class="vsb sm">VS</span>${slot(b,'b')}</div>
+   ${a&&b?`<div style="text-align:center"><a class="btn primary" href="#${cmpHash(a.id,b.id,CMP.comp)}">Compare ${esc(a.name)} and ${esc(b.name)}</a></div>`:''}</section>`;
+}
+function bar2(av,bv,low){
+  if(av==null||bv==null)return '<div class="tw2"><i class="ea" style="width:50%"></i><i class="eb" style="width:50%"></i></div>';
+  let x=Math.max(av,0),y=Math.max(bv,0);
+  if(low){x=1/(av+.25);y=1/(bv+.25)}
+  if(x+y===0){x=y=1}
+  const p=Math.round(x/(x+y)*100);
+  return `<div class="tw2"><i class="ea" style="width:${p}%"></i><i class="eb" style="width:${100-p}%"></i></div>`;
+}
+function viewCompare(){
+  const a=clubBy.get(CMP.a),b=clubBy.get(CMP.b);
+  const both=a&&b?[0,1,2].filter(x=>a.teams.some(t=>t.comp===x)&&b.teams.some(t=>t.comp===x)):[];
+  if(a&&b&&both.length&&!both.includes(CMP.comp))CMP.comp=both[0];
+  if(a&&!b&&!a.teams.some(t=>t.comp===CMP.comp))CMP.comp=[0,1,2].find(x=>a.teams.some(t=>t.comp===x));
+  const tabs=`<nav class="seg accent" aria-label="Club vs Club views"><a class="on" href="#${cmpHash(CMP.a,CMP.b,CMP.comp)}">Head to head</a><a href="#club-table" data-ct="${CMP.comp}|">League table</a></nav>`;
+  if(!a||!b){
+    let sug='';
+    if(a){const L=suggestions(a,CMP.comp);if(L.length)sug=`<section class="stack" style="gap:10px"><div class="sec-h"><h2>Suggested matchups</h2><span class="muted" style="font-size:.86rem">Clubs ${esc(a.name)} shares divisions with in ${esc(cmpName(CMP.comp))}</span></div>
+      <div class="grid-clubs">${L.map(x=>`<a class="club-card" href="#${cmpHash(a.id,x.c.id,CMP.comp)}">${crest(x.c.id,'md')}<span class="cn">${esc(x.c.name)}</span><span class="chips"><span class="chip">${x.n} shared division${x.n>1?'s':''}</span><span class="chip c">${x.s.ppg!=null?x.s.ppg.toFixed(2)+' PPG':'No games'}</span></span></a>`).join('')}</div></section>`}
+    return `<div style="display:flex;justify-content:center">${tabs}</div>${compareSlots()}${sug}`;
+  }
+  if(!both.length)return `<div style="display:flex;justify-content:center">${tabs}</div>${compareSlots()}<section class="glass pad"><p class="muted" style="margin:0">${esc(a.name)} and ${esc(b.name)} don't play in the same competition (${esc([...new Set(a.teams.map(t=>cmpName(t.comp)))].join(', '))} vs ${esc([...new Set(b.teams.map(t=>cmpName(t.comp)))].join(', '))}), so there's nothing like-for-like to compare. Pick another club.</p></section>`;
+  const comp=CMP.comp,A=clubStats(a,comp),B=clubStats(b,comp);
+  const f2=v=>v==null?'–':v.toFixed(2),pc=v=>v==null?'–':Math.round(v*100)+'%',sg2=v=>v==null?'–':(v>0?'+':'')+v.toFixed(2),top=v=>v==null?'–':'Top '+Math.max(1,Math.round(v*100))+'%',n0=v=>String(v);
+  const metrics=[
+    ['Points per game',A.ppg,B.ppg,f2,false,true],
+    ['Win rate',A.winp,B.winp,pc,false,true],
+    ['Goals scored per game',A.gfg,B.gfg,f2,false,true],
+    ['Goals conceded per game',A.gag,B.gag,f2,true,true],
+    ['Goal difference per game',A.gdg,B.gdg,sg2,false,true],
+    ['Clean sheet rate',A.csp,B.csp,pc,false,true],
+    ['Average table position',A.pos,B.pos,top,true,true],
+    ['Teams top 3 in their division',A.top3,B.top3,n0,false,true],
+    ['Teams in national top 10',A.nat10,B.nat10,n0,false,true],
+    ['Recent form (last 5, points won)',A.form,B.form,pc,false,true],
+    ['Teams',A.teams,B.teams,n0,false,false],
+    ['Games played',A.mp,B.mp,n0,false,false]];
+  let wa=0,wb=0,tot=0;
+  const rows=metrics.map(([lab,x,y,fmt,low,counts])=>{let w='';if(counts&&x!=null&&y!=null&&fmt(x)!==fmt(y)){tot++;const aw=low?x<y:x>y;if(aw){wa++;w='a'}else{wb++;w='b'}}else if(counts&&x!=null&&y!=null)tot++;
+    return `<div class="mrow2"><div class="v ${w==='a'?'win':''}">${fmt(x)}</div><div class="mid2"><div class="lab2">${lab}${low?' <small>(lower is better)</small>':''}</div>${bar2(x,y,low)}</div><div class="v r ${w==='b'?'win':''}">${fmt(y)}</div></div>`}).join('');
+  const lead=wa===wb?`Level: each club leads ${wa} of ${tot} metrics`:`<b class="${wa>wb?'ca':'cb'}">${esc((wa>wb?a:b).name)}</b> leads ${Math.max(wa,wb)} of ${tot} metrics`;
+  // age by age
+  const ages=AGES.filter(x=>a.teams.some(t=>t.comp===comp&&t.age===x)||b.teams.some(t=>t.comp===comp&&t.age===x));
+  let aa=0,bb=0,lv=0;
+  const side=(s,c,r)=>{if(!s)return `<div class="aside ${r?'r':''} none">No ${cmpName(comp)} team</div>`;const t=s.best;
+    return `<a class="aside ${r?'r':''}" href="#${tkey(t)}"><div class="ar1"><b>${t.rank!=null?`${ord(t.rank)} of ${tableOf(t).length}`:'Not in table'}</b><small>${esc(t.div)}${s.ts.length>1?` · ${s.ts.length} teams`:''}</small></div>
+     <div class="ar2"><span class="num">${s.mp?`${s.w}-${s.d}-${s.l}`:'0-0-0'}</span><span class="num ppg">${s.ppg!=null?s.ppg.toFixed(2):'–'} <small>PPG</small></span><span class="num">${s.gdg!=null?(s.gdg>0?'+':'')+s.gdg.toFixed(1):'–'} <small>GD/G</small></span></div><div class="ar3">${pills(s.form)}</div></a>`};
+  const arows=ages.map(x=>{const sa=ageStats(a,comp,x),sb=ageStats(b,comp,x);let e='';
+    if(sa&&sb&&sa.ppg!=null&&sb.ppg!=null){if(Math.abs(sa.ppg-sb.ppg)<1e-9){lv++;e='='}else if(sa.ppg>sb.ppg){aa++;e='a'}else{bb++;e='b'}}
+    const shared=sa&&sb&&sa.ts.some(t=>sb.ts.some(u=>u.div===t.div));
+    return `<div class="arow">${side(sa,a,false)}<div class="amid"><span class="age big">${x}</span><span class="edge ${e}">${e==='a'?'◀ '+esc(initials(a.name)):e==='b'?esc(initials(b.name))+' ▶':e==='='?'Level':'–'}</span>${shared?'<small class="same">Same division</small>':''}</div>${side(sb,b,true)}</div>`}).join('');
+  // PPG chart
+  const ch=ages.map(x=>({x,a:ageStats(a,comp,x),b:ageStats(b,comp,x)}));
+  const narrow=innerWidth<600;
+  const W=narrow?380:640,H=narrow?210:230,pl=26,pb=26,pt=14,step=(W-pl-8)/ch.length,bw=Math.min(26,step*.32);const y=v=>pt+(H-pt-pb)*(1-v/3);
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Points per game by age group">`;[0,1,2,3].forEach(v=>{svg+=`<line x1="${pl}" x2="${W-4}" y1="${y(v)}" y2="${y(v)}" stroke="rgba(150,180,225,.13)"/><text x="${pl-8}" y="${y(v)+4}" text-anchor="end">${v}</text>`});
+  ch.forEach((r,i)=>{const cx=pl+8+i*step+step/2;[[r.a,'#2dd4bf',-1],[r.b,'#f59e5b',1]].forEach(([s,col,d])=>{if(s&&s.ppg!=null){const x0=cx+(d<0?-bw-2:2);svg+=`<rect x="${x0}" y="${y(s.ppg)}" width="${bw}" height="${Math.max(1.5,y(0)-y(s.ppg))}" rx="3" fill="${col}"><title>${s.ppg.toFixed(2)} PPG</title></rect><text x="${x0+bw/2}" y="${y(s.ppg)-5}" text-anchor="middle" class="lab" style="font-size:10px">${s.ppg.toFixed(1)}</text>`}});svg+=`<text x="${cx}" y="${H-7}" text-anchor="middle" class="lab">${r.x}</text>`});svg+='</svg>';
+  // GD chart (diverging)
+  const mx=Math.max(1,...ch.flatMap(r=>[r.a,r.b].filter(s=>s&&s.gdg!=null).map(s=>Math.abs(s.gdg))));
+  const rH=34,W2=narrow?380:640,H2=ch.length*rH+10,cx2=W2/2+30;let svg2=`<svg viewBox="0 0 ${W2} ${H2}" role="img" aria-label="Goal difference per game by age group"><line x1="${cx2}" x2="${cx2}" y1="0" y2="${H2}" stroke="rgba(150,180,225,.3)"/>`;
+  ch.forEach((r,i)=>{const y0=i*rH+6;svg2+=`<text x="0" y="${y0+17}" class="lab">${r.x}</text>`;[[r.a,'#2dd4bf',0],[r.b,'#f59e5b',12]].forEach(([s,col,o])=>{if(!s||s.gdg==null)return;const w=Math.max(2,(W2/2-60)*Math.abs(s.gdg)/mx);const x0=s.gdg>=0?cx2:cx2-w;svg2+=`<rect x="${x0}" y="${y0+o}" width="${w}" height="10" rx="2" fill="${col}"/><text x="${s.gdg>=0?x0+w+5:x0-5}" y="${y0+o+9}" text-anchor="${s.gdg>=0?'start':'end'}" style="font-size:10px">${(s.gdg>0?'+':'')+s.gdg.toFixed(1)}</text>`})});svg2+='</svg>';
+  // meetings
+  const meet=M.filter(m=>m.h.comp===comp&&((m.h.club===a.id&&m.a.club===b.id)||(m.h.club===b.id&&m.a.club===a.id)));
+  const pm=meet.filter(played),um=meet.filter(m=>!played(m)&&m.dt>=now);
+  let mw=0,md=0,ml=0,mg=0,mga=0;pm.forEach(m=>{const at=m.h.club===a.id?m.h:m.a;const r=resFor(at,m);if(r==='W')mw++;else if(r==='D')md++;else ml++;mg+=gfor(at,m);mga+=gag(at,m)});
+  const mlist=pm.slice().reverse().map(m=>{const at=m.h.club===a.id?m.h:m.a;const r=resFor(at,m);return `<button type="button" class="mrow" data-m="${mref(m)}"><span class="d"><b>${m.dt.toLocaleDateString('en-US',{month:'short'})}</b>${m.dt.getDate()}</span><span class="age">${esc(at.age)}</span><span class="on-name">${esc(m.h.name)} <span class="muted">v</span> ${esc(m.a.name)}</span><span class="sc">${m.hs}–${m.as}</span><span class="pill ${r}" title="${esc(a.name)} result">${r}</span></button>`}).join('');
+  const ulist=um.slice(0,6).map(m=>`<button type="button" class="mrow" data-m="${mref(m)}"><span class="d"><b>${m.dt.toLocaleDateString('en-US',{month:'short'})}</b>${m.dt.getDate()}</span><span class="age">${esc(m.h.age)}</span><span class="on-name">${esc(m.h.name)} <span class="muted">v</span> ${esc(m.a.name)}</span><span class="tm">${midnight(m.dt)?'TBD':timeS(m.dt)}</span></button>`).join('');
+  const shareUrl=`${BASE}#${cmpHash(a.id,b.id,comp)}`;
+  return `<div style="display:flex;justify-content:center">${tabs}</div>
+  <section class="glass cmp-head">
+   <div class="eyebrow" style="justify-content:center">Club vs Club · ${esc(cmpName(comp))} · ${esc(D.season)}</div>
+   <div class="ch-grid">
+    <div class="ch-side"><a href="#club-${a.id}-${CK[comp]}">${crest(a.id,'lg')}</a><h1 class="ca-t">${esc(a.name)}</h1><div class="ch-rec num">${A.w}-${A.d}-${A.l} <small>W-D-L</small></div><div class="ch-ppg"><span class="num ca">${f2(A.ppg)}</span><small>points per game</small></div>${cmpPicker('a',a.id,'Change club')}</div>
+    <div class="ch-mid"><span class="vsb">VS</span><button type="button" class="btn" data-cmp-swap aria-label="Swap sides">${I.swap}</button></div>
+    <div class="ch-side"><a href="#club-${b.id}-${CK[comp]}">${crest(b.id,'lg')}</a><h1 class="cb-t">${esc(b.name)}</h1><div class="ch-rec num">${B.w}-${B.d}-${B.l} <small>W-D-L</small></div><div class="ch-ppg"><span class="num cb">${f2(B.ppg)}</span><small>points per game</small></div>${cmpPicker('b',b.id,'Change club')}</div>
+   </div>
+   <div class="ch-foot">${both.length>1?`<nav class="seg accent" aria-label="Competition">${both.map(x=>`<a class="${x===comp?'on':''}" href="#${cmpHash(a.id,b.id,x)}">${esc(cmpName(x))}</a>`).join('')}</nav>`:''}<button type="button" class="btn primary" data-share="${esc(shareUrl)}">${I.share} Share comparison</button></div>
+  </section>
+  <section class="glass pad"><div class="card-h"><h2>Key metrics</h2><p>${lead}. Every age group's ${esc(cmpName(comp))} teams combined, from the official tables.</p></div>
+   <div class="edgebar"><span class="ca">${wa}</span><div class="tw2 big"><i class="ea" style="width:${tot?Math.round(wa/tot*100):50}%"></i><i class="lv" style="width:${tot?Math.round((tot-wa-wb)/tot*100):0}%"></i><i class="eb" style="width:${tot?Math.round(wb/tot*100):50}%"></i></div><span class="cb">${wb}</span></div>
+   <div class="mhead"><span class="ca">${esc(a.name)}</span><span class="cb">${esc(b.name)}</span></div>
+   <div class="mtable">${rows}</div></section>
+  <section class="glass pad"><div class="card-h"><h2>Age group by age group</h2><p>${aa+bb+lv?`<b class="ca">${esc(initials(a.name))}</b> ahead in ${aa}, <b class="cb">${esc(initials(b.name))}</b> ahead in ${bb}${lv?`, level in ${lv}`:''} (by points per game). `:''}Best-placed team shown when a club has two in one age group.</p></div>
+   <div class="agrid"><div class="ahd"><span class="ca">${esc(a.name)}</span><span></span><span class="cb">${esc(b.name)}</span></div>${arows}</div></section>
+  <div class="two"><section class="glass pad chart"><div class="card-h"><h2>Points per game by age</h2></div><div class="legend"><span><i style="background:#2dd4bf"></i>${esc(a.name)}</span><span><i style="background:#f59e5b"></i>${esc(b.name)}</span></div><div style="margin-top:8px">${svg}</div></section>
+   <section class="glass pad chart"><div class="card-h"><h2>Goal difference per game</h2></div><div class="legend"><span><i style="background:#2dd4bf"></i>${esc(a.name)}</span><span><i style="background:#f59e5b"></i>${esc(b.name)}</span></div><div style="margin-top:8px">${svg2}</div></section></div>
+  <section class="glass pad"><div class="card-h"><h2>Meetings this season</h2><p>${pm.length?`<b class="ca">${esc(a.name)}</b>: ${mw}W ${md}D ${ml}L · goals ${mg}–${mga} across ${pm.length} game${pm.length>1?'s':''}`:'They haven\'t played each other yet this season.'}${um.length?` · ${um.length} still to play`:''}</p></div>
+   ${pm.length?`<div class="ml" style="margin-top:6px">${mlist}</div>`:''}${ulist?`<div class="day-h">Coming up</div><div class="ml">${ulist}</div>`:''}</section>`;
+}
+
 /* ---------- searchable club picker ---------- */
 function picker(id,label,cur,cls){return `<div class="picker ${cls}" data-picker="${id}" data-cur="${cur??''}"><button type="button" class="pk-btn" aria-haspopup="listbox" aria-expanded="false">${label}</button></div>`}
 let pkOpen=null;
@@ -1105,11 +1303,13 @@ function pkList(pk,q){
   const cur=+pk.dataset.cur;const tok=q.trim().toLowerCase().split(/\s+/).filter(Boolean);
   const hit=c=>{const n=(c.name+' '+c.teams.map(t=>t.name).join(' ')).toLowerCase();return tok.every(w=>n.includes(w))};
   const l=clubs.filter(hit);let out='',last='';
-  l.forEach(c=>{const L1=letterOf(c.name);if(!tok.length&&L1!==last){out+=`<div class="lh">${L1}</div>`;last=L1}out+=`<a href="#club-${c.id}" role="option" class="${c.id===cur?'cur':''}">${crest(c.id,'xs')}<span>${esc(c.name)}</span></a>`});
+  const pick=pk.dataset.mode==='pick';
+  l.forEach(c=>{const L1=letterOf(c.name);if(!tok.length&&L1!==last){out+=`<div class="lh">${L1}</div>`;last=L1}out+=`<a href="${pick?'#':'#club-'+c.id}" ${pick?`data-pick="${c.id}"`:''} role="option" class="${c.id===cur?'cur':''}">${crest(c.id,'xs')}<span>${esc(c.name)}</span></a>`});
   pk.querySelector('.pk-list').innerHTML=out||'<div class="none">No club matches that. Try part of the name.</div>';
   pk.querySelector('.pk-count').textContent=tok.length?`${l.length} of ${clubs.length} clubs`:`${clubs.length} clubs, A–Z`;
   pk._act=-1;
 }
+function pkPick(pk,id){const slot=pk.dataset.slot;pkClose();CMP[slot]=id;const o=slot==='a'?'b':'a';if(CMP[o]===id)CMP[o]=0;const c=clubBy.get(id);if(c&&!c.teams.some(t=>t.comp===CMP.comp))CMP.comp=[0,1,2].find(x=>c.teams.some(t=>t.comp===x));const h=cmpHash(CMP.a,CMP.b,CMP.comp);if(location.hash.slice(1)===h)render(false);else location.hash=h}
 function pkClose(){if(!pkOpen)return;pkOpen.querySelector('.pk-pop')?.remove();pkOpen.querySelector('.pk-btn').setAttribute('aria-expanded','false');pkOpen=null}
 function pkOpenFn(pk){
   pkClose();pkOpen=pk;
@@ -1121,13 +1321,14 @@ function pkOpenFn(pk){
   inp.addEventListener('input',()=>pkList(pk,inp.value));
   inp.addEventListener('keydown',e=>{const as=[...pop.querySelectorAll('.pk-list a')];
     if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(!as.length)return;pk._act=(pk._act+(e.key==='ArrowDown'?1:-1)+as.length)%as.length;as.forEach((a,i)=>a.classList.toggle('act',i===pk._act));as[pk._act].scrollIntoView({block:'nearest'})}
-    else if(e.key==='Enter'){e.preventDefault();const a=as[pk._act>=0?pk._act:0];if(a){pkClose();location.hash=a.getAttribute('href').slice(1)}}
+    else if(e.key==='Enter'){e.preventDefault();const a=as[pk._act>=0?pk._act:0];if(a){if(a.dataset.pick){pkPick(pk,+a.dataset.pick)}else{pkClose();location.hash=a.getAttribute('href').slice(1)}}}
     else if(e.key==='Escape'){pkClose();pk.querySelector('.pk-btn').focus()}});
   setTimeout(()=>inp.focus(),0);
 }
 document.addEventListener('click',e=>{
   const btn=e.target.closest('.pk-btn');
   if(btn){const pk=btn.closest('.picker');if(pkOpen===pk)pkClose();else pkOpenFn(pk);return}
+  const pa=e.target.closest('.pk-list a[data-pick]');if(pa){e.preventDefault();pkPick(pa.closest('.picker'),+pa.dataset.pick);return}
   if(e.target.closest('.pk-list a')){pkClose();return}
   if(pkOpen&&!e.target.closest('.pk-pop'))pkClose();
 });
@@ -1139,6 +1340,7 @@ function render(scroll){
   let m;
   ['home','wk','rank','ct','about'].forEach(k=>document.getElementById('nav-'+k).classList.remove('on'));
   if(h==='weekend'){document.getElementById('nav-wk').classList.add('on');app.innerHTML=viewWeekend();bindWeekend();setTitle('This week')}
+  else if((m=h.match(/^compare(?:-(\d+)-(\d+)(?:-(ea|national|ea2))?)?$/))){document.getElementById('nav-ct').classList.add('on');if(m[1]!=null){CMP.a=+m[1]&&clubBy.get(+m[1])?+m[1]:0;CMP.b=+m[2]&&clubBy.get(+m[2])?+m[2]:0;if(m[3])CMP.comp=CK.indexOf(m[3])}app.innerHTML=viewCompare();const A=clubBy.get(CMP.a),B=clubBy.get(CMP.b);setTitle(A&&B?`${A.name} vs ${B.name}`:'Compare clubs')}
   else if(h==='club-table'){document.getElementById('nav-ct').classList.add('on');app.innerHTML=viewClubTable();bindClubTable();setTitle(`${cmpName(CT.comp)} Club vs Club`)}
   else if(h==='rankings'){document.getElementById('nav-rank').classList.add('on');app.innerHTML=viewRank();bindRank();setTitle(`${RK.age} National Rankings`)}
   else if(h==='about'){document.getElementById('nav-about').classList.add('on');app.innerHTML=viewAbout();setTitle('Data notes')}
@@ -1151,6 +1353,7 @@ function render(scroll){
 app.addEventListener('click',e=>{
   const b=e.target.closest('[data-m]');if(b){openMatch(reg[+b.dataset.m]);return}
   const s=e.target.closest('[data-share]');if(s){share(document.title,s.dataset.share||location.href);return}
+  const sw=e.target.closest('[data-cmp-swap]');if(sw){location.hash=cmpHash(CMP.b,CMP.a,CMP.comp);return}
   const fv=e.target.closest('[data-fav]');if(fv){favToggle(fv);return}
   const cb=e.target.closest('[data-cal]');if(cb){const [k,v]=cb.dataset.cal.split('|');openCal(k,v);return}
   const wb=e.target.closest('[data-wk]');if(wb){WK.off=wb.dataset.wk==='0'?0:WK.off+(+wb.dataset.wk);render(false);return}
