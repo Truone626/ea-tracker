@@ -19,3 +19,13 @@ If a run fails (Modular11 down, page layout changed, match count suddenly drops 
 ## New season
 
 Update `SEASON` in `scripts/pull.mjs` (event id and dates) and the `season` label in `build.py`.
+
+## What each update also builds
+
+- `site/cal/*.ics`: calendar subscriptions for every team and for each club per competition.
+- `site/club/<name>/` and `site/team/<id>/`: share pages with link-preview cards, which then open the right page on the site.
+- `site/og/*.png`: preview images, plus `sitemap.xml` and `robots.txt`.
+
+## Visitor stats (optional)
+
+Create a free GoatCounter account and pick a code, then in this repository go to **Settings → Secrets and variables → Actions → Variables** and add `GOATCOUNTER_CODE` with that code. The next update turns the counter on.

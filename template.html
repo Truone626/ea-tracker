@@ -323,6 +323,39 @@ tr.me:hover td{background:rgba(79,140,255,.16)}
 .wx-row{display:flex;gap:6px 16px;flex-wrap:wrap;align-items:center}
 .wx-row .sep{width:1px;height:16px;background:var(--line-2)}
 .wx-load{color:var(--dim);font-size:.78rem}
+
+/* follow, my teams */
+.btn.fav svg{color:var(--muted);fill:none}
+.btn.fav.on{border-color:rgba(240,195,90,.6);background:rgba(240,195,90,.1)}
+.btn.fav.on svg{color:var(--gold);fill:var(--gold)}
+.myt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.myt{display:grid;gap:8px;padding:14px;text-decoration:none;color:var(--ink)}
+.myt:hover{border-color:rgba(45,212,191,.5)}
+.myt-h{display:flex;gap:10px;align-items:center}.myt-h b{display:block}.myt-h small{color:var(--muted)}
+.myt-r{display:flex;gap:8px;align-items:center;font-size:.86rem;min-width:0;border-top:1px solid var(--line);padding-top:8px}
+.myt-r .lab{color:var(--muted);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;width:34px;flex:none}
+.myt-r .on-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#d4deec}
+.cal-opts{display:grid;gap:8px}
+.cal-opts .btn{justify-content:center;padding:11px 14px}
+/* this week */
+.wk-list,.wk-venue{padding:4px 14px;margin-bottom:10px}
+.wk-venue{padding-top:12px}
+.wkrow{display:grid;grid-template-columns:150px minmax(0,1fr) 92px minmax(0,1fr) minmax(0,200px);gap:10px;align-items:center;width:100%;border:0;border-top:1px solid var(--line);background:transparent;color:var(--ink);padding:10px 0;text-align:left;cursor:pointer}
+.wk-list .wkrow:first-child,.wk-venue .venue+.wkrow{border-top:0}
+.wkrow:hover .wk-t{color:var(--accent)}
+.wk-meta{display:flex;gap:8px;align-items:center;min-width:0}.wk-meta small{color:var(--muted);font-size:.72rem;line-height:1.15;overflow:hidden;text-overflow:ellipsis}
+.wk-h{display:flex;gap:9px;align-items:center;justify-content:flex-end;text-align:right;min-width:0}
+.wk-a{display:flex;gap:9px;align-items:center;min-width:0}
+.wk-t{font-weight:600;overflow-wrap:anywhere;line-height:1.2}.wk-t.won{color:var(--win)}
+.wk-c{text-align:center}.wk-c .sc{font-family:var(--mono);font-weight:700;font-size:1.05rem}.wk-c .tm{font-family:var(--mono);font-weight:700;font-size:.9rem}
+.wk-v{color:var(--muted);font-size:.78rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:860px){.wkrow{grid-template-columns:minmax(0,1fr) 78px minmax(0,1fr);row-gap:4px}.wk-meta{grid-column:1/-1}.wk-v{grid-column:1/-1;text-align:center}.wk-h .crest,.wk-a .crest{--s:24px}}
+/* matchup */
+.h2h .bt{color:var(--win);font-weight:700}
+.common{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr);gap:8px 10px;font-size:.84rem;align-items:center}
+.common .c{display:flex;gap:6px;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-size:.8rem;min-width:0}
+.common .c span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.common .a{text-align:right}
 /* rankings */
 .rhead{text-align:center;padding:24px 18px;display:grid;justify-items:center;gap:10px;grid-template-columns:minmax(0,1fr)}
 .rhead>*{max-width:100%;min-width:0}
@@ -402,6 +435,15 @@ footer a:hover{color:var(--accent)}
 @media (prefers-reduced-motion:no-preference){.btn,.tabs a,.seg a,.seg button{transition:background .15s,color .15s,border-color .15s}}
 @media (prefers-reduced-motion:reduce){.club-card{transition:none}.club-card:hover{transform:none}}
 </style>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EA Tracker">
+<meta property="og:title" content="EA Tracker · Elite Academy League standings, schedules and results">
+<meta property="og:description" content="Standings, schedules, results and rankings for every Elite Academy League club. Updated twice a day.">
+<meta property="og:url" content="__SITE__">
+<meta property="og:image" content="__SITE__og/home.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="__SITE__">
+<!--ANALYTICS-->
 </head>
 <body>
 <div class="page">
@@ -409,14 +451,16 @@ footer a:hover{color:var(--accent)}
     <a class="brand" href="#home"><i aria-hidden="true"></i><span>EA <b>Tracker</b></span></a>
     <nav class="nav" aria-label="Main">
       <a id="nav-home" href="#home">Clubs</a>
+      <a id="nav-wk" href="#weekend">This week</a>
       <a id="nav-rank" href="#rankings">Rankings</a>
+      <a id="nav-ct" href="#club-table">Club vs Club</a>
       <a id="nav-about" href="#about">Data notes</a>
     </nav>
   </header>
   <main id="app" class="stack"></main>
   <footer>
     <div class="asof"><span class="live" aria-hidden="true"></span><span>Updated automatically twice a day · League data as of <b id="asof"></b></span></div>
-    <nav><a href="#home">Clubs</a><a href="#rankings">National Rankings</a><a href="#about">Data notes</a></nav>
+    <nav><a href="#home">Clubs</a><a href="#weekend">This week</a><a href="#rankings">National Rankings</a><a href="#club-table">Club vs Club</a><a href="#about">Data notes</a></nav>
     <div>Independent project. Not affiliated with or endorsed by the Elite Academy League or Modular11. Data comes from the league's public schedule and standings.</div>
     <div>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>), shown for matches in the next 16 days.</div>
   </footer>
@@ -500,8 +544,8 @@ function clubOptions(sel){
   return Object.keys(g).sort().map(k=>`<optgroup label="${k}">${g[k].map(c=>`<option value="${c.id}" ${c.id===sel?'selected':''}>${esc(c.name)}</option>`).join('')}</optgroup>`).join('');
 }
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>t.hidden=true,2200)}
-async function share(title){
-  const url=location.href;
+async function share(title,url){
+  url=url||location.href;
   try{if(navigator.share){await navigator.share({title,url});return}}catch(e){if(e&&e.name==='AbortError')return}
   try{await navigator.clipboard.writeText(url);toast('Link copied')}catch(e){prompt('Copy this link',url)}
 }
@@ -522,10 +566,12 @@ function viewHome(){
     <div class="hero-links">
       ${picker('home',`${I.grid} Browse all clubs A–Z`,null,'big')}
       <a class="btn" href="#rankings">${I.trophy} National Rankings</a>
+      <a class="btn" href="#weekend">${I.cal} This week's matches</a>
       ${saved?`<a class="btn" href="#club-${saved.id}">${crest(saved.id,'xs')} Back to ${esc(saved.name)}</a>`:''}
     </div>
     <div class="stats"><span><b>${clubs.length}</b> clubs</span><span><b>${T.length.toLocaleString()}</b> teams</span><span><b>${played_.toLocaleString()}</b> results</span><span><b>${M.filter(m=>!played(m)&&m.dt>=now).length.toLocaleString()}</b> matches to play</span></div>
   </section>
+  ${myTeams()}
   <section class="stack" style="gap:14px">
     <div class="sec-h"><h2>All clubs</h2>
       <div class="seg" id="hc" role="tablist" aria-label="Competition"><button type="button" data-c="-1">All</button>${D.comps.map((n,i)=>`<button type="button" data-c="${i}">${esc(n)}</button>`).join('')}</div>
@@ -582,12 +628,13 @@ function compSeg(c,comp,target){
   if(cs.length<2)return '';
   return `<nav class="seg accent" aria-label="Competition">${cs.map(x=>`<a class="${x===comp?'on':''}" href="${target(x)}">${esc(cmpName(x))}</a>`).join('')}</nav>`;
 }
-function header(c,comp,title,sub,tabs,seg,rkLink){
+function header(c,comp,title,sub,tabs,seg,rkLink,shareUrl,extra){
   return `<section class="glass head">
     <div class="head-top">${crest(c.id,'lg')}
       <div class="head-txt"><div class="eyebrow">Elite Academy League <span class="tag">${esc(cmpName(comp))}</span> ${esc(D.season)}</div><h1>${esc(title)}</h1><div class="sub">${esc(sub)}</div></div>
-      <div class="head-actions">${rkLink}${picker('hdr',`${I.swap} Switch club`,c.id,'')}<button type="button" class="btn primary" data-share>${I.share} Share</button></div>
+      <div class="head-actions">${rkLink}${picker('hdr',`${I.swap} Switch club`,c.id,'')}<button type="button" class="btn primary" data-share="${esc(shareUrl||'')}">${I.share} Share</button></div>
     </div>
+    ${extra?`<div class="head-actions">${extra}</div>`:''}
     <div class="head-nav">${tabs}${seg}</div>
   </section>`;
 }
@@ -669,8 +716,8 @@ function viewClub(c,comp){
   const latest=`<section class="glass pad"><div class="card-h"><h2>Latest results</h2>${lr.length?`<p>${(()=>{const d0=lr[0].dt;const same=lr.filter(m=>sameDay(m.dt,d0));const w=same.filter(m=>resFor(teamOf(m),m)==='W').length,d=same.filter(m=>resFor(teamOf(m),m)==='D').length,l=same.filter(m=>resFor(teamOf(m),m)==='L').length;return `${dayS(d0)}: ${w} win${w!==1?'s':''}, ${d} draw${d!==1?'s':''}, ${l} loss${l!==1?'es':''}`})()}</p>`:''}</div>
     <div class="ml" style="margin-top:6px">${lr.map(m=>{const t=teamOf(m),o=opp(t,m),r=resFor(t,m);return `<button type="button" class="mrow" data-m="${mref(m)}"><span class="d"><b>${m.dt.toLocaleDateString('en-US',{weekday:'short'})}</b>${m.dt.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span><span class="age">${esc(t.age)}</span><span class="va">${m.h===t?'vs':'@'}</span>${crest(o.club,'xs',o.name)}<span class="on-name">${esc(o.name)}</span><span class="sc">${gfor(t,m)}–${gag(t,m)}</span><span class="pill ${r}">${r}</span></button>`}).join('')||'<div class="empty">No results yet.</div>'}</div></section>`;
   const firstTeam=ts.find(t=>t.tid);
-  return header(c,comp,c.name,`Club overview · ${ts.length} ${cmpName(comp)} team${ts.length!==1?'s':''}`,clubTabs(c,comp,'ov'),compSeg(c,comp,x=>'#club-'+c.id+'-'+CK[x]),`<a class="btn" href="#rankings" data-rk="${comp}|${firstTeam?firstTeam.age:'U14'}">${I.trophy} Rankings</a>`)+
-   tiles+`<div class="cols"><div class="stack">${snap}${charts}${latest}</div><div class="stack">${nmd}${hlH}</div></div>`;
+  return header(c,comp,c.name,`Club overview · ${ts.length} ${cmpName(comp)} team${ts.length!==1?'s':''}`,clubTabs(c,comp,'ov'),compSeg(c,comp,x=>'#club-'+c.id+'-'+CK[x]),`<a class="btn" href="#rankings" data-rk="${comp}|${firstTeam?firstTeam.age:'U14'}">${I.trophy} Rankings</a>`,clubUrl(c),favBtn('c',c.id,c.name)+calBtn('c',c.id+'-'+comp)+`<a class="btn" href="#club-table" data-ct="${comp}|${esc(firstTeam?firstTeam.div:'')}">${I.bars} Club vs Club</a>`)+
+   tiles+`<div class="cols"><div class="stack">${snap}${charts}${latest}</div><div class="stack">${nmd}${recapCard(c,comp)}${hlH}</div></div>`;
 }
 
 /* ---------- team ---------- */
@@ -711,7 +758,7 @@ function viewTeam(t){
   store.set('ea-club',String(c.id));
   const others=c.teams.filter(x=>x.tid&&x.comp!==t.comp&&x.age===t.age);
   const sub=`${t.age} · ${t.div}${t.div.length<26?' Division':''}`;
-  return header(c,t.comp,t.name,sub,clubTabs(c,t.comp,t),compSeg(c,t.comp,x=>{const o=others.find(y=>y.comp===x);return o?'#'+tkey(o):'#club-'+c.id+'-'+CK[x]}),`<a class="btn" href="#rankings" data-rk="${t.comp}|${t.age}">${I.trophy} ${esc(t.age)} Rankings</a>`)+
+  return header(c,t.comp,t.name,sub,clubTabs(c,t.comp,t),compSeg(c,t.comp,x=>{const o=others.find(y=>y.comp===x);return o?'#'+tkey(o):'#club-'+c.id+'-'+CK[x]}),`<a class="btn" href="#rankings" data-rk="${t.comp}|${t.age}">${I.trophy} ${esc(t.age)} Rankings</a>`,teamUrl(t),favBtn('t',tkey(t),t.name+' '+t.age)+calBtn('t',tkey(t)))+
     nextMatchCard(t)+standingsCard(t)+scheduleSec(t);
 }
 
@@ -775,6 +822,7 @@ function openMatch(m){
    <div class="vs" style="margin:0"><div class="side">${crest(m.h.club,'md',m.h.name)}<b style="text-align:center">${esc(m.h.name)}</b></div><div class="mid"><span class="muted" style="font-weight:700">VS</span></div><div class="side">${crest(m.a.club,'md',m.a.name)}<b style="text-align:center">${esc(m.a.name)}</b></div></div>${score}
    <dl class="kv"><dt>Date</dt><dd>${esc(dayL(m.dt))}${played(m)||midnight(m.dt)?'':', '+timeS(m.dt)}${!played(m)&&midnight(m.dt)?' · kickoff TBD':''}</dd><dt>Venue</dt><dd>${esc(vname(m.v))} · <a href="${mapUrl(m.v)}" target="_blank" rel="noopener">Open in Maps</a></dd><dt>Division</dt><dd>${esc(m.h.div)}${m.h.div!==m.a.div?' v '+esc(m.a.div):''}</dd>${!played(m)&&m.dt<now?'<dt>Status</dt><dd class="wait">Awaiting score from the league</dd>':''}${wxAttr(m)?`<dt>Forecast</dt><dd>${wxSlot(m)}</dd>`:''}</dl>
    <div class="cmp"><div class="a">${esc(rS(m.h))}</div><div class="c">Table</div><div>${esc(rS(m.a))}</div><div class="a">${pills(form(m.h))}</div><div class="c">Last 5</div><div>${pills(form(m.a))}</div></div>
+   ${h2h(m)}
    ${prev.length?`<div><div class="day-h" style="margin-top:0">Earlier this season</div>${prev.map(x=>`<div class="muted" style="font-size:.88rem">${esc(dayS(x.dt))}: ${esc(x.h.name)} <b class="num" style="color:var(--ink)">${x.hs}–${x.as}</b> ${esc(x.a.name)}</div>`).join('')}</div>`:''}
    <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="#${tkey(m.h)}">${esc(m.h.name)}</a><a class="btn" href="#${tkey(m.a)}">${esc(m.a.name)}</a></div></div>`;
   ov.hidden=false;hydrateWx(ov);
@@ -832,6 +880,224 @@ async function hydrateWx(root=document){
   }
 }
 const wxSlot=(m,size)=>{const a=wxAttr(m);return a?`<span data-wx="${a}" ${size?`data-wx-size="${size}"`:''}><span class="wx-load">Loading forecast…</span></span>`:''};
+/* ---------- favorites (saved on this device only) ---------- */
+const FAV=(()=>{let f;try{f=JSON.parse(store.get('ea-favs')||'{}')}catch(e){f={}}return {c:new Set(f.c||[]),t:new Set(f.t||[])}})();
+const favSave=()=>store.set('ea-favs',JSON.stringify({c:[...FAV.c],t:[...FAV.t]}));
+const STAR='<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg>';
+const favOn=(k,v)=>k==='c'?FAV.c.has(+v):FAV.t.has(v);
+const favBtn=(k,v,what)=>`<button type="button" class="btn fav ${favOn(k,v)?'on':''}" data-fav="${k}:${v}" aria-pressed="${favOn(k,v)}" title="${favOn(k,v)?'Stop following':'Follow'} ${esc(what)}">${STAR}<span>${favOn(k,v)?'Following':'Follow'}</span></button>`;
+function favToggle(btn){
+  const [k,v]=btn.dataset.fav.split(':');const set=k==='c'?FAV.c:FAV.t;const val=k==='c'?+v:v;
+  if(set.has(val)){set.delete(val);toast('Removed from My teams')}else{set.add(val);toast('Added to My teams on the home page')}
+  favSave();const on=favOn(k,v);document.querySelectorAll(`[data-fav="${k}:${v}"]`).forEach(b=>{b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);b.querySelector('span').textContent=on?'Following':'Follow'});
+}
+function myTeams(){
+  const ts=[...FAV.t].map(k=>tby.get(k)).filter(Boolean);
+  const cs=[...FAV.c].map(id=>clubBy.get(id)).filter(Boolean);
+  if(!ts.length&&!cs.length)return '';
+  const card=t=>{const nx=upcoming(t)[0],lr=results(t).slice(-1)[0];
+    return `<a class="myt glass" href="#${tkey(t)}"><div class="myt-h">${crest(t.club,'sm',t.name)}<div><b>${esc(t.name)}</b><small>${esc(t.age)} · ${esc(cmpName(t.comp))}${t.rank!=null?` · ${ord(t.rank)} of ${tableOf(t).length}`:''}</small></div></div>
+      <div class="myt-r"><span class="lab">Last</span>${lr?`<span class="pill ${resFor(t,lr)}">${resFor(t,lr)}</span><span class="num">${gfor(t,lr)}–${gag(t,lr)}</span><span class="on-name">${lr.h===t?'vs':'at'} ${esc(opp(t,lr).name)}</span>`:'<span class="muted">No results yet</span>'}</div>
+      <div class="myt-r"><span class="lab">Next</span>${nx?`<span class="num">${esc(dayS(nx.dt))}${midnight(nx.dt)?'':' '+timeS(nx.dt)}</span><span class="on-name">${nx.h===t?'vs':'at'} ${esc(opp(t,nx).name)}</span>`:'<span class="muted">Nothing scheduled</span>'}</div></a>`};
+  return `<section class="stack" style="gap:12px"><div class="sec-h"><h2>${STAR.replace('width="15" height="15"','width="22" height="22" style="color:var(--gold);vertical-align:-2px"')} My teams</h2><span class="muted" style="font-size:.86rem">Saved on this device</span></div>
+    ${ts.length?`<div class="myt-grid">${ts.map(card).join('')}</div>`:''}
+    ${cs.length?`<div class="chips" style="justify-content:flex-start">${cs.map(c=>`<a class="btn" href="#club-${c.id}">${crest(c.id,'xs')} ${esc(c.name)}</a>`).join('')}</div>`:''}
+    ${!ts.length?'<p class="muted" style="margin:0;font-size:.88rem">Tip: tap <b>Follow</b> on any team page to see its last result and next match here.</p>':''}</section>`;
+}
+
+/* ---------- links: share pages and calendars ---------- */
+const BASE=location.origin+location.pathname.replace(/[^/]*$/,'');
+const clubUrl=c=>D.slugs&&D.slugs[c.id]?`${BASE}club/${D.slugs[c.id]}/`:`${BASE}#club-${c.id}`;
+const teamUrl=t=>`${BASE}team/${CK[t.comp]}-${t.tid}/`;
+const calBtn=(kind,key)=>`<button type="button" class="btn" data-cal="${kind}|${key}">${I.cal.replace('<svg','<svg width="15" height="15"')} Add to calendar</button>`;
+async function copyText(txt,msg){try{await navigator.clipboard.writeText(txt);toast(msg||'Copied')}catch(e){prompt('Copy this',txt)}}
+function openCal(kind,key){
+  let file,name;
+  if(kind==='t'){const t=tby.get(key);file=`cal/${CK[t.comp]}-${t.tid}.ics`;name=`${t.name} ${t.age} (${cmpName(t.comp)})`}
+  else{const [id,comp]=key.split('-');const c=clubBy.get(+id);file=`cal/club-${id}-${CK[+comp]}.ics`;name=`${c.name} · every ${cmpName(+comp)} team`}
+  const url=BASE+file,web=url.replace(/^https?:/,'webcal:');
+  ov.innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Add to calendar"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><div class="eyebrow">Add to calendar</div><button type="button" class="btn" id="ovx">Close</button></div>
+   <h2>${esc(name)}</h2>
+   <p class="muted" style="margin:0">Subscribe once and the whole schedule stays in your calendar. New games, time changes and final scores show up on their own as the league updates. Calendar apps check for changes every few hours, and Google Calendar can be slower.</p>
+   <div class="cal-opts">
+    <a class="btn primary" href="${esc(web)}">${I.cal.replace('<svg','<svg width="15" height="15"')} Apple Calendar (iPhone, iPad, Mac)</a>
+    <a class="btn" href="https://calendar.google.com/calendar/r?cid=${encodeURIComponent(web)}" target="_blank" rel="noopener">Google Calendar</a>
+    <button type="button" class="btn" id="calcopy">Copy calendar link</button>
+    <a class="btn" href="${esc(url)}" download>Download once (.ics)</a>
+   </div>
+   <p class="muted" style="margin:0;font-size:.84rem"><b>Outlook:</b> Add calendar → Subscribe from web, then paste the copied link. <b>Android:</b> use Google Calendar on the web, then it syncs to your phone.</p></div>`;
+  ov.hidden=false;
+  document.getElementById('calcopy').onclick=()=>copyText(url,'Calendar link copied');
+  const b=document.getElementById('ovx');b.focus();b.onclick=closeOv;
+}
+
+/* ---------- this weekend ---------- */
+const WK={off:0,comp:-1,age:'',div:'',q:'',group:'time'};
+const monday=d=>{const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());const wd=(x.getDay()+6)%7;x.setDate(x.getDate()-wd);return x};
+const fmtRange=(a,b)=>{const o={month:'short',day:'numeric'};return a.getMonth()===b.getMonth()?`${a.toLocaleDateString('en-US',o)}–${b.getDate()}`:`${a.toLocaleDateString('en-US',o)} – ${b.toLocaleDateString('en-US',o)}`};
+function wkRange(){const s=monday(now);s.setDate(s.getDate()+7*WK.off);const e=new Date(s);e.setDate(e.getDate()+7);return [s,e]}
+function viewWeekend(){
+  const [s,e]=wkRange();const last=new Date(e);last.setDate(last.getDate()-1);
+  const wkM=M.filter(m=>m.dt>=s&&m.dt<e);
+  const days=[...new Set(wkM.map(m=>m.dt.toDateString()))].map(x=>new Date(x));
+  const label=WK.off===0?'This week':WK.off===1?'Next week':WK.off===-1?'Last week':`Week of ${s.toLocaleDateString('en-US',{month:'short',day:'numeric'})}`;
+  const ages=AGES.filter(a=>T.some(t=>(WK.comp<0||t.comp===WK.comp)&&t.age===a));
+  const divs=[...new Set(T.filter(t=>(WK.comp<0||t.comp===WK.comp)&&(!WK.age||t.age===WK.age)).map(t=>t.div))].sort();
+  if(WK.div&&!divs.includes(WK.div))WK.div='';
+  return `<section class="glass rhead"><div class="eyebrow">Elite Academy League · every match</div>
+    <div class="ttl" style="flex-wrap:nowrap;gap:12px"><button type="button" class="btn" data-wk="-1" aria-label="Previous week">${I.back}</button><div style="text-align:center;min-width:0"><h1 style="text-align:center;font-size:clamp(2rem,6.6vw,4.4rem)">${esc(label)}</h1><div class="kick" style="text-align:center">${esc(fmtRange(s,last).toUpperCase())} · ${days.length?days.map(d=>d.toLocaleDateString('en-US',{weekday:'short'})).join(' · ').toUpperCase():'NO MATCHES'}</div></div><button type="button" class="btn" data-wk="1" aria-label="Next week" style="transform:scaleX(-1)">${I.back}</button></div>
+    ${WK.off!==0?'<button type="button" class="btn" data-wk="0">Back to this week</button>':''}</section>
+  <section class="rcontrols">
+   <div class="rrow"><nav class="seg accent" id="wkc"><button type="button" data-c="-1" class="${WK.comp<0?'on':''}">All</button>${D.comps.map((n,i)=>`<button type="button" data-c="${i}" class="${i===WK.comp?'on':''}">${esc(n)}</button>`).join('')}</nav>
+    <nav class="seg" id="wkg"><button type="button" data-g="time" class="${WK.group==='time'?'on':''}">By time</button><button type="button" data-g="venue" class="${WK.group==='venue'?'on':''}">By venue</button></nav></div>
+   <div class="rrow"><label class="field" for="wka">${I.people}<select id="wka"><option value="">All ages</option>${ages.map(a=>`<option ${a===WK.age?'selected':''}>${a}</option>`).join('')}</select></label>
+    <label class="field" for="wkd">${I.pin}<select id="wkd"><option value="">All divisions</option>${divs.map(d=>`<option ${d===WK.div?'selected':''}>${esc(d)}</option>`).join('')}</select></label>
+    <label class="field" for="wkq">${I.search}<input id="wkq" type="search" value="${esc(WK.q)}" placeholder="Club or venue"></label></div>
+   <div class="rmeta" id="wkmeta"></div></section>
+  <section id="wkb"></section>`;
+}
+function wkRow(m){
+  const isP=played(m),aw=!isP&&m.dt<now;
+  const mid=isP?`<span class="sc">${m.hs} : ${m.as}</span>`:aw?'<span class="wait">Awaiting</span>':`<span class="tm">${midnight(m.dt)?'TBD':timeS(m.dt)}</span>`;
+  const nm=(x,won)=>`<span class="wk-t ${won?'won':''}">${esc(x.name)}</span>`;
+  return `<button type="button" class="wkrow" data-m="${mref(m)}"><span class="wk-meta"><span class="age">${esc(m.h.age)}</span><small>${esc(cmpName(m.h.comp))} · ${esc(m.h.div)}</small></span>
+   <span class="wk-h">${nm(m.h,isP&&m.hs>m.as)}${crest(m.h.club,'sm',m.h.name)}</span><span class="wk-c">${mid}</span><span class="wk-a">${crest(m.a.club,'sm',m.a.name)}${nm(m.a,isP&&m.as>m.hs)}</span>
+   <span class="wk-v">${WK.group==='venue'?'':esc(vname(m.v))}</span></button>`;
+}
+function drawWeekend(){
+  const [s,e]=wkRange();const q=WK.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const hit=m=>{if(!q.length)return true;const hay=(m.h.name+' '+m.a.name+' '+m.v[0]).toLowerCase();return q.every(w=>hay.includes(w))};
+  const L=M.filter(m=>m.dt>=s&&m.dt<e&&(WK.comp<0||m.h.comp===WK.comp)&&(!WK.age||m.h.age===WK.age)&&(!WK.div||m.h.div===WK.div||m.a.div===WK.div)&&hit(m));
+  const res=L.filter(played).length,aw=L.filter(m=>!played(m)&&m.dt<now).length;
+  document.getElementById('wkmeta').textContent=`${L.length} matches · ${res} results · ${aw?aw+' awaiting a score · ':''}${L.length-res-aw} to play`;
+  reg=[];let out='';
+  const byDay=new Map();L.forEach(m=>{const k=m.dt.toDateString();if(!byDay.has(k))byDay.set(k,[]);byDay.get(k).push(m)});
+  for(const [k,ms] of byDay){
+    out+=`<div class="day-h" style="font-size:.86rem;color:var(--ink)">${esc(dayL(new Date(k)))} <span class="muted">· ${ms.length} match${ms.length>1?'es':''}</span></div>`;
+    if(WK.group==='venue'){
+      const byV=new Map();ms.forEach(m=>{const v=vname(m.v);if(!byV.has(v))byV.set(v,[]);byV.get(v).push(m)});
+      [...byV].sort((a,b)=>b[1].length-a[1].length).forEach(([v,vm])=>{out+=`<div class="glass wk-venue"><div class="venue" style="border:0;background:none;padding:2px 2px 8px"><div><b>${esc(v)}</b><small>${vm.length} match${vm.length>1?'es':''}</small>${wxAttr(vm[0])?`<div style="margin-top:4px">${wxSlot(vm[0],'sm')}</div>`:''}</div>${v!=='Venue TBD'?`<a class="btn" href="${mapUrl(vm[0].v)}" target="_blank" rel="noopener">${I.map} Map</a>`:''}</div>${vm.map(wkRow).join('')}</div>`});
+    }else out+=`<div class="glass wk-list">${ms.map(wkRow).join('')}</div>`;
+  }
+  const box=document.getElementById('wkb');box.innerHTML=out||'<div class="glass pad empty" style="text-align:center">No matches this week with these filters.</div>';hydrateWx(box);
+}
+function bindWeekend(){
+  const on=(id,ev,f)=>document.getElementById(id).addEventListener(ev,f);
+  on('wkc','click',e=>{const b=e.target.closest('button');if(!b)return;WK.comp=+b.dataset.c;WK.div='';render(false)});
+  on('wkg','click',e=>{const b=e.target.closest('button');if(!b)return;WK.group=b.dataset.g;[...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));drawWeekend()});
+  on('wka','change',e=>{WK.age=e.target.value;render(false)});
+  on('wkd','change',e=>{WK.div=e.target.value;drawWeekend()});
+  on('wkq','input',e=>{WK.q=e.target.value;drawWeekend()});
+  drawWeekend();
+}
+
+/* ---------- club vs club table ---------- */
+const CT={comp:0,div:'',age:''};
+function clubAgg(){
+  const ts=T.filter(t=>t.comp===CT.comp&&t.mp!=null&&(!CT.div||t.div===CT.div)&&(!CT.age||t.age===CT.age));
+  const g=new Map();
+  ts.forEach(t=>{if(!g.has(t.club))g.set(t.club,{c:clubBy.get(t.club),n:0,mp:0,w:0,d:0,l:0,gf:0,ga:0,pts:0,best:null,divs:new Set()});const a=g.get(t.club);a.n++;a.mp+=t.mp;a.w+=t.w;a.d+=t.d;a.l+=t.l;a.gf+=t.gf;a.ga+=t.ga;a.pts+=t.pts;a.divs.add(t.div);if(t.rank!=null&&t.mp>0&&(!a.best||t.rank<a.best.rank))a.best=t});
+  const L=[...g.values()];
+  const key=a=>a.mp?[a.pts/a.mp,(a.gf-a.ga)/a.mp,a.gf/a.mp,a.mp]:[-1,0,0,0];
+  L.sort((x,y)=>{const a=key(x),b=key(y);for(let i=0;i<4;i++)if(a[i]!==b[i])return b[i]-a[i];return x.c.name.localeCompare(y.c.name)});
+  let r=0,prev=null;L.forEach((a,i)=>{const k=key(a).join('|');if(a.mp<3){a.rk=null;return}if(k!==prev){r=i+1;prev=k}a.rk=r});
+  return L;
+}
+function viewClubTable(){
+  const divs=[...new Set(T.filter(t=>t.comp===CT.comp&&(!CT.age||t.age===CT.age)).map(t=>t.div))].sort();
+  if(CT.div&&!divs.includes(CT.div))CT.div='';
+  const ages=AGES.filter(a=>T.some(t=>t.comp===CT.comp&&t.age===a));
+  const scope=CT.div?CT.div:'All divisions';
+  return `<section class="glass rhead"><div class="eyebrow">EA Tracker <span style="color:var(--dim)">|</span> <span style="color:var(--accent-2)">${esc(cmpName(CT.comp))}</span></div>
+   <div class="ttl"><span class="agebox" style="font-size:clamp(1.6rem,4.4vw,2.6rem)">${CT.age||'All ages'}</span><div><h1>Club <em>vs</em> Club</h1><div class="kick">${esc(scope.toUpperCase())} · EVERY AGE GROUP COMBINED</div></div></div>
+   <div style="font-size:.86rem;color:#cbd6e6">Each club's teams added together from the official division tables. Ordered by points per game, since clubs field different numbers of teams.</div></section>
+  <section class="rcontrols"><div class="rrow"><nav class="seg accent" id="ctc">${D.comps.map((n,i)=>`<button type="button" data-c="${i}" class="${i===CT.comp?'on':''}">${esc(n)}</button>`).join('')}</nav></div>
+   <div class="rrow"><label class="field" for="ctd">${I.pin}<select id="ctd"><option value="">All divisions</option>${divs.map(d=>`<option ${d===CT.div?'selected':''}>${esc(d)}</option>`).join('')}</select></label>
+   <label class="field" for="cta">${I.people}<select id="cta"><option value="">All ages</option>${ages.map(a=>`<option ${a===CT.age?'selected':''}>${a}</option>`).join('')}</select></label>
+   <button type="button" class="btn primary" data-share="">${I.share} Share table</button></div></section>
+  <details class="glass how"><summary>How the club table works <span>What's combined, how ties break, what it doesn't measure.</span></summary><div>
+   <p>For each club, every team in the chosen competition, division and age range is added together using the league's official table numbers: games, wins, draws, losses, goals and points (win 3, draw 1). Clubs are ordered by points per game, then goal difference per game, then goals per game, then games played. A club needs 3 games to get a position.</p>
+   <p>Pick a division to compare the clubs that actually play each other. "All divisions" compares records across the whole competition, not schedule strength.</p></div></details>
+  <section class="stack" style="gap:8px"><div class="muted" id="ctcount" style="font-size:.88rem"></div><div class="glass" style="padding:0 18px"><div class="tw" id="ctb"></div></div></section>`;
+}
+function drawClubTable(){
+  const L=clubAgg();
+  document.getElementById('ctcount').textContent=`${L.length} clubs · ${L.reduce((s,a)=>s+a.n,0)} teams`;
+  document.getElementById('ctb').innerHTML=`<table><thead><tr><th>#</th><th class="l">Club</th><th>Teams</th><th>GP</th><th>W-D-L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th><th>PPG</th><th class="l">Best team</th></tr></thead><tbody>${L.map(a=>`<tr class="${FAV.c.has(a.c.id)?'me':''}"><td class="rk">${a.rk??'–'}</td><td class="l t"><a href="#club-${a.c.id}-${CK[CT.comp]}">${crest(a.c.id,'sm')}<span>${esc(a.c.name)}${!CT.div&&a.divs.size===1?`<small>${esc([...a.divs][0])}</small>`:''}</span></a></td><td>${a.n}</td><td>${a.mp}</td><td>${a.w}-${a.d}-${a.l}</td><td>${a.gf}</td><td>${a.ga}</td><td>${sgn(a.gf-a.ga)}</td><td>${a.pts}</td><td class="pts">${a.mp?(a.pts/a.mp).toFixed(2):'–'}</td><td class="l" style="font-family:var(--body);color:var(--muted)">${a.best?`<a href="#${tkey(a.best)}" style="color:var(--ink);text-decoration:none">${a.best.age}</a> · ${ord(a.best.rank)} of ${tableOf(a.best).length}`:'–'}</td></tr>`).join('')||'<tr><td colspan="11" class="l" style="font-family:var(--body)">No clubs match these filters.</td></tr>'}</tbody></table>`;
+}
+function bindClubTable(){
+  document.getElementById('ctc').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;CT.comp=+b.dataset.c;CT.div='';CT.age='';render(false)});
+  document.getElementById('ctd').addEventListener('change',e=>{CT.div=e.target.value;render(false)});
+  document.getElementById('cta').addEventListener('change',e=>{CT.age=e.target.value;render(false)});
+  drawClubTable();
+}
+
+/* ---------- head-to-head preview (inside match details) ---------- */
+function h2h(m){
+  const st=t=>{const r=results(t);const n=r.length;return {n,ppg:n?r.reduce((s,x)=>s+({W:3,D:1,L:0})[resFor(t,x)],0)/n:null,gf:n?r.reduce((s,x)=>s+gfor(t,x),0)/n:null,ga:n?r.reduce((s,x)=>s+gag(t,x),0)/n:null,cs:r.filter(x=>gag(t,x)===0).length}};
+  const A=st(m.h),B=st(m.a);
+  if(!A.n&&!B.n)return '';
+  const f=(v,d=2)=>v==null?'–':v.toFixed(d);
+  const better=(a,b,low)=>a==null||b==null||a===b?['','']:((low?a<b:a>b)?['bt','']:['','bt']);
+  const row=(lab,a,b,low,fmt=f)=>{const [x,y]=better(a,b,low);return `<div class="a ${x}">${fmt(a)}</div><div class="c">${lab}</div><div class="${y}">${fmt(b)}</div>`};
+  const oppsOf=t=>{const o=new Map();results(t).forEach(x=>{const k=opp(t,x);if(!o.has(k))o.set(k,[]);o.get(k).push(x)});return o};
+  const oa=oppsOf(m.h),ob=oppsOf(m.a);
+  const common=[...oa.keys()].filter(k=>k!==m.a&&ob.has(k)).slice(0,6);
+  const res=(t,xs)=>xs.map(x=>`<span class="pill ${resFor(t,x)}" title="${gfor(t,x)}–${gag(t,x)}">${resFor(t,x)}</span> <span class="num">${gfor(t,x)}–${gag(t,x)}</span>`).join(' ');
+  return `<div><div class="day-h" style="margin-top:0">Matchup · league games this season</div><div class="cmp h2h">
+    ${row('Points per game',A.ppg,B.ppg)}${row('Goals for / game',A.gf,B.gf)}${row('Goals against / game',A.ga,B.ga,true)}${row('Clean sheets',A.cs,B.cs,false,v=>String(v))}${row('Games',A.n,B.n,null,v=>String(v))}</div>
+    ${common.length?`<div class="day-h">Common opponents</div><div class="common">${common.map(k=>`<div class="a">${res(m.h,oa.get(k))}</div><div class="c">${crest(k.club,'xs',k.name)}<span>${esc(k.name)}</span></div><div>${res(m.a,ob.get(k))}</div>`).join('')}</div>`:''}</div>`;
+}
+
+/* ---------- weekend recap (club page) ---------- */
+function recapData(c,comp){
+  const ts=c.teams.filter(t=>t.comp===comp);
+  const all=[...new Set(ts.flatMap(t=>t.ms))].filter(played).filter(m=>m.dt<=now).sort((a,b)=>a.dt-b.dt);
+  if(!all.length)return null;
+  const s=monday(all[all.length-1].dt),e=new Date(s);e.setDate(e.getDate()+7);
+  const ms=all.filter(m=>m.dt>=s&&m.dt<e);
+  const rows=ms.map(m=>{const t=ts.find(x=>x===m.h)||ts.find(x=>x===m.a);return {m,t,o:opp(t,m),r:resFor(t,m),g:gfor(t,m),a:gag(t,m)}}).sort((x,y)=>AGES.indexOf(x.t.age)-AGES.indexOf(y.t.age)||x.m.dt-y.m.dt);
+  const last=new Date(Math.max(...ms.map(m=>+m.dt)));const first=new Date(Math.min(...ms.map(m=>+m.dt)));
+  return {rows,range:sameDay(first,last)?first.toLocaleDateString('en-US',{month:'short',day:'numeric'}):fmtRange(first,last),w:rows.filter(x=>x.r==='W').length,d:rows.filter(x=>x.r==='D').length,l:rows.filter(x=>x.r==='L').length,gf:rows.reduce((s,x)=>s+x.g,0),ga:rows.reduce((s,x)=>s+x.a,0)};
+}
+const tlab=(t,c)=>{const sfx=t.name.startsWith(c.name)?t.name.slice(c.name.length).trim():'';return t.age+(sfx?' '+sfx:'')};
+function recapCard(c,comp){
+  const R=recapData(c,comp);if(!R)return '';
+  return `<section class="glass pad"><div class="card-h"><h2>Weekend recap</h2><p>${esc(cmpName(comp))} · ${esc(R.range)} · ${R.w} W, ${R.d} D, ${R.l} L · goals ${R.gf}–${R.ga}</p></div>
+   <div class="ml" style="margin-top:6px">${R.rows.map(x=>`<button type="button" class="mrow" data-m="${mref(x.m)}"><span class="age">${esc(tlab(x.t,c))}</span><span class="va">${x.m.h===x.t?'vs':'@'}</span>${crest(x.o.club,'xs',x.o.name)}<span class="on-name">${esc(x.o.name)}</span><span class="sc">${x.g}–${x.a}</span><span class="pill ${x.r}">${x.r}</span></button>`).join('')}</div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button type="button" class="btn primary" data-recap-img="${c.id}|${comp}">Save image for social</button><button type="button" class="btn" data-recap-txt="${c.id}|${comp}">Copy as text</button></div></section>`;
+}
+function recapText(c,comp){
+  const R=recapData(c,comp);
+  return `${c.name} · ${cmpName(comp)} results, ${R.range}\n`+R.rows.map(x=>`${tlab(x.t,c)}: ${x.r} ${x.g}-${x.a} ${x.m.h===x.t?'vs':'at'} ${x.o.name}`).join('\n')+`\nWeekend: ${R.w}W ${R.d}D ${R.l}L · Goals ${R.gf}-${R.ga}\nFull standings: ${clubUrl(c)}`;
+}
+async function recapImage(c,comp){
+  const R=recapData(c,comp);const W=1080,Hh=1350;const cv=document.createElement('canvas');cv.width=W;cv.height=Hh;const x=cv.getContext('2d');
+  try{await Promise.all(['800 60px "Barlow Condensed"','600 30px "Barlow"','700 30px "JetBrains Mono"'].map(f=>document.fonts.load(f)))}catch(e){}
+  const g=x.createLinearGradient(0,0,0,Hh);g.addColorStop(0,'#0b1628');g.addColorStop(1,'#050a14');x.fillStyle=g;x.fillRect(0,0,W,Hh);
+  x.globalAlpha=.35;for(let i=0;i<W;i+=120){x.fillStyle='#0d3122';x.fillRect(i,0,60,Hh)}x.globalAlpha=1;
+  const lg=x.createLinearGradient(0,0,0,Hh);lg.addColorStop(0,'rgba(11,22,40,.95)');lg.addColorStop(.5,'rgba(11,22,40,.6)');lg.addColorStop(1,'rgba(5,10,20,.95)');x.fillStyle=lg;x.fillRect(0,0,W,Hh);
+  const rr=(X,Y,w,h,r)=>{x.beginPath();x.roundRect?x.roundRect(X,Y,w,h,r):x.rect(X,Y,w,h)};
+  x.fillStyle='#f2f5fa';rr(70,70,200,200,40);x.fill();
+  if(crestSet.has(c.id)){await new Promise(res=>{const im=new Image();im.onload=()=>{x.drawImage(im,90,90,160,160);res()};im.onerror=res;im.src=`crests/${c.id}.webp`})}
+  else{x.fillStyle='#0b1526';x.font='800 90px "Barlow Condensed", Arial';x.textAlign='center';x.fillText(initials(c.name),170,200);x.textAlign='left'}
+  x.fillStyle='#5eead4';x.font='700 28px "Barlow", Arial';x.fillText(`${cmpName(comp).toUpperCase()} · WEEKEND RESULTS · ${R.range.toUpperCase()}`,310,110);
+  x.fillStyle='#eef3fb';let fs=78;x.font=`800 ${fs}px "Barlow Condensed", Arial`;const nm=c.name.toUpperCase();
+  const words=nm.split(' ');let lines=[''];words.forEach(w=>{const t=(lines[lines.length-1]+' '+w).trim();if(x.measureText(t).width>700&&lines[lines.length-1])lines.push(w);else lines[lines.length-1]=t});
+  if(lines.length>2){fs=60;x.font=`800 ${fs}px "Barlow Condensed", Arial`}
+  lines.slice(0,3).forEach((l,i)=>x.fillText(l,310,190+i*(fs+4)));
+  const top=330,avail=Hh-top-200,rh=Math.min(92,Math.floor(avail/Math.max(1,R.rows.length)));
+  R.rows.forEach((r,i)=>{const y=top+i*rh;x.fillStyle=i%2?'rgba(255,255,255,.03)':'rgba(255,255,255,.06)';rr(70,y,W-140,rh-10,16);x.fill();
+    const mid=y+(rh-10)/2+11;x.fillStyle='#eef3fb';x.font=`800 ${Math.min(38,rh*.42)}px "Barlow Condensed", Arial`;x.fillText(tlab(r.t,c),100,mid);
+    x.fillStyle='#9aabc3';x.font=`600 ${Math.min(30,rh*.34)}px "Barlow", Arial`;let on=(r.m.h===r.t?'vs ':'at ')+r.o.name;while(x.measureText(on).width>520&&on.length>4)on=on.slice(0,-2);if(on!==(r.m.h===r.t?'vs ':'at ')+r.o.name)on+='…';x.fillText(on,250,mid);
+    x.fillStyle='#eef3fb';x.font=`700 ${Math.min(38,rh*.42)}px "JetBrains Mono", monospace`;x.textAlign='right';x.fillText(`${r.g}–${r.a}`,W-180,mid);x.textAlign='left';
+    x.fillStyle=({W:'#34c47c',D:'#e2a23b',L:'#ef6767'})[r.r];rr(W-160,y+(rh-10)/2-26,52,52,10);x.fill();x.fillStyle='#06140d';x.font='800 30px "Barlow", Arial';x.textAlign='center';x.fillText(r.r,W-134,y+(rh-10)/2+10);x.textAlign='left'});
+  const by=Hh-170;x.fillStyle='#eef3fb';x.font='800 56px "Barlow Condensed", Arial';x.fillText(`${R.w}W  ${R.d}D  ${R.l}L`,70,by);x.fillStyle='#9aabc3';x.font='600 30px "Barlow", Arial';x.fillText(`Goals ${R.gf}–${R.ga}`,70,by+46);
+  x.strokeStyle='#2dd4bf';x.lineWidth=7;x.beginPath();x.arc(88,Hh-62,15,0,Math.PI*2);x.stroke();x.fillStyle='#eef3fb';x.font='800 36px "Barlow Condensed", Arial';x.fillText('EA',118,Hh-49);const ew=x.measureText('EA ').width;x.fillStyle='#2dd4bf';x.fillText('TRACKER',118+ew,Hh-49);
+  x.fillStyle='#6c7d96';x.font='500 24px "Barlow", Arial';x.textAlign='right';x.fillText(BASE.replace(/^https?:\/\//,'').replace(/\/$/,''),W-70,Hh-52);x.textAlign='left';
+  cv.toBlob(b=>{if(!b){toast('Could not create the image');return}const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`${(D.slugs&&D.slugs[c.id])||'club'}-${CK[comp]}-weekend.png`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);toast('Image saved')},'image/png');
+}
+
 /* ---------- searchable club picker ---------- */
 function picker(id,label,cur,cls){return `<div class="picker ${cls}" data-picker="${id}" data-cur="${cur??''}"><button type="button" class="pk-btn" aria-haspopup="listbox" aria-expanded="false">${label}</button></div>`}
 let pkOpen=null;
@@ -871,8 +1137,10 @@ function render(scroll){
   reg=[];closeOv();pkClose();
   const h=decodeURIComponent((location.hash||'#home').slice(1));
   let m;
-  ['home','rank','about'].forEach(k=>document.getElementById('nav-'+k).classList.remove('on'));
-  if(h==='rankings'){document.getElementById('nav-rank').classList.add('on');app.innerHTML=viewRank();bindRank();setTitle(`${RK.age} National Rankings`)}
+  ['home','wk','rank','ct','about'].forEach(k=>document.getElementById('nav-'+k).classList.remove('on'));
+  if(h==='weekend'){document.getElementById('nav-wk').classList.add('on');app.innerHTML=viewWeekend();bindWeekend();setTitle('This week')}
+  else if(h==='club-table'){document.getElementById('nav-ct').classList.add('on');app.innerHTML=viewClubTable();bindClubTable();setTitle(`${cmpName(CT.comp)} Club vs Club`)}
+  else if(h==='rankings'){document.getElementById('nav-rank').classList.add('on');app.innerHTML=viewRank();bindRank();setTitle(`${RK.age} National Rankings`)}
   else if(h==='about'){document.getElementById('nav-about').classList.add('on');app.innerHTML=viewAbout();setTitle('Data notes')}
   else if((m=h.match(/^club-(\d+)(?:-(ea|national|ea2))?$/))&&clubBy.get(+m[1])){const c=clubBy.get(+m[1]);let comp=m[2]?CK.indexOf(m[2]):[0,1,2].find(x=>c.teams.some(t=>t.comp===x));if(!c.teams.some(t=>t.comp===comp))comp=[0,1,2].find(x=>c.teams.some(t=>t.comp===x));app.innerHTML=viewClub(c,comp);setTitle(c.name)}
   else if(tby.has(h)){const t=tby.get(h);app.innerHTML=viewTeam(t);setTitle(`${t.name} ${t.age}`);const sf=document.getElementById('sf');sf&&sf.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;schedFilter=b.dataset.f;const y=window.scrollY;render(false);window.scrollTo(0,y)})}
@@ -882,7 +1150,13 @@ function render(scroll){
 }
 app.addEventListener('click',e=>{
   const b=e.target.closest('[data-m]');if(b){openMatch(reg[+b.dataset.m]);return}
-  const s=e.target.closest('[data-share]');if(s){share(document.title);return}
+  const s=e.target.closest('[data-share]');if(s){share(document.title,s.dataset.share||location.href);return}
+  const fv=e.target.closest('[data-fav]');if(fv){favToggle(fv);return}
+  const cb=e.target.closest('[data-cal]');if(cb){const [k,v]=cb.dataset.cal.split('|');openCal(k,v);return}
+  const wb=e.target.closest('[data-wk]');if(wb){WK.off=wb.dataset.wk==='0'?0:WK.off+(+wb.dataset.wk);render(false);return}
+  const ri=e.target.closest('[data-recap-img]');if(ri){const [id,cp]=ri.dataset.recapImg.split('|');recapImage(clubBy.get(+id),+cp);return}
+  const rt=e.target.closest('[data-recap-txt]');if(rt){const [id,cp]=rt.dataset.recapTxt.split('|');copyText(recapText(clubBy.get(+id),+cp),'Recap copied');return}
+  const ct=e.target.closest('[data-ct]');if(ct){const [c,d]=ct.dataset.ct.split('|');CT.comp=+c;CT.div=d;CT.age=''}
   const r=e.target.closest('[data-rk]');if(r){const [c,a]=r.dataset.rk.split('|');RK.comp=+c;RK.age=a;RK.div='';RK.q='';if(location.hash==='#rankings'){e.preventDefault();render()}}
 });
 

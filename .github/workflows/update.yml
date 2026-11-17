@@ -50,11 +50,15 @@ jobs:
         run: node scripts/crests.mjs data/raw.json
 
       - name: Build site and check the tables against match results
+        env:
+          SITE_URL: https://truone626.github.io/ea-tracker/
+          GOATCOUNTER_CODE: ${{ vars.GOATCOUNTER_CODE }}
         run: |
           if [ -f data/latest.json ]; then
             export PREV_MATCHES=$(python3 -c "import json;print(len(json.load(open('data/latest.json'))['matches']))")
           fi
           python3 build.py data/raw.json site/index.html
+          node scripts/og.mjs data/latest.json site
 
       - name: Save today's data in the repository
         run: |

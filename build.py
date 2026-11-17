@@ -1,4 +1,5 @@
 import json,re,sys,os,datetime as D,collections
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from zoneinfo import ZoneInfo
 SRC=sys.argv[1] if len(sys.argv)>1 else 'data/raw.json'
 OUT=sys.argv[2] if len(sys.argv)>2 else 'site/index.html'
@@ -80,17 +81,24 @@ for i,t in enumerate(teams):
     t.append(r)
     t.append((p-r) if (r is not None and p is not None) else None)
 CRESTS=sorted(int(f[:-5]) for f in os.listdir('crests') if f.endswith('.webp')) if os.path.isdir('crests') else []
-data=dict(season='2026–27',comps=COMPS,asOfLong=asof,asOfIso=local.isoformat(),clubs=clubs,teams=teams,matches=matches,venues=venues,crests=CRESTS,
+import site_extras as X
+SITE=os.environ.get('SITE_URL','https://truone626.github.io/ea-tracker/').rstrip('/')+'/'
+SLUGS=X.club_slugs({str(k):v for k,v in clubs.items()})
+data=dict(site=SITE,slugs=SLUGS,season='2026–27',comps=COMPS,asOfLong=asof,asOfIso=local.isoformat(),clubs=clubs,teams=teams,matches=matches,venues=venues,crests=CRESTS,
  moveSince=base[0].strftime('%b %-d, %Y') if base else None,
  check=dict(ok=ok,diff=diff,total=ok+diff,tbdPast=tbd,futureScored=fut,midnight=mid,noTable=sorted(no)))
 js=json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')
-html=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'template.html'),encoding='utf8').read().replace('__DATA__',js)
+html=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'template.html'),encoding='utf8').read().replace('__DATA__',js).replace('__SITE__',SITE).replace('<!--ANALYTICS-->',X.analytics_snippet(os.environ.get('GOATCOUNTER_CODE','')))
 os.makedirs(os.path.dirname(OUT) or '.',exist_ok=True)
 open(OUT,'w',encoding='utf8').write(html)
 if CRESTS:
     import shutil
     cd=os.path.join(os.path.dirname(OUT) or '.','crests');os.makedirs(cd,exist_ok=True)
     for c in CRESTS: shutil.copyfile(f'crests/{c}.webp',f'{cd}/{c}.webp')
+SITE_DIR=os.path.dirname(OUT) or '.'
+ncal=X.write_calendars(data,SITE_DIR,SITE)
+nshare=X.write_share_pages(data,SITE_DIR,SITE,SLUGS)
+print('calendars',ncal,'share pages',nshare)
 open('data/latest.json','w',encoding='utf8').write(json.dumps(data,ensure_ascii=False,separators=(',',':')))
 prev=os.environ.get('PREV_MATCHES')
 if prev and len(matches)<0.9*int(prev): raise SystemExit(f'match count dropped from {prev} to {len(matches)}; not publishing')
