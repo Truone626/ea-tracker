@@ -1,0 +1,75 @@
+name: Update tracker
+
+on:
+  schedule:
+    - cron: "17 13 * * *"   # about 5:17 AM Pacific (6:17 AM during daylight time)
+    - cron: "17 4 * * *"    # about 8:17 PM Pacific (9:17 PM during daylight time)
+  workflow_dispatch:         # "Run workflow" button for a manual refresh
+  push:
+    branches: [main]
+    paths-ignore: ["data/**", "README.md"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: update-tracker
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: npm ci
+
+      - name: Test the parser
+        run: node test/parse.test.mjs
+
+      - name: Pull league data from Modular11
+        run: node scripts/pull.mjs data/raw.json
+
+      - name: Build site and check the tables against match results
+        run: |
+          if [ -f data/latest.json ]; then
+            export PREV_MATCHES=$(python3 -c "import json;print(len(json.load(open('data/latest.json'))['matches']))")
+          fi
+          python3 build.py data/raw.json site/index.html
+
+      - name: Save today's data in the repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/latest.json
+          if git diff --cached --quiet; then
+            echo "No data changes"
+          else
+            git commit -m "Data update $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
