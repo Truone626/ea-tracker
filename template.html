@@ -313,6 +313,16 @@ tr.me:hover td{background:rgba(79,140,255,.16)}
 .mcard .loc{text-align:center;color:var(--muted);font-size:.78rem;margin-top:8px}
 .mcard b.won{color:var(--win)}
 
+
+/* weather */
+.wx{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;color:var(--ink);font-weight:600}
+.wx svg{width:18px;height:18px;flex:none}
+.wx .t{font-family:var(--mono);font-weight:700}
+.wx .m{color:var(--muted);font-weight:500}
+.wx.sm{font-size:.78rem;gap:4px}.wx.sm svg{width:14px;height:14px}
+.wx-row{display:flex;gap:6px 16px;flex-wrap:wrap;align-items:center}
+.wx-row .sep{width:1px;height:16px;background:var(--line-2)}
+.wx-load{color:var(--dim);font-size:.78rem}
 /* rankings */
 .rhead{text-align:center;padding:24px 18px;display:grid;justify-items:center;gap:10px;grid-template-columns:minmax(0,1fr)}
 .rhead>*{max-width:100%;min-width:0}
@@ -408,6 +418,7 @@ footer a:hover{color:var(--accent)}
     <div class="asof"><span class="live" aria-hidden="true"></span><span>Updated automatically twice a day · League data as of <b id="asof"></b></span></div>
     <nav><a href="#home">Clubs</a><a href="#rankings">National Rankings</a><a href="#about">Data notes</a></nav>
     <div>Independent project. Not affiliated with or endorsed by the Elite Academy League or Modular11. Data comes from the league's public schedule and standings.</div>
+    <div>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>), shown for matches in the next 16 days.</div>
   </footer>
 </div>
 <div class="ov" id="ov" hidden></div>
@@ -628,7 +639,7 @@ function viewClub(c,comp){
   let nmd='';
   if(nextDay.length){const byV=new Map();nextDay.forEach(m=>{const k=vname(m.v);if(!byV.has(k))byV.set(k,[]);byV.get(k).push(m)});
     nmd=`<section class="glass pad"><div class="card-h" style="display:flex;gap:12px;align-items:center"><span class="tile" style="--tc:79,140,255;padding:0;border:0;background:none"><span class="ic">${I.cal}</span></span><div><h2>Next matchday</h2><p>${esc(dayL(nextDay[0].dt))} · ${nextDay.length} game${nextDay.length>1?'s':''}</p></div></div>
-    ${[...byV].map(([v,ms])=>{const hm=ms.filter(m=>ts.includes(m.h)).length;return `<div class="vgroup"><div class="venue"><div><b>${esc(v)}</b><small>${hm===ms.length?'Home':hm?'Home and away':'Away'} · ${ms.length} game${ms.length>1?'s':''}</small></div><a class="btn" href="${mapUrl(ms[0].v)}" target="_blank" rel="noopener">${I.map} Map</a></div>
+    ${[...byV].map(([v,ms])=>{const hm=ms.filter(m=>ts.includes(m.h)).length;return `<div class="vgroup"><div class="venue"><div><b>${esc(v)}</b><small>${hm===ms.length?'Home':hm?'Home and away':'Away'} · ${ms.length} game${ms.length>1?'s':''}</small>${wxAttr(ms[0])?`<div style="margin-top:4px">${wxSlot(ms[0],'sm')}</div>`:''}</div><a class="btn" href="${mapUrl(ms[0].v)}" target="_blank" rel="noopener">${I.map} Map</a></div>
       ${ms.map(m=>{const t=teamOf(m),o=opp(t,m);return `<button type="button" class="vmatch" data-m="${mref(m)}"><span class="age">${esc(t.age)}</span>${crest(o.club,'sm',o.name)}<span class="on-name">${esc(o.name)}<small>${m.h===t?'Home':'Away'}</small></span><span class="num" style="font-weight:700">${midnight(m.dt)?'TBD':timeS(m.dt)}</span></button>`}).join('')}</div>`}).join('')}
     </section>`}
   else nmd=`<section class="glass pad"><div class="card-h"><h2>Next matchday</h2><p>No upcoming matches listed for ${esc(cmpName(comp))}.</p></div></section>`;
@@ -668,10 +679,10 @@ function nextMatchCard(t){
   const m=upcoming(t)[0];
   if(!m)return '';
   const side=(x,role)=>`<div class="side">${crest(x.club,'xl',x.name)}<div class="role">${role}</div><div class="nmn">${esc(x.name)}</div><div class="rec">${esc(rec(x))}</div></div>`;
-  const tm=midnight(m.dt)?'<span title="Kickoff time not set by the league">TBD</span>':`${timeS(m.dt).replace(/ (AM|PM)/,'<small>$1 '+esc(tz)+'</small>')}`;
+  const tm=midnight(m.dt)?'<span title="Kickoff time not set by the league">TBD</span>':`${timeS(m.dt).replace(/ (AM|PM)/,'<small>$1</small>')}`;
   return `<button type="button" class="nm" data-m="${mref(m)}"><h2>Next <em>match</em></h2><div class="comp">${esc(cmpName(t.comp)).toUpperCase()} · ${esc(t.age)}</div>
    <div class="vs">${side(m.h,'HOME')}<div class="mid"><div class="vsb">VS</div><div class="time">${tm}</div><div class="day">${esc(dayL(m.dt).toUpperCase())}</div></div>${side(m.a,'AWAY')}</div>
-   <div class="foot"><span>${I.pin.replace('<svg','<svg width="15" height="15" style="vertical-align:-2px;margin-right:6px"')}${esc(vname(m.v))}</span><span class="muted">Tap for match details</span></div></button>`;
+   <div class="foot"><span>${I.pin.replace('<svg','<svg width="15" height="15" style="vertical-align:-2px;margin-right:6px"')}${esc(vname(m.v))}</span>${wxSlot(m)||'<span class="muted">Tap for match details</span>'}</div></button>`;
 }
 function standingsCard(t){
   const rows=tableOf(t).map(r=>{const gd=r.gf-r.ga;return `<tr class="${r===t?'me':''}"><td>${r.rank}</td><td class="l t"><a href="#${tkey(r)}">${crest(r.club,'sm',r.name)}<span>${esc(r.name)}</span></a></td><td>${r.mp}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td>${r.gf}</td><td>${r.ga}</td><td>${sgn(gd)}</td><td>${esc(r.ppm)}</td><td class="pts">${r.pts}</td></tr>`}).join('');
@@ -683,7 +694,7 @@ function matchCard(t,m){
   const isP=played(m),aw=!isP&&m.dt<now;
   const side=(x,cls)=>`<div class="tn ${cls}"><b class="${isP&&((x===m.h&&m.hs>m.as)||(x===m.a&&m.as>m.hs))?'won':''}">${esc(x.name)}</b><small>${cls==='h'?'<i>HOME</i> | ':'<i>AWAY</i> | '}${esc(rec(x))}</small></div>`;
   const ctr=isP?`<span class="big score">${m.hs} : ${m.as}</span><span class="st fin">FINAL</span>`:aw?`<span class="big">${esc(dayS(m.dt).split(',')[0])}</span><span class="st wt">AWAITING SCORE</span>`:`<span class="big">${midnight(m.dt)?'TBD':timeS(m.dt)}</span><span class="st">UPCOMING</span>`;
-  return `<button type="button" class="mcard ${m.h===t||m.a===t?'mine':''}" data-m="${mref(m)}"><div class="mc">${side(m.h,'h')}<span class="cr">${crest(m.h.club,'md',m.h.name)}</span><div class="ctr">${ctr}</div><span class="cr">${crest(m.a.club,'md',m.a.name)}</span>${side(m.a,'a')}</div><div class="loc">${I.pin.replace('<svg','<svg width="12" height="12" style="vertical-align:-1px;margin-right:4px"')}${esc(vname(m.v))}${isP&&m.dt>now?' · score posted before the listed date':''}</div></button>`;
+  return `<button type="button" class="mcard ${m.h===t||m.a===t?'mine':''}" data-m="${mref(m)}"><div class="mc">${side(m.h,'h')}<span class="cr">${crest(m.h.club,'md',m.h.name)}</span><div class="ctr">${ctr}</div><span class="cr">${crest(m.a.club,'md',m.a.name)}</span>${side(m.a,'a')}</div><div class="loc">${I.pin.replace('<svg','<svg width="12" height="12" style="vertical-align:-1px;margin-right:4px"')}${esc(vname(m.v))}${isP&&m.dt>now?' · score posted before the listed date':''}${wxAttr(m)?' · ':''}${wxSlot(m,'sm')}</div></button>`;
 }
 function scheduleSec(t){
   const prev=t.ms.filter(m=>played(m)||m.dt<now).slice().reverse(),up=upcoming(t);
@@ -744,7 +755,7 @@ function bindRank(){
 /* ---------- data notes ---------- */
 function viewAbout(){
   const C=D.check;
-  return `<section class="glass pad prose"><div class="card-h"><h2>Where the data comes from</h2></div><p>Everything comes from the Elite Academy League's public schedule and standings, published on Modular11. The site pulls them twice a day for ${esc(D.season)}: EA, EA National and EA2, ages U11 to U19. Latest pull: ${esc(D.asOfLong)}.</p><p>Kickoff times are shown as the league lists them, in your device's time zone. Club crests come from the league's own listings.</p></section>
+  return `<section class="glass pad prose"><div class="card-h"><h2>Where the data comes from</h2></div><p>Everything comes from the Elite Academy League's public schedule and standings, published on Modular11. The site pulls them twice a day for ${esc(D.season)}: EA, EA National and EA2, ages U11 to U19. Latest pull: ${esc(D.asOfLong)}.</p><p>Kickoff times are shown as the league lists them. Club crests come from the league's own listings. Match-day weather is a forecast from <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> for the venue's location at kickoff (or midday when the kickoff time isn't set), for matches up to 16 days away.</p></section>
   <section class="glass pad prose"><div class="card-h"><h2>Accuracy check</h2><p>Run on every update</p></div><p>Each team's official table line is compared with totals built from the individual match scores: played, won, drawn, lost, goals for, goals against and points.</p>
    <div class="check"><span class="pill ${C.diff?'L':'W'}">${C.diff?'!':'✓'}</span><span><b class="num">${C.ok.toLocaleString()} of ${C.total.toLocaleString()}</b> table lines match their match results exactly. Mismatches: <b class="num">${C.diff}</b>.</span></div></section>
   <section class="glass pad prose"><div class="card-h"><h2>Items to confirm with the league</h2><p>Shown as the league lists them. Nothing is corrected or filled in.</p></div>
@@ -762,11 +773,11 @@ function openMatch(m){
   const score=played(m)?`<div style="text-align:center;font-family:var(--mono);font-weight:700;font-size:2.2rem">${m.hs} : ${m.as}</div>`:'';
   ov.innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Match details"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><div class="eyebrow">${esc(cmpName(m.h.comp))} · ${esc(m.h.age)} · Match ${m.id}</div><button type="button" class="btn" id="ovx">Close</button></div>
    <div class="vs" style="margin:0"><div class="side">${crest(m.h.club,'md',m.h.name)}<b style="text-align:center">${esc(m.h.name)}</b></div><div class="mid"><span class="muted" style="font-weight:700">VS</span></div><div class="side">${crest(m.a.club,'md',m.a.name)}<b style="text-align:center">${esc(m.a.name)}</b></div></div>${score}
-   <dl class="kv"><dt>Date</dt><dd>${esc(dayL(m.dt))}${played(m)||midnight(m.dt)?'':', '+timeS(m.dt)}${!played(m)&&midnight(m.dt)?' · kickoff TBD':''}</dd><dt>Venue</dt><dd>${esc(vname(m.v))} · <a href="${mapUrl(m.v)}" target="_blank" rel="noopener">Open in Maps</a></dd><dt>Division</dt><dd>${esc(m.h.div)}${m.h.div!==m.a.div?' v '+esc(m.a.div):''}</dd>${!played(m)&&m.dt<now?'<dt>Status</dt><dd class="wait">Awaiting score from the league</dd>':''}</dl>
+   <dl class="kv"><dt>Date</dt><dd>${esc(dayL(m.dt))}${played(m)||midnight(m.dt)?'':', '+timeS(m.dt)}${!played(m)&&midnight(m.dt)?' · kickoff TBD':''}</dd><dt>Venue</dt><dd>${esc(vname(m.v))} · <a href="${mapUrl(m.v)}" target="_blank" rel="noopener">Open in Maps</a></dd><dt>Division</dt><dd>${esc(m.h.div)}${m.h.div!==m.a.div?' v '+esc(m.a.div):''}</dd>${!played(m)&&m.dt<now?'<dt>Status</dt><dd class="wait">Awaiting score from the league</dd>':''}${wxAttr(m)?`<dt>Forecast</dt><dd>${wxSlot(m)}</dd>`:''}</dl>
    <div class="cmp"><div class="a">${esc(rS(m.h))}</div><div class="c">Table</div><div>${esc(rS(m.a))}</div><div class="a">${pills(form(m.h))}</div><div class="c">Last 5</div><div>${pills(form(m.a))}</div></div>
    ${prev.length?`<div><div class="day-h" style="margin-top:0">Earlier this season</div>${prev.map(x=>`<div class="muted" style="font-size:.88rem">${esc(dayS(x.dt))}: ${esc(x.h.name)} <b class="num" style="color:var(--ink)">${x.hs}–${x.as}</b> ${esc(x.a.name)}</div>`).join('')}</div>`:''}
    <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="#${tkey(m.h)}">${esc(m.h.name)}</a><a class="btn" href="#${tkey(m.a)}">${esc(m.a.name)}</a></div></div>`;
-  ov.hidden=false;
+  ov.hidden=false;hydrateWx(ov);
   const b=document.getElementById('ovx');b.focus();b.onclick=closeOv;
 }
 function closeOv(){ov.hidden=true;ov.innerHTML=''}
@@ -774,6 +785,53 @@ ov.addEventListener('click',e=>{if(e.target===ov)closeOv();if(e.target.closest('
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!ov.hidden)closeOv()});
 
 
+
+/* ---------- weather (Open-Meteo, loaded in the viewer's browser) ---------- */
+const WX={cache:new Map()};
+const WXI={
+ sun:'<svg viewBox="0 0 24 24" fill="none" stroke="#f6c453" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2" fill="#f6c453"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>',
+ part:'<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><circle cx="9" cy="9" r="3.6" fill="#f6c453"/><path d="M9 2.8v1.6M3 9h1.6M4.6 4.6l1.1 1.1M13.4 4.6l-1.1 1.1" stroke="#f6c453" stroke-width="1.8"/><path d="M8 19h9.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.6 1.2A3 3 0 0 0 8 19Z" fill="#c9d4e3"/></svg>',
+ cloud:'<svg viewBox="0 0 24 24"><path d="M6.5 19h11a4 4 0 0 0 .4-8A6 6 0 0 0 6.3 12.2 3.5 3.5 0 0 0 6.5 19Z" fill="#b8c4d6"/></svg>',
+ fog:'<svg viewBox="0 0 24 24" fill="none" stroke="#b8c4d6" stroke-width="2" stroke-linecap="round"><path d="M4 9h16M3 13h18M5 17h14"/></svg>',
+ rain:'<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><path d="M6.5 15h11a4 4 0 0 0 .4-8A6 6 0 0 0 6.3 8.2 3.5 3.5 0 0 0 6.5 15Z" fill="#9fb1c9"/><path d="M8 18l-1 3M12 18l-1 3M16 18l-1 3" stroke="#5aa9ff" stroke-width="2"/></svg>',
+ snow:'<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><path d="M6.5 15h11a4 4 0 0 0 .4-8A6 6 0 0 0 6.3 8.2 3.5 3.5 0 0 0 6.5 15Z" fill="#c9d4e3"/><path d="M8 19h.01M12 21h.01M16 19h.01" stroke="#fff" stroke-width="3"/></svg>',
+ storm:'<svg viewBox="0 0 24 24"><path d="M6.5 14h11a4 4 0 0 0 .4-8A6 6 0 0 0 6.3 7.2 3.5 3.5 0 0 0 6.5 14Z" fill="#8a9ab3"/><path d="m12 13-3 5h3l-1.5 4 4.5-6h-3l1.5-3Z" fill="#f6c453"/></svg>'
+};
+const wxDesc=c=>{if(c===0)return['Sunny','sun'];if(c===1)return['Mostly sunny','sun'];if(c===2)return['Partly cloudy','part'];if(c===3)return['Overcast','cloud'];if(c===45||c===48)return['Fog','fog'];if(c>=51&&c<=57)return['Drizzle','rain'];if(c>=61&&c<=67)return[c>=65?'Heavy rain':'Rain','rain'];if(c>=71&&c<=77)return['Snow','snow'];if(c>=80&&c<=82)return['Showers','rain'];if(c===85||c===86)return['Snow showers','snow'];if(c>=95)return['Thunderstorms','storm'];return['–','cloud']};
+const compass=d=>['N','NE','E','SE','S','SW','W','NW'][Math.round(((d%360)+360)%360/45)%8];
+const isoDay=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+function wxAttr(m){
+  if(played(m)||m.v[1]==null||/^\s*TBD\b/i.test(m.v[0]||''))return '';
+  const days=(new Date(m.dt.getFullYear(),m.dt.getMonth(),m.dt.getDate())-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5;
+  if(days<0||days>15)return '';
+  return `${m.v[1]},${m.v[2]}|${isoDay(m.dt)}|${midnight(m.dt)?12:m.dt.getHours()+(m.dt.getMinutes()>=30?1:0)}|${midnight(m.dt)?1:0}`;
+}
+function wxGet(lat,lng,day){
+  const k=`${lat},${lng}|${day}`;
+  if(!WX.cache.has(k)){
+    const u='https://api.open-meteo.com/v1/forecast?'+new URLSearchParams({latitude:lat,longitude:lng,hourly:'temperature_2m,precipitation_probability,weather_code,wind_speed_10m,wind_direction_10m',temperature_unit:'fahrenheit',wind_speed_unit:'mph',timezone:'auto',start_date:day,end_date:day});
+    WX.cache.set(k,fetch(u).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).catch(()=>null));
+  }
+  return WX.cache.get(k);
+}
+async function hydrateWx(root=document){
+  const els=[...root.querySelectorAll('[data-wx]:not([data-wx-done])')];
+  for(const el of els){
+    el.setAttribute('data-wx-done','1');
+    const [ll,day,hr,tbd]=el.dataset.wx.split('|');const [lat,lng]=ll.split(',');
+    wxGet(lat,lng,day).then(j=>{
+      if(!j||!j.hourly||!j.hourly.time){el.innerHTML='';return}
+      const i=Math.max(0,Math.min(j.hourly.time.length-1,+hr));
+      const t=Math.round(j.hourly.temperature_2m[i]),pp=j.hourly.precipitation_probability?.[i],wc=j.hourly.weather_code[i],ws=Math.round(j.hourly.wind_speed_10m[i]),wd=j.hourly.wind_direction_10m[i];
+      if(t==null||isNaN(t)){el.innerHTML='';return}
+      const [desc,ic]=wxDesc(wc);
+      const when=tbd==='1'?' <span class="m">midday</span>':'';
+      if(el.dataset.wxSize==='sm'){el.innerHTML=`<span class="wx sm" title="${esc(desc)}, ${t}°F, rain chance ${pp??'–'}%, wind ${ws} mph ${compass(wd)}">${WXI[ic]}<span class="t">${t}°</span>${pp!=null&&pp>=20?`<span class="m">${pp}%</span>`:''}</span>`;return}
+      el.innerHTML=`<span class="wx-row"><span class="wx">${WXI[ic]}<span class="t">${t}°F</span><span class="m">${esc(desc)}${when}</span></span><span class="sep"></span><span class="wx"><span class="m">Wind</span> <span class="t">${ws} mph ${compass(wd)}</span></span><span class="sep"></span><span class="wx"><span class="m">Rain</span> <span class="t">${pp??'–'}%</span></span></span>`;
+    });
+  }
+}
+const wxSlot=(m,size)=>{const a=wxAttr(m);return a?`<span data-wx="${a}" ${size?`data-wx-size="${size}"`:''}><span class="wx-load">Loading forecast…</span></span>`:''};
 /* ---------- searchable club picker ---------- */
 function picker(id,label,cur,cls){return `<div class="picker ${cls}" data-picker="${id}" data-cur="${cur??''}"><button type="button" class="pk-btn" aria-haspopup="listbox" aria-expanded="false">${label}</button></div>`}
 let pkOpen=null;
@@ -820,6 +878,7 @@ function render(scroll){
   else if(tby.has(h)){const t=tby.get(h);app.innerHTML=viewTeam(t);setTitle(`${t.name} ${t.age}`);const sf=document.getElementById('sf');sf&&sf.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;schedFilter=b.dataset.f;const y=window.scrollY;render(false);window.scrollTo(0,y)})}
   else{document.getElementById('nav-home').classList.add('on');app.innerHTML=viewHome();bindHome();setTitle('')}
   if(scroll!==false)window.scrollTo(0,0);
+  hydrateWx(app);
 }
 app.addEventListener('click',e=>{
   const b=e.target.closest('[data-m]');if(b){openMatch(reg[+b.dataset.m]);return}
