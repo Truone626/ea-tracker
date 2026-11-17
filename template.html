@@ -421,6 +421,145 @@ a.aside:hover{background:rgba(255,255,255,.035)}
   .cmp-pick .cslots{gap:8px}.cslot{min-height:120px;padding:10px 6px}
   .ch-side .pk-btn{font-size:.76rem;padding:6px 26px 6px 10px}
 }
+
+/* ---------- phone layouts ---------- */
+.so,.so-b{display:none}
+.tabbar{display:none}
+@media (max-width:640px){
+  body{font-size:15px}
+  .hm,.hm-b{display:none!important}
+  td.so,th.so{display:table-cell}
+  .so-b{display:block}
+  .rk .so-b{font-size:.62rem;line-height:1}
+  td.t small.so-b{margin-top:2px}
+  th:first-child,td:first-child{padding-left:12px}
+  th:last-child,td:last-child{padding-right:12px}
+  td,th{padding-left:6px;padding-right:6px}
+  td.t{min-width:0;font-size:.9rem}
+  td.t a{gap:8px}
+  .tw{margin-inline:-12px}
+  .glass[style*="padding:0 18px"]{padding:0 12px!important}
+  .rk{font-size:1.15rem}
+  table{font-size:.86rem}
+  td{font-size:.84rem}
+  /* app-style bottom tab bar replaces the top menu */
+  .top .nav{display:none}
+  .top{padding-block:12px 0}
+  .tabbar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:35;background:rgba(7,13,24,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line-2);padding:6px max(8px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-right,0px))}
+  .tabbar a{display:grid;justify-items:center;gap:3px;color:var(--muted);text-decoration:none;font-size:.74rem;font-weight:600;padding:5px 0;border-radius:10px}
+  .tabbar a svg{width:22px;height:22px}
+  .tabbar a.on{color:var(--accent)}
+  .page{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  /* compact club/team header */
+  .head{padding:14px;gap:12px}
+  .head-top{flex-wrap:nowrap;gap:12px;align-items:center}
+  .head .crest.lg{--s:58px;border-radius:14px}
+  .head-txt{flex:1 1 auto}
+  .head .eyebrow{font-size:.62rem;letter-spacing:.1em;gap:5px}
+  .head .eyebrow .tag{padding:1px 7px}
+  .head h1{font-size:1.55rem;margin-top:3px}
+  .head .sub{font-size:.88rem;margin-top:2px}
+  .head-top>.head-actions{display:none}
+  .head-actions.mob{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-14px;padding-inline:14px;gap:6px}
+  .head-actions.mob::-webkit-scrollbar{display:none}
+  .head-actions.mob .btn,.head-actions.mob .pk-btn{flex:none;padding:7px 12px;font-size:.82rem}
+  .head-actions.mob .picker{flex:none}
+  .head-nav{gap:8px}
+  .tabs a{padding:6px 12px;font-size:.84rem}
+  /* section titles */
+  .sec-h h2{font-size:1.25rem}
+  .card-h h2{font-size:1.02rem}
+  .pad{padding:14px}
+  /* match cards as a two-line scoreboard */
+  .mcard{padding:12px 12px 9px}
+  .mc{grid-template-columns:30px minmax(0,1fr) auto;grid-template-areas:"hc hn ct" "ac an ct";gap:6px 10px}
+  .mc .cr{display:block}
+  .mc .cr.ch{grid-area:hc}.mc .cr.ca2{grid-area:ac}
+  .mc .tn.h{grid-area:hn;text-align:left}.mc .tn.a{grid-area:an}
+  .mc .ctr{grid-area:ct;min-width:74px;align-self:center}
+  .mc .crest.md{--s:30px;border-radius:8px}
+  .mc .tn b{font-size:.95rem}
+  .mc .tn small{font-size:.66rem}
+  .mc .big.score{font-size:1.2rem}
+  .mcard .loc{text-align:left;padding-left:40px;margin-top:6px}
+  /* this week rows as a two-line scoreboard */
+  .wkrow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"m m" "h c" "a c" "v v";row-gap:5px;column-gap:10px;padding:11px 0}
+  .wk-meta{grid-area:m}.wk-h{grid-area:h}.wk-a{grid-area:a}.wk-c{grid-area:c;align-self:center;min-width:64px;text-align:right}.wk-v{grid-area:v;text-align:left;padding-left:34px}
+  .wk-h{flex-direction:row-reverse;justify-content:flex-end;text-align:left}
+  .wk-h .crest,.wk-a .crest{--s:24px}
+  .wk-list,.wk-venue{padding:2px 12px}
+  /* rankings, club table, week headers */
+  .rhead{padding:16px 14px;gap:8px}
+  .rhead .ttl{gap:12px}
+  .agebox{font-size:2.2rem;padding:0 12px;border-radius:12px}
+  .rhead h1{font-size:2rem}
+  .rhead .kick{font-size:.66rem;letter-spacing:.14em}
+  .rrow{gap:8px}
+  .field{flex-basis:100%;max-width:none;min-height:42px}
+  details.how summary{padding:12px 14px}
+  details.how summary span{display:none}
+  /* next match */
+  .nm{padding-top:16px}
+  .nm h2{font-size:1.6rem}
+  /* home */
+  .hero h1{font-size:2.5rem}
+  .grid-clubs{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .club-card{padding:12px 8px}
+  .club-card .cn{font-size:.88rem}
+  .letters button{min-width:28px;height:28px}
+  /* readable small print */
+  .chip{font-size:.72rem}
+  .mrow .d{font-size:.74rem}
+  .snap .rkl small,.nx small{font-size:.74rem}
+}
+
+.so-f{display:none!important}
+@media (max-width:640px){.so-f{display:flex!important}}
+
+/* phone readability pass */
+.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.kv a{display:inline-block;padding:6px 0}
+.btn.sm{padding:7px 12px}
+@media (max-width:640px){
+  th{font-size:.72rem;letter-spacing:.06em}
+  .eyebrow{font-size:.72rem}
+  .head .eyebrow{font-size:.7rem}
+  .nm .comp,.vs .role{font-size:.72rem;letter-spacing:.14em}
+  .nm .day{font-size:.72rem;letter-spacing:.06em}
+  .vs .rec{font-size:.78rem}
+  .rk .so-b{font-size:.72rem}
+  .pill{font-size:.7rem}
+  .badge,.snap .rkl .badge{font-size:.74rem}
+  .st{font-size:.72rem;letter-spacing:.06em;white-space:normal;text-align:center;line-height:1.15}
+  .mc .ctr{min-width:0;max-width:96px}
+  .mc .tn small{font-size:.72rem;letter-spacing:.04em}
+  .mcard .loc{font-size:.8rem}
+  .chart text{font-size:12px}
+  .aside .ar2 small,.mrow2 .lab2 small,.amid .same,.edge{font-size:.72rem}
+  .aside .pill{width:19px;height:19px;font-size:.66rem}
+  .wk-meta small,.wk-v{font-size:.76rem}
+  .stats{font-size:.84rem}
+  .tile .note,.tile .lab{font-size:.8rem}
+  .kick{font-size:.72rem!important}
+  .legend{font-size:.82rem}
+  .myt-r .lab{font-size:.72rem}
+  .sugg small,.hl small{font-size:.8rem}
+}
+@media (max-width:380px){
+  .mc{grid-template-columns:26px minmax(0,1fr) auto;gap:5px 8px}
+  .mc .crest.md{--s:26px}
+  .mc .tn b{font-size:.9rem}
+  .head h1{font-size:1.4rem}
+  .tabbar a{font-size:.7rem}
+}
+@media (max-width:640px){.snap-head{font-size:.72rem}}
+.st{font-size:.66rem}.nm .day{font-size:.76rem}.vs .role{font-size:.72rem}th{font-size:.7rem}
+td:not(.t) a:not(.btn){display:inline-block;padding:5px 0}
+@media (max-width:640px){.mcard{text-align:left}.mc .tn{text-align:left!important}
+.head-actions.mob,.tabs{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+.head-actions.mob{padding-right:40px}}
+@media (max-width:640px){td.pts{padding-right:12px!important}.cmpb .cmpt{display:none}.cmpb{padding:7px 9px}}
 /* rankings */
 .rhead{text-align:center;padding:24px 18px;display:grid;justify-items:center;gap:10px;grid-template-columns:minmax(0,1fr)}
 .rhead>*{max-width:100%;min-width:0}
@@ -484,10 +623,7 @@ footer a:hover{color:var(--accent)}
   .tiles{grid-template-columns:1fr 1fr;gap:10px}
   .tile{flex-direction:column;align-items:flex-start;gap:8px;padding:14px 12px}
   .tile .ic{width:30px;height:30px}
-  .mc{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);row-gap:8px}
-  .mc .cr{display:none}
-  .mc .tn b{font-size:.92rem}
-  .pill{width:20px;height:20px;font-size:.66rem}
+  .pill{width:21px;height:21px;font-size:.72rem}
   .vsb{width:42px;height:42px;font-size:1rem}
   .crest.xl{--s:56px;border-radius:14px}
   .vs{gap:6px}
@@ -530,6 +666,12 @@ footer a:hover{color:var(--accent)}
     <div>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>), shown for matches in the next 16 days.</div>
   </footer>
 </div>
+<nav class="tabbar" aria-label="Main">
+  <a id="tb-home" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/></svg><span>Clubs</span></a>
+  <a id="tb-wk" href="#weekend"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>This week</span></a>
+  <a id="tb-rank" href="#rankings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg><span>Rankings</span></a>
+  <a id="tb-ct" href="#club-table"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg><span>Club vs Club</span></a>
+</nav>
 <div class="ov" id="ov" hidden></div>
 <div class="toast" id="toast" hidden></div>
 
@@ -627,7 +769,7 @@ function viewHome(){
     <div class="eyebrow" style="color:var(--accent-2)">Elite Academy League · EA · EA National · EA2 · ${esc(D.season)}</div>
     <h1>Find your<br><em>Elite Academy</em> club</h1>
     <p class="lead">Standings, schedules, results and rankings for every team, without clicking through each age group.</p>
-    <div class="searchbox">${I.search}<label for="q" style="position:absolute;left:-9999px">Search clubs</label><input id="q" type="search" placeholder="Search for your club…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="sugg"><div class="sugg" id="sugg" role="listbox" hidden></div></div>
+    <div class="searchbox">${I.search}<label for="q" class="vh">Search clubs</label><input id="q" type="search" placeholder="Search for your club…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="sugg"><div class="sugg" id="sugg" role="listbox" hidden></div></div>
     <div class="hero-links">
       ${picker('home',`${I.grid} Browse all clubs A–Z`,null,'big')}
       <a class="btn" href="#rankings">${I.trophy} National Rankings</a>
@@ -699,7 +841,8 @@ function header(c,comp,title,sub,tabs,seg,rkLink,shareUrl,extra){
       <div class="head-txt"><div class="eyebrow">Elite Academy League <span class="tag">${esc(cmpName(comp))}</span> ${esc(D.season)}</div><h1>${esc(title)}</h1><div class="sub">${esc(sub)}</div></div>
       <div class="head-actions">${rkLink}${picker('hdr',`${I.swap} Switch club`,c.id,'')}<button type="button" class="btn primary" data-share="${esc(shareUrl||'')}">${I.share} Share</button></div>
     </div>
-    ${extra?`<div class="head-actions">${extra}</div>`:''}
+    ${extra?`<div class="head-actions hm">${extra}</div>`:''}
+    <div class="head-actions mob so-f">${extra||''}${rkLink}${picker('hdr-m',`${I.swap} Switch club`,c.id,'')}<button type="button" class="btn primary" data-share="${esc(shareUrl||'')}">${I.share} Share</button></div>
     <div class="head-nav">${tabs}${seg}</div>
   </section>`;
 }
@@ -797,16 +940,16 @@ function nextMatchCard(t){
    <div class="foot"><span>${I.pin.replace('<svg','<svg width="15" height="15" style="vertical-align:-2px;margin-right:6px"')}${esc(vname(m.v))}</span>${wxSlot(m)||'<span class="muted">Tap for match details</span>'}</div></button>`;
 }
 function standingsCard(t){
-  const rows=tableOf(t).map(r=>{const gd=r.gf-r.ga;return `<tr class="${r===t?'me':''}"><td>${r.rank}</td><td class="l t"><a href="#${tkey(r)}">${crest(r.club,'sm',r.name)}<span>${esc(r.name)}</span></a></td><td>${r.mp}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td>${r.gf}</td><td>${r.ga}</td><td>${sgn(gd)}</td><td>${esc(r.ppm)}</td><td class="pts">${r.pts}</td></tr>`}).join('');
+  const rows=tableOf(t).map(r=>{const gd=r.gf-r.ga;return `<tr class="${r===t?'me':''}"><td>${r.rank}</td><td class="l t"><a href="#${tkey(r)}">${crest(r.club,'sm',r.name)}<span>${esc(r.name)}</span></a></td><td>${r.mp}</td><td class="so">${r.w}-${r.d}-${r.l}</td><td class="hm">${r.w}</td><td class="hm">${r.d}</td><td class="hm">${r.l}</td><td class="hm">${r.gf}</td><td class="hm">${r.ga}</td><td>${sgn(gd)}</td><td class="hm">${esc(r.ppm)}</td><td class="pts">${r.pts}</td></tr>`}).join('');
   return `<section class="stack" style="gap:10px"><div class="sec-h"><h2>Standings</h2><span class="muted" style="font-size:.88rem">${esc(t.age)} ${esc(t.div)} · ${esc(cmpName(t.comp))}</span></div>
-   <div class="glass" style="padding:0 18px"><div class="tw"><table><thead><tr><th>#</th><th class="l">Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>PPM</th><th>Pts</th></tr></thead><tbody>${rows||'<tr><td colspan="11" class="l">This team is not in the league table.</td></tr>'}</tbody></table></div></div>
+   <div class="glass" style="padding:0 18px"><div class="tw"><table><thead><tr><th>#</th><th class="l">Team</th><th>P</th><th class="so">W-D-L</th><th class="hm">W</th><th class="hm">D</th><th class="hm">L</th><th class="hm">GF</th><th class="hm">GA</th><th>GD</th><th class="hm">PPM</th><th>Pts</th></tr></thead><tbody>${rows||'<tr><td colspan="11" class="l">This team is not in the league table.</td></tr>'}</tbody></table></div></div>
    <p class="table-note">Official Elite Academy League table order, as published by the league. PPM is points per match. Win 3, draw 1, loss 0.</p></section>`;
 }
 function matchCard(t,m){
   const isP=played(m),aw=!isP&&m.dt<now;
   const side=(x,cls)=>`<div class="tn ${cls}"><b class="${isP&&((x===m.h&&m.hs>m.as)||(x===m.a&&m.as>m.hs))?'won':''}">${esc(x.name)}</b><small>${cls==='h'?'<i>HOME</i> | ':'<i>AWAY</i> | '}${esc(rec(x))}</small></div>`;
   const ctr=isP?`<span class="big score">${m.hs} : ${m.as}</span><span class="st fin">FINAL</span>`:aw?`<span class="big">${esc(dayS(m.dt).split(',')[0])}</span><span class="st wt">AWAITING SCORE</span>`:`<span class="big">${midnight(m.dt)?'TBD':timeS(m.dt)}</span><span class="st">UPCOMING</span>`;
-  return `<button type="button" class="mcard ${m.h===t||m.a===t?'mine':''}" data-m="${mref(m)}"><div class="mc">${side(m.h,'h')}<span class="cr">${crest(m.h.club,'md',m.h.name)}</span><div class="ctr">${ctr}</div><span class="cr">${crest(m.a.club,'md',m.a.name)}</span>${side(m.a,'a')}</div><div class="loc">${I.pin.replace('<svg','<svg width="12" height="12" style="vertical-align:-1px;margin-right:4px"')}${esc(vname(m.v))}${isP&&m.dt>now?' · score posted before the listed date':''}${wxAttr(m)?' · ':''}${wxSlot(m,'sm')}</div></button>`;
+  return `<button type="button" class="mcard ${m.h===t||m.a===t?'mine':''}" data-m="${mref(m)}"><div class="mc">${side(m.h,'h')}<span class="cr ch">${crest(m.h.club,'md',m.h.name)}</span><div class="ctr">${ctr}</div><span class="cr ca2">${crest(m.a.club,'md',m.a.name)}</span>${side(m.a,'a')}</div><div class="loc">${I.pin.replace('<svg','<svg width="12" height="12" style="vertical-align:-1px;margin-right:4px"')}${esc(vname(m.v))}${isP&&m.dt>now?' · score posted before the listed date':''}${wxAttr(m)?' · ':''}${wxSlot(m,'sm')}</div></button>`;
 }
 function scheduleSec(t){
   const prev=t.ms.filter(m=>played(m)||m.dt<now).slice().reverse(),up=upcoming(t);
@@ -854,7 +997,7 @@ function drawRank(){
   const l=elig.filter(t=>(!RK.div||t.div===RK.div)&&(!s||t.name.toLowerCase().includes(s)));
   document.getElementById('rcount').textContent=`${elig.length} ranked teams · ${pool.length-elig.length} with fewer than 3 completed games not ranked`;
   const mv=t=>t.mv==null?'<span class="mv nc">–</span>':t.mv>0?`<span class="mv up">↑${t.mv}</span>`:t.mv<0?`<span class="mv dn">↓${-t.mv}</span>`:'<span class="mv nc">–</span>';
-  document.getElementById('rkb').innerHTML=`<table><thead><tr><th>#</th><th>Move</th><th class="l">Team</th><th class="l">Division</th><th>GP</th><th>W-D-L</th><th>PPG</th><th>GD/GP</th><th>GF/GP</th></tr></thead><tbody>${l.map(t=>`<tr><td class="rk">${t.nr}</td><td>${mv(t)}</td><td class="l t"><a href="#${tkey(t)}">${crest(t.club,'sm',t.name)}<span>${esc(t.name)}${awaiting(t).length?' <span class="ast">*</span>':''}</span></a></td><td class="l" style="font-family:var(--body);color:var(--muted)">${esc(t.div)}</td><td>${t.mp}</td><td>${t.w}-${t.d}-${t.l}</td><td class="pts">${(t.pts/t.mp).toFixed(3)}</td><td>${sgn(((t.gf-t.ga)/t.mp).toFixed(3))}</td><td>${(t.gf/t.mp).toFixed(3)}</td></tr>`).join('')||'<tr><td colspan="9" class="l" style="font-family:var(--body)">No ranked teams match these filters.</td></tr>'}</tbody></table>`;
+  document.getElementById('rkb').innerHTML=`<table><thead><tr><th>#</th><th class="hm">Move</th><th class="l">Team</th><th class="l hm">Division</th><th>GP</th><th class="hm">W-D-L</th><th>PPG</th><th class="hm">GD/GP</th><th class="hm">GF/GP</th></tr></thead><tbody>${l.map(t=>`<tr><td class="rk">${t.nr}<span class="so-b">${t.mv?mv(t):''}</span></td><td class="hm">${mv(t)}</td><td class="l t"><a href="#${tkey(t)}">${crest(t.club,'sm',t.name)}<span>${esc(t.name)}${awaiting(t).length?' <span class="ast">*</span>':''}<small class="so-b">${esc(t.div)} · ${t.w}-${t.d}-${t.l}</small></span></a></td><td class="l hm" style="font-family:var(--body);color:var(--muted)">${esc(t.div)}</td><td>${t.mp}</td><td class="hm">${t.w}-${t.d}-${t.l}</td><td class="pts">${(t.pts/t.mp).toFixed(3)}</td><td class="hm">${sgn(((t.gf-t.ga)/t.mp).toFixed(3))}</td><td class="hm">${(t.gf/t.mp).toFixed(3)}</td></tr>`).join('')||'<tr><td colspan="9" class="l" style="font-family:var(--body)">No ranked teams match these filters.</td></tr>'}</tbody></table>`;
 }
 function bindRank(){
   document.getElementById('rcomp').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;RK.comp=+b.dataset.c;RK.div='';render(false)});
@@ -1091,7 +1234,7 @@ function viewClubTable(){
 function drawClubTable(){
   const L=clubAgg();
   document.getElementById('ctcount').textContent=`${L.length} clubs · ${L.reduce((s,a)=>s+a.n,0)} teams`;
-  document.getElementById('ctb').innerHTML=`<table><thead><tr><th>#</th><th class="l">Club</th><th>Teams</th><th>GP</th><th>W-D-L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th><th>PPG</th><th class="l">Best team</th><th></th></tr></thead><tbody>${L.map(a=>`<tr class="${FAV.c.has(a.c.id)?'me':''}"><td class="rk">${a.rk??'–'}</td><td class="l t"><a href="#club-${a.c.id}-${CK[CT.comp]}">${crest(a.c.id,'sm')}<span>${esc(a.c.name)}${!CT.div&&a.divs.size===1?`<small>${esc([...a.divs][0])}</small>`:''}</span></a></td><td>${a.n}</td><td>${a.mp}</td><td>${a.w}-${a.d}-${a.l}</td><td>${a.gf}</td><td>${a.ga}</td><td>${sgn(a.gf-a.ga)}</td><td>${a.pts}</td><td class="pts">${a.mp?(a.pts/a.mp).toFixed(2):'–'}</td><td class="l" style="font-family:var(--body);color:var(--muted)">${a.best?`<a href="#${tkey(a.best)}" style="color:var(--ink);text-decoration:none">${a.best.age}</a> · ${ord(a.best.rank)} of ${tableOf(a.best).length}`:'–'}</td><td><a class="btn sm" href="#${cmpHash(CMP.a&&CMP.a!==a.c.id?CMP.a:a.c.id,CMP.a&&CMP.a!==a.c.id?a.c.id:0,CT.comp)}">Compare</a></td></tr>`).join('')||'<tr><td colspan="12" class="l" style="font-family:var(--body)">No clubs match these filters.</td></tr>'}</tbody></table>`;
+  document.getElementById('ctb').innerHTML=`<table><thead><tr><th>#</th><th class="l">Club</th><th class="hm">Teams</th><th>GP</th><th class="hm">W-D-L</th><th class="hm">GF</th><th class="hm">GA</th><th class="hm">GD</th><th class="hm">Pts</th><th>PPG</th><th class="l hm">Best team</th><th></th></tr></thead><tbody>${L.map(a=>`<tr class="${FAV.c.has(a.c.id)?'me':''}"><td class="rk">${a.rk??'–'}</td><td class="l t"><a href="#club-${a.c.id}-${CK[CT.comp]}">${crest(a.c.id,'sm')}<span>${esc(a.c.name)}${!CT.div&&a.divs.size===1?`<small class="hm-b">${esc([...a.divs][0])}</small>`:''}<small class="so-b">${a.w}-${a.d}-${a.l} · ${a.n} team${a.n>1?'s':''} · GD ${sgn(a.gf-a.ga)}</small></span></a></td><td class="hm">${a.n}</td><td>${a.mp}</td><td class="hm">${a.w}-${a.d}-${a.l}</td><td class="hm">${a.gf}</td><td class="hm">${a.ga}</td><td class="hm">${sgn(a.gf-a.ga)}</td><td class="hm">${a.pts}</td><td class="pts">${a.mp?(a.pts/a.mp).toFixed(2):'–'}</td><td class="l hm" style="font-family:var(--body);color:var(--muted)">${a.best?`<a href="#${tkey(a.best)}" style="color:var(--ink);text-decoration:none">${a.best.age}</a> · ${ord(a.best.rank)} of ${tableOf(a.best).length}`:'–'}</td><td><a class="btn sm cmpb" aria-label="Compare ${esc(a.c.name)}" title="Compare" href="#${cmpHash(CMP.a&&CMP.a!==a.c.id?CMP.a:a.c.id,CMP.a&&CMP.a!==a.c.id?a.c.id:0,CT.comp)}">${I.swap.replace('<svg','<svg width="15" height="15"')}<span class="cmpt">Compare</span></a></td></tr>`).join('')||'<tr><td colspan="12" class="l" style="font-family:var(--body)">No clubs match these filters.</td></tr>'}</tbody></table>`;
 }
 function bindClubTable(){
   document.getElementById('ctc').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;CT.comp=+b.dataset.c;CT.div='';CT.age='';render(false)});
@@ -1339,6 +1482,7 @@ function render(scroll){
   const h=decodeURIComponent((location.hash||'#home').slice(1));
   let m;
   ['home','wk','rank','ct','about'].forEach(k=>document.getElementById('nav-'+k).classList.remove('on'));
+  setTimeout(()=>{['home','wk','rank','ct'].forEach(k=>{const tb=document.getElementById('tb-'+k);tb&&tb.classList.toggle('on',document.getElementById('nav-'+k).classList.contains('on'))})},0);
   if(h==='weekend'){document.getElementById('nav-wk').classList.add('on');app.innerHTML=viewWeekend();bindWeekend();setTitle('This week')}
   else if((m=h.match(/^compare(?:-(\d+)-(\d+)(?:-(ea|national|ea2))?)?$/))){document.getElementById('nav-ct').classList.add('on');if(m[1]!=null){CMP.a=+m[1]&&clubBy.get(+m[1])?+m[1]:0;CMP.b=+m[2]&&clubBy.get(+m[2])?+m[2]:0;if(m[3])CMP.comp=CK.indexOf(m[3])}app.innerHTML=viewCompare();const A=clubBy.get(CMP.a),B=clubBy.get(CMP.b);setTitle(A&&B?`${A.name} vs ${B.name}`:'Compare clubs')}
   else if(h==='club-table'){document.getElementById('nav-ct').classList.add('on');app.innerHTML=viewClubTable();bindClubTable();setTitle(`${cmpName(CT.comp)} Club vs Club`)}
