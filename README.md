@@ -10,8 +10,9 @@ Independent project. Not affiliated with or endorsed by the Elite Academy League
 
 Each run:
 1. pulls the public schedule and standings from Modular11 (`scripts/pull.mjs`),
-2. builds the site (`build.py` + `template.html`) and checks every official table line against the match results; mismatches appear on the site's Data notes page,
-3. saves the data to `data/latest.json` and publishes the site to GitHub Pages.
+2. downloads any new club crests into `crests/` (clubs without one show initials),
+3. builds the site (`build.py` + `template.html`) and checks every official table line against the match results; mismatches appear on the site's Data notes page,
+4. saves the data to `data/latest.json`, the day's national rankings to `data/history/` (used for weekly movement), and publishes the site to GitHub Pages.
 
 If a run fails (Modular11 down, page layout changed, match count suddenly drops more than 10%), the site keeps showing the last good data and GitHub emails the repository owner.
 

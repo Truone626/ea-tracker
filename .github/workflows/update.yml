@@ -7,7 +7,7 @@ on:
   workflow_dispatch:         # "Run workflow" button for a manual refresh
   push:
     branches: [main]
-    paths-ignore: ["data/**", "README.md"]
+    paths-ignore: ["data/**", "crests/**", "README.md"]
 
 permissions:
   contents: write
@@ -30,7 +30,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - uses: actions/setup-python@v5
@@ -46,6 +46,9 @@ jobs:
       - name: Pull league data from Modular11
         run: node scripts/pull.mjs data/raw.json
 
+      - name: Download any new club crests
+        run: node scripts/crests.mjs data/raw.json
+
       - name: Build site and check the tables against match results
         run: |
           if [ -f data/latest.json ]; then
@@ -57,7 +60,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/latest.json
+          git add data/latest.json data/history crests
           if git diff --cached --quiet; then
             echo "No data changes"
           else

@@ -46,17 +46,53 @@ for i,t in enumerate(teams):
     x=tally.get(i,[0]*6)
     if [t[8],t[9],t[10],t[11],t[12],t[13],t[7]]==[x[0],x[1],x[2],x[3],x[4],x[5],x[1]*3+x[2]]: ok+=1
     else: diff+=1;bad.append(t[0])
-data=dict(season='2026–27',comps=COMPS,asOfLong=asof,clubs=clubs,teams=teams,matches=matches,venues=venues,
+# Results-based national rankings per competition and age (same method as the site describes),
+# saved daily so the site can show movement against the ranking from about a week earlier.
+def rank_groups():
+    out={}
+    groups=collections.defaultdict(list)
+    for i,t in enumerate(teams):
+        if t[8] is not None and t[8]>=3: groups[(t[2],t[3])].append(i)
+    for g,ids in groups.items():
+        key=lambda i:(teams[i][7]/teams[i][8],(teams[i][12]-teams[i][13])/teams[i][8],teams[i][12]/teams[i][8],teams[i][8])
+        ids.sort(key=lambda i:(tuple(-x for x in key(i)),teams[i][0]))
+        r=0;prev=None
+        for n,i in enumerate(ids):
+            k=key(i)
+            if k!=prev: r=n+1;prev=k
+            out[i]=r
+    return out
+nat=rank_groups()
+tkey=lambda t:f"{t[2]}|{t[3]}|{t[0]}"
+HIST='data/history'
+os.makedirs(HIST,exist_ok=True)
+today=local.date()
+snap={tkey(teams[i]):r for i,r in nat.items()}
+json.dump(snap,open(f'{HIST}/{today.isoformat()}.json','w'),separators=(',',':'))
+base=None
+for f in sorted(os.listdir(HIST)):
+    d=D.date.fromisoformat(f[:10])
+    if d<=today-D.timedelta(days=6): base=(d,f)
+prevr=json.load(open(f'{HIST}/{base[1]}')) if base else {}
+for i,t in enumerate(teams):
+    r=nat.get(i)
+    p=prevr.get(tkey(t))
+    t.append(r)
+    t.append((p-r) if (r is not None and p is not None) else None)
+CRESTS=sorted(int(f[:-5]) for f in os.listdir('crests') if f.endswith('.webp')) if os.path.isdir('crests') else []
+data=dict(season='2026–27',comps=COMPS,asOfLong=asof,asOfIso=local.isoformat(),clubs=clubs,teams=teams,matches=matches,venues=venues,crests=CRESTS,
+ moveSince=base[0].strftime('%b %-d, %Y') if base else None,
  check=dict(ok=ok,diff=diff,total=ok+diff,tbdPast=tbd,futureScored=fut,midnight=mid,noTable=sorted(no)))
 js=json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')
-body=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'template.html'),encoding='utf8').read().replace('__DATA__',js)
-head='<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n<meta name="description" content="Standings, schedules, results and rankings for every Elite Academy League club. Independent, updated daily from the league\'s public data.">\n<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n'
-html=head+body.replace('<meta name="claude:viewport-fit-sides" content="cover">\n','',1).replace('<div class="wrap">','</head>\n<body>\n<div class="wrap">',1)+'\n</body>\n</html>\n'
+html=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'template.html'),encoding='utf8').read().replace('__DATA__',js)
 os.makedirs(os.path.dirname(OUT) or '.',exist_ok=True)
 open(OUT,'w',encoding='utf8').write(html)
-os.makedirs('data',exist_ok=True)
+if CRESTS:
+    import shutil
+    cd=os.path.join(os.path.dirname(OUT) or '.','crests');os.makedirs(cd,exist_ok=True)
+    for c in CRESTS: shutil.copyfile(f'crests/{c}.webp',f'{cd}/{c}.webp')
 open('data/latest.json','w',encoding='utf8').write(json.dumps(data,ensure_ascii=False,separators=(',',':')))
 prev=os.environ.get('PREV_MATCHES')
 if prev and len(matches)<0.9*int(prev): raise SystemExit(f'match count dropped from {prev} to {len(matches)}; not publishing')
 if diff: print(f'::warning::{diff} official table lines do not match the match results; shown on the Data notes page')
-print(asof,'teams',len(teams),'clubs',len(clubs),'matches',len(matches),'venues',len(venues),'KB',len(html)//1024,'check',ok,diff,bad[:5],'tbd',len(tbd),'fut',len(fut),'mid',mid,'noTable',sorted(no))
+print(asof,'teams',len(teams),'clubs',len(clubs),'crests',len(CRESTS),'ranked',len(nat),'moves since',data['moveSince'],'matches',len(matches),'KB',len(html)//1024,'check',ok,diff,bad[:5],'tbd',len(tbd),'fut',len(fut),'mid',mid,'noTable',sorted(no))
