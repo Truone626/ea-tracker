@@ -1,4 +1,4 @@
-# Elite Academy League Tracker
+# EAL Tracker — Elite Academy League Tracker
 
 Standings, schedules, results and results-based rankings for every Elite Academy League club (EA, EA National, EA2, U11–U19).
 

@@ -10,7 +10,7 @@ const stripes = [...Array(14)].map((_, i) => `<rect x="${i * 90}" y="0" width="4
 const bg = `<rect width="${W}" height="${H}" fill="#060c17"/><g opacity=".7">${stripes}</g>
  <rect width="${W}" height="${H}" fill="url(#fade)"/>
  <defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1424" stop-opacity="1"/><stop offset=".55" stop-color="#0a1424" stop-opacity=".55"/><stop offset="1" stop-color="#060c17" stop-opacity=".9"/></linearGradient></defs>`;
-const brand = `<g transform="translate(64,560)"><circle cx="14" cy="-9" r="11" fill="none" stroke="#2dd4bf" stroke-width="5"/><text x="38" y="0" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="30" fill="#eef3fb" letter-spacing="2">EA <tspan fill="#2dd4bf">TRACKER</tspan></text></g>`;
+const brand = `<g transform="translate(64,560)"><circle cx="14" cy="-9" r="11" fill="none" stroke="#2dd4bf" stroke-width="5"/><text x="38" y="0" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="30" fill="#eef3fb" letter-spacing="2">EAL <tspan fill="#2dd4bf">TRACKER</tspan></text></g>`;
 function wrap(name, max) {
   const words = name.split(/\s+/); const lines = []; let cur = '';
   for (const w of words) { if ((cur + ' ' + w).trim().length > max && cur) { lines.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); }

@@ -3,10 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>EA Tracker · Elite Academy League standings, schedules and results</title>
+<title>EAL Tracker · Elite Academy League standings, schedules and results</title>
 <meta name="description" content="Standings, schedules, results and rankings for every Elite Academy League club. Independent, updated twice a day from the league's public data.">
-<meta name="theme-color" content="#070d18">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1526'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%232dd4bf' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%232dd4bf'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#060c17">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EAL Tracker">
+<meta name="application-name" content="EAL Tracker">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
@@ -51,8 +58,7 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:.0
 /* top bar */
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:16px 4px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:var(--display);font-weight:800;font-size:1.35rem;letter-spacing:.06em;text-transform:uppercase}
-.brand i{width:30px;height:30px;border-radius:9px;background:var(--solid);border:1px solid var(--line-2);display:grid;place-items:center}
-.brand i::before{content:"";width:13px;height:13px;border-radius:50%;border:3px solid var(--accent);box-shadow:0 0 12px rgba(45,212,191,.5)}
+.brand svg{width:32px;height:32px;flex:none;filter:drop-shadow(0 0 10px rgba(45,212,191,.28))}
 .brand b{color:var(--accent);font-weight:800}
 .nav{display:flex;gap:4px;flex-wrap:wrap}
 .nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:.92rem;padding:7px 12px;border-radius:999px}
@@ -605,6 +611,17 @@ td:not(.t) a:not(.btn){display:inline-block;padding:5px 0}
 .stack>*{min-width:0}
 @media (max-width:640px){.mc .big{white-space:normal;text-align:center;line-height:1.1}}
 @media (max-width:420px){.vs .mid{max-width:34vw}.nm .time{white-space:normal;text-align:center}}
+/* club color (from crest); falls back to the site teal */
+body{--clubc:var(--club,#2dd4bf)}
+.head{background:radial-gradient(520px 260px at 0 0,color-mix(in srgb,var(--clubc) 24%,transparent),transparent 72%),var(--card);border-top:3px solid color-mix(in srgb,var(--clubc) 85%,transparent)}
+.head h1{text-shadow:0 0 34px color-mix(in srgb,var(--clubc) 35%,transparent)}
+.head .crest.lg{box-shadow:0 0 0 1px color-mix(in srgb,var(--clubc) 50%,transparent),0 14px 40px -12px color-mix(in srgb,var(--clubc) 70%,transparent)}
+.nm{border-color:color-mix(in srgb,var(--clubc) 55%,transparent);background:radial-gradient(500px 220px at 50% 0,color-mix(in srgb,var(--clubc) 30%,transparent),transparent 70%),linear-gradient(115deg,transparent 0 30%,rgba(255,255,255,.05) 30% 31%,transparent 31%),repeating-linear-gradient(90deg,#0d2a43 0 70px,#0b2439 70px 140px);box-shadow:0 30px 60px -30px color-mix(in srgb,var(--clubc) 65%,transparent)}
+.vsb{box-shadow:0 0 30px color-mix(in srgb,var(--clubc) 60%,transparent)}
+/* result stripes */
+.mrow.res-W,.mrow.res-D,.mrow.res-L{padding-left:12px;border-radius:2px}
+.mrow.res-W{box-shadow:inset 3px 0 0 var(--win)}.mrow.res-D{box-shadow:inset 3px 0 0 var(--draw)}.mrow.res-L{box-shadow:inset 3px 0 0 var(--loss)}
+.mcard.res-W{box-shadow:inset 4px 0 0 var(--win)}.mcard.res-D{box-shadow:inset 4px 0 0 var(--draw)}.mcard.res-L{box-shadow:inset 4px 0 0 var(--loss)}
 /* rankings */
 .rhead{text-align:center;padding:24px 18px;display:grid;justify-items:center;gap:10px;grid-template-columns:minmax(0,1fr)}
 .rhead>*{max-width:100%;min-width:0}
@@ -682,8 +699,8 @@ footer a:hover{color:var(--accent)}
 @media (prefers-reduced-motion:reduce){.club-card{transition:none}.club-card:hover{transform:none}}
 </style>
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="EA Tracker">
-<meta property="og:title" content="EA Tracker · Elite Academy League standings, schedules and results">
+<meta property="og:site_name" content="EAL Tracker">
+<meta property="og:title" content="EAL Tracker · Elite Academy League standings, schedules and results">
 <meta property="og:description" content="Standings, schedules, results and rankings for every Elite Academy League club. Updated twice a day.">
 <meta property="og:url" content="__SITE__">
 <meta property="og:image" content="__SITE__og/home.png">
@@ -694,7 +711,7 @@ footer a:hover{color:var(--accent)}
 <body>
 <div class="page">
   <header class="top">
-    <a class="brand" href="#home"><i aria-hidden="true"></i><span>EA <b>Tracker</b></span></a>
+    <a class="brand" href="#home" aria-label="EAL Tracker home"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="9" fill="#0f1a2c" stroke="#24344f"/><path d="M16 4v24" stroke="#2dd4bf" stroke-width="2" opacity=".55"/><circle cx="16" cy="16" r="7.5" fill="none" stroke="#2dd4bf" stroke-width="2.6"/><circle cx="16" cy="16" r="2.4" fill="#2dd4bf"/></svg><span>EAL <b>Tracker</b></span></a>
     <nav class="nav" aria-label="Main">
       <a id="nav-home" href="#home">Clubs</a>
       <a id="nav-wk" href="#weekend">This week</a>
@@ -967,7 +984,7 @@ function viewClub(c,comp){
   // latest results
   const lr=all.filter(played).slice(-8).reverse();
   const latest=`<section class="glass pad"><div class="card-h"><h2>Latest results</h2>${lr.length?`<p>${(()=>{const d0=lr[0].dt;const same=lr.filter(m=>sameDay(m.dt,d0));const w=same.filter(m=>resFor(teamOf(m),m)==='W').length,d=same.filter(m=>resFor(teamOf(m),m)==='D').length,l=same.filter(m=>resFor(teamOf(m),m)==='L').length;return `${dayS(d0)}: ${w} win${w!==1?'s':''}, ${d} draw${d!==1?'s':''}, ${l} loss${l!==1?'es':''}`})()}</p>`:''}</div>
-    <div class="ml" style="margin-top:6px">${lr.map(m=>{const t=teamOf(m),o=opp(t,m),r=resFor(t,m);return `<button type="button" class="mrow" data-m="${mref(m)}"><span class="d"><b>${m.dt.toLocaleDateString('en-US',{weekday:'short'})}</b>${m.dt.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span><span class="age">${esc(t.age)}</span><span class="va">${m.h===t?'vs':'@'}</span>${crest(o.club,'xs',o.name)}<span class="on-name">${esc(o.name)}</span><span class="sc">${gfor(t,m)}–${gag(t,m)}</span><span class="pill ${r}">${r}</span></button>`}).join('')||'<div class="empty">No results yet.</div>'}</div></section>`;
+    <div class="ml" style="margin-top:6px">${lr.map(m=>{const t=teamOf(m),o=opp(t,m),r=resFor(t,m);return `<button type="button" class="mrow res-${r}" data-m="${mref(m)}"><span class="d"><b>${m.dt.toLocaleDateString('en-US',{weekday:'short'})}</b>${m.dt.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span><span class="age">${esc(t.age)}</span><span class="va">${m.h===t?'vs':'@'}</span>${crest(o.club,'xs',o.name)}<span class="on-name">${esc(o.name)}</span><span class="sc">${gfor(t,m)}–${gag(t,m)}</span><span class="pill ${r}">${r}</span></button>`}).join('')||'<div class="empty">No results yet.</div>'}</div></section>`;
   const firstTeam=ts.find(t=>t.tid);
   return header(c,comp,c.name,`Club overview · ${ts.length} ${cmpName(comp)} team${ts.length!==1?'s':''}`,clubTabs(c,comp,'ov'),compSeg(c,comp,x=>'#club-'+c.id+'-'+CK[x]),`<a class="btn" href="#rankings" data-rk="${comp}|${firstTeam?firstTeam.age:'U14'}">${I.trophy} Rankings</a>`,clubUrl(c),favBtn('c',c.id,c.name)+calBtn('c',c.id+'-'+comp)+`<a class="btn" href="#${cmpHash(c.id,0,comp)}">${I.swap} Compare with another club</a><a class="btn" href="#club-table" data-ct="${comp}|${esc(firstTeam?firstTeam.div:'')}">${I.bars} Club table</a>`)+
    tiles+`<div class="cols"><div class="stack">${snap}${charts}${latest}</div><div class="stack">${nmd}${recapCard(c,comp)}${hlH}</div></div>`;
@@ -994,7 +1011,7 @@ function matchCard(t,m){
   const isP=played(m),aw=!isP&&m.dt<now;
   const side=(x,cls)=>`<div class="tn ${cls}"><b class="${isP&&((x===m.h&&m.hs>m.as)||(x===m.a&&m.as>m.hs))?'won':''}">${esc(x.name)}</b><small>${cls==='h'?'<i>HOME</i> | ':'<i>AWAY</i> | '}${esc(rec(x))}</small></div>`;
   const ctr=isP?`<span class="big score">${m.hs} : ${m.as}</span><span class="st fin">FINAL</span>`:aw?`<span class="big">${esc(dayS(m.dt).split(',')[0])}</span><span class="st wt">AWAITING SCORE</span>`:`<span class="big">${midnight(m.dt)?'TBD':timeS(m.dt)}</span><span class="st">UPCOMING</span>`;
-  return `<button type="button" class="mcard ${m.h===t||m.a===t?'mine':''}" data-m="${mref(m)}"><div class="mc">${side(m.h,'h')}<span class="cr ch">${crest(m.h.club,'md',m.h.name)}</span><div class="ctr">${ctr}</div><span class="cr ca2">${crest(m.a.club,'md',m.a.name)}</span>${side(m.a,'a')}</div><div class="loc">${I.pin.replace('<svg','<svg width="12" height="12" style="vertical-align:-1px;margin-right:4px"')}${esc(vname(m.v))}${isP&&m.dt>now?' · score posted before the listed date':''}${wxAttr(m)?' · ':''}${wxSlot(m,'sm')}</div></button>`;
+  const mine=m.h===t||m.a===t;return `<button type="button" class="mcard ${mine?'mine':''} ${mine&&isP?'res-'+resFor(t,m):''}" data-m="${mref(m)}"><div class="mc">${side(m.h,'h')}<span class="cr ch">${crest(m.h.club,'md',m.h.name)}</span><div class="ctr">${ctr}</div><span class="cr ca2">${crest(m.a.club,'md',m.a.name)}</span>${side(m.a,'a')}</div><div class="loc">${I.pin.replace('<svg','<svg width="12" height="12" style="vertical-align:-1px;margin-right:4px"')}${esc(vname(m.v))}${isP&&m.dt>now?' · score posted before the listed date':''}${wxAttr(m)?' · ':''}${wxSlot(m,'sm')}</div></button>`;
 }
 function scheduleSec(t){
   const prev=t.ms.filter(m=>played(m)||m.dt<now).slice().reverse(),up=upcoming(t);
@@ -1021,9 +1038,9 @@ function viewRank(){
   const ages=AGES.filter(a=>T.some(t=>t.comp===RK.comp&&t.age===a));
   if(!ages.includes(RK.age))RK.age=ages.includes('U14')?'U14':ages[0];
   const divs=[...new Set(T.filter(t=>t.comp===RK.comp&&t.age===RK.age).map(t=>t.div))].sort();
-  return `<section class="glass rhead"><div class="eyebrow">EA Tracker <span style="color:var(--dim)">|</span> <span style="color:var(--accent-2)">${esc(cmpName(RK.comp))}</span></div>
+  return `<section class="glass rhead"><div class="eyebrow">EAL Tracker <span style="color:var(--dim)">|</span> <span style="color:var(--accent-2)">${esc(cmpName(RK.comp))}</span></div>
     <div class="ttl"><span class="agebox">${esc(RK.age)}</span><div><h1>National <em>Rankings</em></h1><div class="kick">${esc(D.season)} · RESULTS-BASED RANKINGS</div></div></div>
-    <div style="font-size:.86rem;color:#cbd6e6"><b>Independent results-based rankings</b> by EA Tracker. Not official Elite Academy League rankings.</div></section>
+    <div style="font-size:.86rem;color:#cbd6e6"><b>Independent results-based rankings</b> by EAL Tracker. Not official Elite Academy League rankings.</div></section>
   <section class="rcontrols">
     <div class="rrow"><nav class="seg accent" id="rcomp">${D.comps.map((n,i)=>`<button type="button" data-c="${i}" class="${i===RK.comp?'on':''}">${esc(n)}</button>`).join('')}</nav><nav class="seg accent" id="rage">${ages.map(a=>`<button type="button" data-a="${a}" class="${a===RK.age?'on':''}">${a}</button>`).join('')}</nav></div>
     <div class="rrow"><label class="field" for="rd">${I.pin}<select id="rd"><option value="">All divisions</option>${divs.map(d=>`<option ${d===RK.div?'selected':''}>${esc(d)}</option>`).join('')}</select></label><label class="field" for="rq">${I.search}<input id="rq" type="search" value="${esc(RK.q)}" placeholder="Find a club"></label><button type="button" class="btn primary" data-share>${I.share} Share rankings</button></div>
@@ -1264,7 +1281,7 @@ function viewClubTable(){
   if(!CMP.a){const f=[...FAV.c][0]||+store.get('ea-club');if(clubBy.get(f))CMP.a=f}
   return `<div style="display:flex;justify-content:center"><nav class="seg accent" aria-label="Club vs Club views"><a href="#${cmpHash(CMP.a,CMP.b,CT.comp)}">Head to head</a><a class="on" href="#club-table">League table</a></nav></div>
   ${compareSlots()}
-  <section class="glass rhead"><div class="eyebrow">EA Tracker <span style="color:var(--dim)">|</span> <span style="color:var(--accent-2)">${esc(cmpName(CT.comp))}</span></div>
+  <section class="glass rhead"><div class="eyebrow">EAL Tracker <span style="color:var(--dim)">|</span> <span style="color:var(--accent-2)">${esc(cmpName(CT.comp))}</span></div>
    <div class="ttl"><span class="agebox" style="font-size:clamp(1.6rem,4.4vw,2.6rem)">${CT.age||'All ages'}</span><div><h1>Club <em>vs</em> Club</h1><div class="kick">${esc(scope.toUpperCase())} · EVERY AGE GROUP COMBINED</div></div></div>
    <div style="font-size:.86rem;color:#cbd6e6">Each club's teams added together from the official division tables. Ordered by points per game, since clubs field different numbers of teams.</div></section>
   <section class="rcontrols"><div class="rrow"><nav class="seg accent" id="ctc">${D.comps.map((n,i)=>`<button type="button" data-c="${i}" class="${i===CT.comp?'on':''}">${esc(n)}</button>`).join('')}</nav></div>
@@ -1320,7 +1337,7 @@ const tlab=(t,c)=>{const sfx=t.name.startsWith(c.name)?t.name.slice(c.name.lengt
 function recapCard(c,comp){
   const R=recapData(c,comp);if(!R)return '';
   return `<section class="glass pad"><div class="card-h"><h2>Weekend recap</h2><p>${esc(cmpName(comp))} · ${esc(R.range)} · ${R.w} W, ${R.d} D, ${R.l} L · goals ${R.gf}–${R.ga}</p></div>
-   <div class="ml" style="margin-top:6px">${R.rows.map(x=>`<button type="button" class="mrow" data-m="${mref(x.m)}"><span class="age">${esc(tlab(x.t,c))}</span><span class="va">${x.m.h===x.t?'vs':'@'}</span>${crest(x.o.club,'xs',x.o.name)}<span class="on-name">${esc(x.o.name)}</span><span class="sc">${x.g}–${x.a}</span><span class="pill ${x.r}">${x.r}</span></button>`).join('')}</div>
+   <div class="ml" style="margin-top:6px">${R.rows.map(x=>`<button type="button" class="mrow res-${x.r}" data-m="${mref(x.m)}"><span class="age">${esc(tlab(x.t,c))}</span><span class="va">${x.m.h===x.t?'vs':'@'}</span>${crest(x.o.club,'xs',x.o.name)}<span class="on-name">${esc(x.o.name)}</span><span class="sc">${x.g}–${x.a}</span><span class="pill ${x.r}">${x.r}</span></button>`).join('')}</div>
    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button type="button" class="btn primary" data-recap-img="${c.id}|${comp}">Save image for social</button><button type="button" class="btn" data-recap-txt="${c.id}|${comp}">Copy as text</button></div></section>`;
 }
 function recapText(c,comp){
@@ -1349,7 +1366,7 @@ async function recapImage(c,comp){
     x.fillStyle='#eef3fb';x.font=`700 ${Math.min(38,rh*.42)}px "JetBrains Mono", monospace`;x.textAlign='right';x.fillText(`${r.g}–${r.a}`,W-180,mid);x.textAlign='left';
     x.fillStyle=({W:'#34c47c',D:'#e2a23b',L:'#ef6767'})[r.r];rr(W-160,y+(rh-10)/2-26,52,52,10);x.fill();x.fillStyle='#06140d';x.font='800 30px "Barlow", Arial';x.textAlign='center';x.fillText(r.r,W-134,y+(rh-10)/2+10);x.textAlign='left'});
   const by=Hh-170;x.fillStyle='#eef3fb';x.font='800 56px "Barlow Condensed", Arial';x.fillText(`${R.w}W  ${R.d}D  ${R.l}L`,70,by);x.fillStyle='#9aabc3';x.font='600 30px "Barlow", Arial';x.fillText(`Goals ${R.gf}–${R.ga}`,70,by+46);
-  x.strokeStyle='#2dd4bf';x.lineWidth=7;x.beginPath();x.arc(88,Hh-62,15,0,Math.PI*2);x.stroke();x.fillStyle='#eef3fb';x.font='800 36px "Barlow Condensed", Arial';x.fillText('EA',118,Hh-49);const ew=x.measureText('EA ').width;x.fillStyle='#2dd4bf';x.fillText('TRACKER',118+ew,Hh-49);
+  x.strokeStyle='#2dd4bf';x.lineWidth=7;x.beginPath();x.arc(88,Hh-62,15,0,Math.PI*2);x.stroke();x.fillStyle='#eef3fb';x.font='800 36px "Barlow Condensed", Arial';x.fillText('EAL',118,Hh-49);const ew=x.measureText('EAL ').width;x.fillStyle='#2dd4bf';x.fillText('TRACKER',118+ew,Hh-49);
   x.fillStyle='#6c7d96';x.font='500 24px "Barlow", Arial';x.textAlign='right';x.fillText(BASE.replace(/^https?:\/\//,'').replace(/\/$/,''),W-70,Hh-52);x.textAlign='left';
   cv.toBlob(b=>{if(!b){toast('Could not create the image');return}const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`${(D.slugs&&D.slugs[c.id])||'club'}-${CK[comp]}-weekend.png`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);toast('Image saved')},'image/png');
 }
@@ -1459,7 +1476,7 @@ function viewCompare(){
   const meet=M.filter(m=>m.h.comp===comp&&((m.h.club===a.id&&m.a.club===b.id)||(m.h.club===b.id&&m.a.club===a.id)));
   const pm=meet.filter(played),um=meet.filter(m=>!played(m)&&m.dt>=now);
   let mw=0,md=0,ml=0,mg=0,mga=0;pm.forEach(m=>{const at=m.h.club===a.id?m.h:m.a;const r=resFor(at,m);if(r==='W')mw++;else if(r==='D')md++;else ml++;mg+=gfor(at,m);mga+=gag(at,m)});
-  const mlist=pm.slice().reverse().map(m=>{const at=m.h.club===a.id?m.h:m.a;const r=resFor(at,m);return `<button type="button" class="mrow" data-m="${mref(m)}"><span class="d"><b>${m.dt.toLocaleDateString('en-US',{month:'short'})}</b>${m.dt.getDate()}</span><span class="age">${esc(at.age)}</span><span class="on-name">${esc(m.h.name)} <span class="muted">v</span> ${esc(m.a.name)}</span><span class="sc">${m.hs}–${m.as}</span><span class="pill ${r}" title="${esc(a.name)} result">${r}</span></button>`}).join('');
+  const mlist=pm.slice().reverse().map(m=>{const at=m.h.club===a.id?m.h:m.a;const r=resFor(at,m);return `<button type="button" class="mrow res-${r}" data-m="${mref(m)}"><span class="d"><b>${m.dt.toLocaleDateString('en-US',{month:'short'})}</b>${m.dt.getDate()}</span><span class="age">${esc(at.age)}</span><span class="on-name">${esc(m.h.name)} <span class="muted">v</span> ${esc(m.a.name)}</span><span class="sc">${m.hs}–${m.as}</span><span class="pill ${r}" title="${esc(a.name)} result">${r}</span></button>`}).join('');
   const ulist=um.slice(0,6).map(m=>`<button type="button" class="mrow" data-m="${mref(m)}"><span class="d"><b>${m.dt.toLocaleDateString('en-US',{month:'short'})}</b>${m.dt.getDate()}</span><span class="age">${esc(m.h.age)}</span><span class="on-name">${esc(m.h.name)} <span class="muted">v</span> ${esc(m.a.name)}</span><span class="tm">${midnight(m.dt)?'TBD':timeS(m.dt)}</span></button>`).join('');
   const shareUrl=`${BASE}#${cmpHash(a.id,b.id,comp)}`;
   return `<div style="display:flex;justify-content:center">${tabs}</div>
@@ -1521,9 +1538,10 @@ document.addEventListener('click',e=>{
   if(pkOpen&&!e.target.closest('.pk-pop'))pkClose();
 });
 /* ---------- router ---------- */
-function setTitle(s){document.title=s?`${s} · EA Tracker`:'EA Tracker · Elite Academy League standings, schedules and results'}
+function setTitle(s){document.title=s?`${s} · EAL Tracker`:'EAL Tracker · Elite Academy League standings, schedules and results'}
+function tint(id){const v=id!=null&&(D.colors||{})[id];v?document.body.style.setProperty('--club',v):document.body.style.removeProperty('--club')}
 function render(scroll){
-  reg=[];closeOv();pkClose();
+  reg=[];closeOv();pkClose();tint(null);
   const h=decodeURIComponent((location.hash||'#home').slice(1));
   let m;
   ['home','wk','rank','ct','about'].forEach(k=>document.getElementById('nav-'+k).classList.remove('on'));
@@ -1533,8 +1551,8 @@ function render(scroll){
   else if(h==='club-table'){document.getElementById('nav-ct').classList.add('on');app.innerHTML=viewClubTable();bindClubTable();setTitle(`${cmpName(CT.comp)} Club vs Club`)}
   else if(h==='rankings'){document.getElementById('nav-rank').classList.add('on');app.innerHTML=viewRank();bindRank();setTitle(`${RK.age} National Rankings`)}
   else if(h==='about'){document.getElementById('nav-about').classList.add('on');app.innerHTML=viewAbout();setTitle('Data notes')}
-  else if((m=h.match(/^club-(\d+)(?:-(ea|national|ea2))?$/))&&clubBy.get(+m[1])){const c=clubBy.get(+m[1]);let comp=m[2]?CK.indexOf(m[2]):[0,1,2].find(x=>c.teams.some(t=>t.comp===x));if(!c.teams.some(t=>t.comp===comp))comp=[0,1,2].find(x=>c.teams.some(t=>t.comp===x));app.innerHTML=viewClub(c,comp);setTitle(c.name)}
-  else if(tby.has(h)){const t=tby.get(h);app.innerHTML=viewTeam(t);setTitle(`${t.name} ${t.age}`);const sf=document.getElementById('sf');sf&&sf.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;schedFilter=b.dataset.f;const y=window.scrollY;render(false);window.scrollTo(0,y)})}
+  else if((m=h.match(/^club-(\d+)(?:-(ea|national|ea2))?$/))&&clubBy.get(+m[1])){const c=clubBy.get(+m[1]);let comp=m[2]?CK.indexOf(m[2]):[0,1,2].find(x=>c.teams.some(t=>t.comp===x));if(!c.teams.some(t=>t.comp===comp))comp=[0,1,2].find(x=>c.teams.some(t=>t.comp===x));tint(c.id);app.innerHTML=viewClub(c,comp);setTitle(c.name)}
+  else if(tby.has(h)){const t=tby.get(h);tint(t.club);app.innerHTML=viewTeam(t);setTitle(`${t.name} ${t.age}`);const sf=document.getElementById('sf');sf&&sf.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;schedFilter=b.dataset.f;const y=window.scrollY;render(false);window.scrollTo(0,y)})}
   else{document.getElementById('nav-home').classList.add('on');app.innerHTML=viewHome();bindHome();setTitle('')}
   if(scroll!==false)window.scrollTo(0,0);
   hydrateWx(app);

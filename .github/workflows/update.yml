@@ -49,6 +49,9 @@ jobs:
       - name: Download any new club crests
         run: node scripts/crests.mjs data/raw.json
 
+      - name: Work out club colors from the crests
+        run: node scripts/colors.mjs
+
       - name: Build site and check the tables against match results
         env:
           SITE_URL: https://ealtracker.com/
@@ -59,6 +62,7 @@ jobs:
           fi
           python3 build.py data/raw.json site/index.html
           node scripts/og.mjs data/latest.json site
+          node scripts/icons.mjs site
 
       - name: Save today's data in the repository
         run: |

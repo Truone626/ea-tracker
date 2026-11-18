@@ -44,7 +44,7 @@ def _fold(line):
 
 
 def _cal(name, desc, events):
-    L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//EA Tracker//Elite Academy League//EN', 'CALSCALE:GREGORIAN',
+    L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//EAL Tracker//Elite Academy League//EN', 'CALSCALE:GREGORIAN',
          'METHOD:PUBLISH', f'X-WR-CALNAME:{_esc(name)}', f'X-WR-CALDESC:{_esc(desc)}',
          'X-PUBLISHED-TTL:PT6H', 'REFRESH-INTERVAL;VALUE=DURATION:PT6H']
     L += events
@@ -99,7 +99,7 @@ def write_calendars(data, outdir, site):
             ev += _event(m, teams, venues, comps, site, stamp, owner=t)
         name = f'{t[0]} {t[3]} ({comps[t[2]]})'
         open(f'{outdir}/cal/{CK[t[2]]}-{t[5]}.ics', 'w', encoding='utf-8', newline='').write(
-            _cal(name, f'{t[3]} {t[4]} schedule and results. Updated twice a day by EA Tracker.', ev))
+            _cal(name, f'{t[3]} {t[4]} schedule and results. Updated twice a day by EAL Tracker.', ev))
         n += 1
     # club calendars per competition: every match of every team the club has in it
     for cid, cname in clubs.items():
@@ -114,7 +114,7 @@ def write_calendars(data, outdir, site):
                 own = teams[m[2]] if m[2] in idx else teams[m[3]]
                 ev += _event(m, teams, venues, comps, site, stamp, prefix=f'{teams[m[2]][3]} ', owner=own)
             open(f'{outdir}/cal/club-{cid}-{CK[c]}.ics', 'w', encoding='utf-8', newline='').write(
-                _cal(f'{cname} · {comps[c]}', f'All {cname} {comps[c]} matches. Updated twice a day by EA Tracker.', ev))
+                _cal(f'{cname} · {comps[c]}', f'All {cname} {comps[c]} matches. Updated twice a day by EAL Tracker.', ev))
             n += 1
     return n
 
@@ -127,7 +127,7 @@ STUB = '''<!doctype html>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="EA Tracker">
+<meta property="og:site_name" content="EAL Tracker">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
@@ -140,7 +140,7 @@ STUB = '''<!doctype html>
 <meta http-equiv="refresh" content="0; url={target}">
 <script>location.replace({target_js});</script>
 <style>body{{background:#060c17;color:#eef3fb;font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0}}a{{color:#2dd4bf}}</style>
-</head><body><p>Opening <a href="{target}">{name}</a> on EA Tracker…</p></body></html>
+</head><body><p>Opening <a href="{target}">{name}</a> on EAL Tracker…</p></body></html>
 '''
 
 
@@ -165,7 +165,7 @@ def write_share_pages(data, outdir, site, slugs):
         p = f'{outdir}/club/{slugs[cid]}'
         os.makedirs(p, exist_ok=True)
         open(f'{p}/index.html', 'w', encoding='utf-8').write(STUB.format(
-            title=H.escape(f'{name} · EA Tracker'), desc=H.escape(desc), url=url, img=f'{site}og/club-{cid}.png',
+            title=H.escape(f'{name} · EAL Tracker'), desc=H.escape(desc), url=url, img=f'{site}og/club-{cid}.png',
             target=target, target_js=json.dumps(target), name=H.escape(name)))
         urls.append(url)
     for t in teams:
@@ -180,7 +180,7 @@ def write_share_pages(data, outdir, site, slugs):
         p = f'{outdir}/team/{key}'
         os.makedirs(p, exist_ok=True)
         open(f'{p}/index.html', 'w', encoding='utf-8').write(STUB.format(
-            title=H.escape(f'{t[0]} {t[3]} · EA Tracker'), desc=H.escape(desc), url=url, img=f'{site}og/club-{t[1]}.png',
+            title=H.escape(f'{t[0]} {t[3]} · EAL Tracker'), desc=H.escape(desc), url=url, img=f'{site}og/club-{t[1]}.png',
             target=target, target_js=json.dumps(target), name=H.escape(f'{t[0]} {t[3]}')))
         urls.append(url)
     today = data['asOfIso'][:10]

@@ -84,7 +84,8 @@ CRESTS=sorted(int(f[:-5]) for f in os.listdir('crests') if f.endswith('.webp')) 
 import site_extras as X
 SITE=os.environ.get('SITE_URL','https://ealtracker.com/').rstrip('/')+'/'
 SLUGS=X.club_slugs({str(k):v for k,v in clubs.items()})
-data=dict(site=SITE,slugs=SLUGS,season='2026–27',comps=COMPS,asOfLong=asof,asOfIso=local.isoformat(),clubs=clubs,teams=teams,matches=matches,venues=venues,crests=CRESTS,
+COLORS={int(k):v for k,v in json.load(open('crests/colors.json')).items()} if os.path.exists('crests/colors.json') else {}
+data=dict(site=SITE,slugs=SLUGS,season='2026–27',comps=COMPS,asOfLong=asof,asOfIso=local.isoformat(),clubs=clubs,teams=teams,matches=matches,venues=venues,crests=CRESTS,colors=COLORS,
  moveSince=base[0].strftime('%b %-d, %Y') if base else None,
  check=dict(ok=ok,diff=diff,total=ok+diff,tbdPast=tbd,futureScored=fut,midnight=mid,noTable=sorted(no)))
 js=json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')
