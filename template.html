@@ -622,6 +622,80 @@ body{--clubc:var(--club,#2dd4bf)}
 .mrow.res-W,.mrow.res-D,.mrow.res-L{padding-left:12px;border-radius:2px}
 .mrow.res-W{box-shadow:inset 3px 0 0 var(--win)}.mrow.res-D{box-shadow:inset 3px 0 0 var(--draw)}.mrow.res-L{box-shadow:inset 3px 0 0 var(--loss)}
 .mcard.res-W{box-shadow:inset 4px 0 0 var(--win)}.mcard.res-D{box-shadow:inset 4px 0 0 var(--draw)}.mcard.res-L{box-shadow:inset 4px 0 0 var(--loss)}
+/* home: weekend strip, top teams, latest results */
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(232px,260px);gap:12px;overflow-x:auto;padding:2px 2px 10px;scroll-snap-type:x mandatory;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.strip>*{scroll-snap-align:start}
+.gm{display:grid;gap:8px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(45,212,191,.08),var(--card) 55%);color:var(--ink);text-align:left;cursor:pointer;width:100%;min-width:0;font:inherit}
+.gm:hover{border-color:rgba(45,212,191,.5)}
+.gm .gm-top{display:flex;justify-content:space-between;gap:8px;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.gm .gm-top b{color:var(--accent-2);font-weight:700}
+.gm .gm-t{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center;font-weight:600;font-size:.92rem}
+.gm .gm-t span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gm .gm-t .rk{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.gm .gm-t .sc{font-family:var(--mono);font-weight:700;font-size:1rem}
+.gm .gm-t.won span:not(.rk){color:#fff}.gm .gm-t.lost{opacity:.72}
+.gm .gm-f{font-size:.8rem;color:var(--muted);border-top:1px solid var(--line);padding-top:7px;display:flex;justify-content:space-between;gap:8px}
+.gm .gm-f b{color:var(--ink);font-family:var(--mono)}
+.top-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:10px}
+.tt{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;align-items:center;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--card);text-decoration:none;color:var(--ink);min-width:0}
+.tt:hover{border-color:rgba(240,195,90,.55)}
+.tt .crest{grid-row:span 2}
+.tt .tt-a{display:flex;gap:8px;align-items:center;font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--muted)}
+.tt .tt-a .no1{color:var(--gold)}
+.tt .tt-n{font-weight:700;overflow-wrap:break-word;min-width:0}
+.tt .tt-s{grid-column:1/-1;display:flex;gap:6px 14px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);border-top:1px solid var(--line);padding-top:7px;margin-top:4px}
+.tt .tt-s b{color:var(--ink);font-family:var(--mono)}
+.sec-sub{color:var(--muted);font-size:.86rem}
+.hero-links .btn{max-width:100%;white-space:normal}
+.kbd{white-space:normal}
+@media (max-width:640px){.top-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(78%,270px);overflow-x:auto;padding:2px 2px 10px;scroll-snap-type:x mandatory;scrollbar-width:thin}.top-grid>*{scroll-snap-align:start}}
+/* install banner + app guide */
+.inst{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;border:1px solid rgba(45,212,191,.4);background:linear-gradient(120deg,rgba(45,212,191,.14),var(--card) 70%)}
+.inst img{width:42px;height:42px;border-radius:10px;flex:none}
+.inst div{flex:1;min-width:0;font-size:.9rem}.inst div b{display:block;font-size:.98rem}
+.inst .x{border:0;background:transparent;color:var(--muted);font-size:1.4rem;line-height:1;padding:4px 6px;cursor:pointer}
+.steps{display:grid;gap:10px;margin:0;padding:0;list-style:none;counter-reset:st}
+.steps li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;counter-increment:st;color:#d0d9e6}
+.steps li::before{content:counter(st);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent-2);font-weight:800;font-family:var(--mono)}
+.steps b{color:var(--ink)}
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.kbd{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line-2);border-radius:7px;padding:1px 7px;font-size:.85em;background:rgba(255,255,255,.05);white-space:nowrap}
+.kbd svg{width:14px;height:14px}
+/* share sheet */
+.share-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:8px}
+.share-opts .btn{justify-content:center;padding:11px 12px}
+.share-url{display:flex;gap:8px;align-items:center;background:rgba(4,9,18,.75);border:1px solid var(--line-2);border-radius:12px;padding:6px 6px 6px 12px;min-width:0}
+.share-url span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--mono);font-size:.82rem;color:#cbd6e6}
+/* feedback */
+.fb{display:grid;gap:14px}
+.fb label{font-weight:700;font-size:.86rem;letter-spacing:.04em;display:grid;gap:6px}
+.fb label small{font-weight:500;color:var(--muted);letter-spacing:0}
+.fb textarea,.fb input[type=email]{width:100%;padding:12px 14px;border-radius:12px;background:rgba(4,9,18,.75);border:1.5px solid var(--line-2);color:var(--ink);font:inherit;font-size:1rem}
+.fb textarea{min-height:140px;resize:vertical}
+.fb textarea:focus,.fb input:focus{outline:none;border-color:var(--accent)}
+.fb .kinds{display:flex;gap:8px;flex-wrap:wrap}
+.fb .kinds input{position:absolute;opacity:0;pointer-events:none}
+.fb .kinds label{display:inline-flex;font-weight:600;font-size:.9rem;letter-spacing:0;border:1px solid var(--line-2);border-radius:999px;padding:8px 14px;cursor:pointer;background:rgba(255,255,255,.04)}
+.fb .kinds input:checked+span{color:var(--accent-ink)}
+.fb .kinds label:has(input:checked){background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.fb .kinds label:has(input:focus-visible){outline:2px solid var(--accent-2);outline-offset:2px}
+.fb .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.fb-msg{padding:12px 14px;border-radius:12px;font-size:.92rem}
+.fb-msg.ok{background:rgba(52,196,124,.12);border:1px solid rgba(52,196,124,.45)}
+.fb-msg.err{background:rgba(239,103,103,.12);border:1px solid rgba(239,103,103,.45)}
+/* trend charts */
+.trend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px}
+.chart{padding:16px 16px 12px;display:grid;gap:8px;min-width:0}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.chart .lg{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+.chart .lg i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:3px}
+.chart .lg i.dash{background:repeating-linear-gradient(90deg,#8796ad 0 4px,transparent 4px 7px)!important}
+.chart .big-n{font-family:var(--display);font-weight:800;font-size:1.6rem;line-height:1}
+.chart .big-n small{font-family:var(--body);font-size:.8rem;color:var(--muted);font-weight:600;margin-left:6px}
+.chart .note{font-size:.78rem;color:var(--dim);margin:0}
+.fdots{display:inline-flex;gap:3px;vertical-align:middle}
+.fdots i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.fdots i.W{background:var(--win)}.fdots i.D{background:var(--draw)}.fdots i.L{background:var(--loss)}
 /* rankings */
 .rhead{text-align:center;padding:24px 18px;display:grid;justify-items:center;gap:10px;grid-template-columns:minmax(0,1fr)}
 .rhead>*{max-width:100%;min-width:0}
@@ -723,7 +797,7 @@ footer a:hover{color:var(--accent)}
   <main id="app" class="stack"></main>
   <footer>
     <div class="asof"><span class="live" aria-hidden="true"></span><span>Updated automatically twice a day · League data as of <b id="asof"></b></span></div>
-    <nav><a href="#home">Clubs</a><a href="#weekend">This week</a><a href="#rankings">National Rankings</a><a href="#club-table">Club vs Club</a><a href="#about">Data notes</a></nav>
+    <nav><a href="#home">Clubs</a><a href="#weekend">This week</a><a href="#rankings">National Rankings</a><a href="#club-table">Club vs Club</a><a href="#app">Get the app</a><a href="#feedback" id="ft-fb">Feedback</a><a href="#about">Data notes</a></nav>
     <div>Independent project. Not affiliated with or endorsed by the Elite Academy League or Modular11. Data comes from the league's public schedule and standings.</div>
     <div>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>), shown for matches in the next 16 days.</div>
   </footer>
@@ -747,6 +821,15 @@ const app=document.getElementById('app'),ov=document.getElementById('ov');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 const I={
+  sms:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4V5Z"/></svg>',
+  wa:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z"/><path d="M9 9.5c.3 2 2.3 4.3 5 5l1.2-1.4-1.8-1-1 .8c-.9-.4-1.8-1.3-2.2-2.2l.8-1-1-1.8L9 9.5Z" fill="currentColor" stroke="none"/></svg>',
+  mail:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
+  fb:'<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.5 21v-7.5H16l.5-3h-3V8.6c0-.9.3-1.6 1.6-1.6h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4V10.5H8v3h2.5V21h3Z"/></svg>',
+  phone:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>',
+  shareios:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5v10h14V11h-1"/></svg>',
+  dots:'<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>',
+  plusbox:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 8v8M8 12h8"/></svg>',
+  chat:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/></svg>',
  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
  trophy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>',
  swap:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>',
@@ -813,10 +896,26 @@ function clubOptions(sel){
   return Object.keys(g).sort().map(k=>`<optgroup label="${k}">${g[k].map(c=>`<option value="${c.id}" ${c.id===sel?'selected':''}>${esc(c.name)}</option>`).join('')}</optgroup>`).join('');
 }
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>t.hidden=true,2200)}
-async function share(title,url){
+function share(title,url){
   url=url||location.href;
-  try{if(navigator.share){await navigator.share({title,url});return}}catch(e){if(e&&e.name==='AbortError')return}
-  try{await navigator.clipboard.writeText(url);toast('Link copied')}catch(e){prompt('Copy this link',url)}
+  const name=title.replace(/ · EAL Tracker$/,'');
+  const msg=`${name} on EAL Tracker: ${url}`;
+  const e=encodeURIComponent;
+  ov.innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Share"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><div class="eyebrow">Share</div><button type="button" class="btn" id="ovx">Close</button></div>
+   <h2>${esc(name)}</h2>
+   <div class="share-url"><span>${esc(url)}</span><button type="button" class="btn primary sm" id="shcopy">Copy link</button></div>
+   <div class="share-opts">
+    <a class="btn" href="sms:?&body=${e(msg)}">${I.sms} Text</a>
+    <a class="btn" href="https://wa.me/?text=${e(msg)}" target="_blank" rel="noopener">${I.wa} WhatsApp</a>
+    <a class="btn" href="mailto:?subject=${e(name+' · EAL Tracker')}&body=${e(msg)}">${I.mail} Email</a>
+    <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${e(url)}" target="_blank" rel="noopener">${I.fb} Facebook</a>
+    ${navigator.share?`<button type="button" class="btn" id="shmore">${I.share} More…</button>`:''}
+   </div>
+   <p class="muted" style="margin:0;font-size:.84rem">The link opens this exact page, with a preview card in most messaging apps.</p></div>`;
+  ov.hidden=false;
+  document.getElementById('shcopy').onclick=()=>copyText(url,'Link copied');
+  const mo=document.getElementById('shmore');if(mo)mo.onclick=async()=>{try{await navigator.share({title:name,text:name+' on EAL Tracker',url})}catch(err){}};
+  const b=document.getElementById('ovx');b.focus();b.onclick=closeOv;
 }
 
 let reg=[];
@@ -840,7 +939,11 @@ function viewHome(){
     </div>
     <div class="stats"><span><b>${clubs.length}</b> clubs</span><span><b>${T.length.toLocaleString()}</b> teams</span><span><b>${played_.toLocaleString()}</b> results</span><span><b>${M.filter(m=>!played(m)&&m.dt>=now).length.toLocaleString()}</b> matches to play</span></div>
   </section>
+  ${installBanner()}
   ${myTeams()}
+  ${homeWeekend()}
+  ${homeTop()}
+  ${homeLatest()}
   <section class="stack" style="gap:14px">
     <div class="sec-h"><h2>All clubs</h2>
       <div class="seg" id="hc" role="tablist" aria-label="Competition"><button type="button" data-c="-1">All</button>${D.comps.map((n,i)=>`<button type="button" data-c="${i}">${esc(n)}</button>`).join('')}</div>
@@ -883,6 +986,124 @@ function bindHome(){
   hc.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;HOME.comp=+b.dataset.c;drawGrid()});
   lt.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;HOME.letter=b.dataset.l;drawGrid()});
   drawGrid();
+  const htc=document.getElementById('htc');if(htc)htc.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;HT.comp=+b.dataset.c;[...htc.children].forEach(x=>x.classList.toggle('on',x===b));document.getElementById('htg').innerHTML=topCards()});
+  const ix=document.getElementById('inst-x');if(ix)ix.onclick=()=>{store.set('ea-inst-x','1');document.getElementById('inst').remove()};
+}
+
+
+/* ---------- home: weekend, top teams, latest results ---------- */
+const nrTag=t=>t.nr!=null?`<span class="rk" title="EAL Tracker national ranking, ${esc(t.age)} ${esc(cmpName(t.comp))}">#${t.nr}</span>`:'<span class="rk"></span>';
+const strength=m=>(m.h.nr??999)+(m.a.nr??999);
+function gameCard(m,showScore){
+  const p=played(m)&&showScore;
+  const row=(x,g,o)=>`<div class="gm-t ${p?(g>o?'won':g<o?'lost':''):''}">${crest(x.club,'xs',x.name)}<span>${esc(x.name)}</span>${p?`<span class="sc">${g}</span>`:nrTag(x)}</div>`;
+  const when=p?dayS(m.dt):`${dayS(m.dt)}${midnight(m.dt)?' · time TBD':' · '+timeS(m.dt)}`;
+  return `<button type="button" class="gm" data-m="${mref(m)}"><div class="gm-top"><b>${esc(m.h.age)} · ${esc(cmpName(m.h.comp))}</b><span>${p?'Final':esc(m.h.div)}</span></div>${row(m.h,m.hs,m.as)}${row(m.a,m.as,m.hs)}<div class="gm-f"><span>${esc(when)}</span>${p?`<span>${nrTag(m.h).replace('class="rk"','')} v ${nrTag(m.a).replace('class="rk"','')}</span>`:''}</div></button>`;
+}
+function homeWeekend(){
+  const up=M.filter(m=>!played(m)&&m.dt>=now);
+  if(!up.length)return '';
+  const sat=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const wd=sat.getDay();sat.setDate(sat.getDate()+(wd===0?-1:6-wd));
+  const mon=new Date(sat);mon.setDate(mon.getDate()+2);
+  let list=up.filter(m=>m.dt>=sat&&m.dt<mon),lab='This weekend',rng=sameDay(now,new Date(mon-864e5))?shortD(now):fmtRange(sat<now?now:sat,new Date(mon-864e5));
+  if(!list.length){const d0=up[0].dt;const a=new Date(d0.getFullYear(),d0.getMonth(),d0.getDate()),b=new Date(a);b.setDate(b.getDate()+2);list=up.filter(m=>m.dt>=a&&m.dt<b);lab='Next matches';rng=fmtRange(a,new Date(b-864e5))}
+  const feat=list.filter(m=>m.h.nr!=null&&m.a.nr!=null).sort((x,y)=>strength(x)-strength(y)||x.dt-y.dt).slice(0,10);
+  if(!feat.length)return '';
+  return `<section class="stack" style="gap:12px"><div class="sec-h"><div><h2>${lab}</h2><div class="sec-sub">${esc(rng)} · ${list.length.toLocaleString()} matches · biggest matchups by national ranking</div></div><a class="btn sm" href="#weekend">All matches</a></div>
+   <div class="strip">${feat.map(m=>gameCard(m,false)).join('')}</div></section>`;
+}
+const HT={comp:0};
+function homeTop(){
+  const comps=[0,1,2].filter(c=>T.some(t=>t.comp===c&&t.nr===1));
+  if(!comps.length)return '';
+  if(!comps.includes(HT.comp))HT.comp=comps[0];
+  return `<section class="stack" style="gap:12px" id="ht"><div class="sec-h"><div><h2>Top teams</h2><div class="sec-sub">No. 1 in each age group · EAL Tracker national rankings</div></div>
+    <div class="seg" id="htc">${comps.map(c=>`<button type="button" data-c="${c}" class="${c===HT.comp?'on':''}">${esc(cmpName(c))}</button>`).join('')}</div></div>
+    <div class="top-grid" id="htg">${topCards()}</div></section>`;
+}
+function topCards(){
+  return AGES.map(a=>{const ones=T.filter(t=>t.comp===HT.comp&&t.age===a&&t.nr===1).sort((x,y)=>x.name.localeCompare(y.name));if(!ones.length)return '';const t=ones[0];
+    const n=T.filter(x=>x.comp===HT.comp&&x.age===a&&x.nr!=null).length;
+    return `<a class="tt" href="#${tkey(t)}">${crest(t.club,'md',t.name)}<div class="tt-a"><span class="chip">${esc(a)}</span><span class="no1">#1 of ${n}${ones.length>1?` · tied with ${ones.length-1}`:''}</span></div><div class="tt-n">${esc(t.name)}</div>
+      <div class="tt-s"><span><b>${t.w}-${t.d}-${t.l}</b> W-D-L</span><span><b>${(t.pts/t.mp).toFixed(2)}</b> pts/game</span><span><b>${sgn(t.gf-t.ga)}</b> GD</span></div></a>`}).join('');
+}
+function homeLatest(){
+  const pulled=new Date(D.asOfIso.slice(0,16));
+  const done=M.filter(m=>played(m)&&m.dt<=pulled);
+  if(!done.length)return '';
+  const perDay=new Map();done.forEach(m=>{const k=m.dt.toDateString();perDay.set(k,(perDay.get(k)||0)+1)});
+  const lastM=[...done].reverse().find(m=>perDay.get(m.dt.toDateString())>=5)||done[done.length-1];
+  const last=new Date(lastM.dt.getFullYear(),lastM.dt.getMonth(),lastM.dt.getDate(),23,59);const from=new Date(last.getFullYear(),last.getMonth(),last.getDate()-2);
+  const recent=done.filter(m=>m.dt>=from&&m.dt<=last);
+  const feat=recent.filter(m=>m.h.nr!=null&&m.a.nr!=null).sort((x,y)=>strength(x)-strength(y)||y.dt-x.dt).slice(0,10);
+  if(!feat.length)return '';
+  return `<section class="stack" style="gap:12px"><div class="sec-h"><div><h2>Latest results</h2><div class="sec-sub">${esc(sameDay(recent[0].dt,last)?shortD(last):fmtRange(recent[0].dt,last))} · ${recent.length.toLocaleString()} results · top-ranked matchups</div></div><a class="btn sm" href="#weekend" data-wkset="${Math.round((monday(last)-monday(now))/(7*864e5))}">All results that week</a></div>
+   <div class="strip">${feat.map(m=>gameCard(m,true)).join('')}</div></section>`;
+}
+/* ---------- get the app ---------- */
+let instEvt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();instEvt=e;const b=document.getElementById('inst-now');if(b)b.hidden=false});
+const isStandalone=()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}catch(e){return false}};
+const isIOS=()=>/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const isPhone=()=>{try{return matchMedia('(max-width: 820px)').matches&&matchMedia('(pointer: coarse)').matches}catch(e){return false}};
+function installBanner(){
+  if(isStandalone()||!isPhone()||store.get('ea-inst-x'))return '';
+  return `<div class="inst" id="inst"><img src="apple-touch-icon.png" alt=""><div><b>Get EAL Tracker on your home screen</b>Opens like an app, full screen. Free, nothing to download from a store.</div><a class="btn primary sm" href="#app">How</a><button type="button" class="x" id="inst-x" aria-label="Hide this">×</button></div>`;
+}
+function viewApp(){
+  const ios=isIOS(),inApp=isStandalone();
+  const iphone=`<section class="glass pad stack" style="gap:12px"><div class="card-h"><h2>iPhone and iPad</h2><p>Use Safari</p></div><ol class="steps">
+    <li><span>Open <b>ealtracker.com</b> in <b>Safari</b>.</span></li>
+    <li><span>Tap the <span class="kbd">${I.shareios} Share</span> button. It's at the bottom of the screen (on newer iPhones, tap <span class="kbd">⋯</span> first), or at the top on iPad.</span></li>
+    <li><span>Scroll down and tap <span class="kbd">${I.plusbox} Add to Home Screen</span>.</span></li>
+    <li><span>Tap <b>Add</b>. EAL Tracker now opens from your home screen like an app.</span></li></ol></section>`;
+  const android=`<section class="glass pad stack" style="gap:12px"><div class="card-h"><h2>Android</h2><p>Use Chrome</p></div><ol class="steps">
+    <li><span>Open <b>ealtracker.com</b> in <b>Chrome</b>.</span></li>
+    <li><span>Tap the <span class="kbd">${I.dots} menu</span> at the top right.</span></li>
+    <li><span>Tap <b>Add to Home screen</b> or <b>Install app</b> (the wording depends on your phone).</span></li>
+    <li><span>Tap <b>Install</b> or <b>Add</b> to confirm.</span></li></ol></section>`;
+  return `<section class="glass hero"><div class="hero-deco" aria-hidden="true"></div><div class="eyebrow" style="color:var(--accent-2)">Free · No app store needed</div><h1>Get the <em>app</em></h1>
+    <p class="lead">Put EAL Tracker on your phone's home screen. It opens full screen, like any other app, and always shows the latest standings and scores.</p>
+    <div class="hero-links">${inApp?`<span class="btn" style="pointer-events:none">✓ You're using the app version</span>`:`<button type="button" class="btn primary" id="inst-now" ${instEvt?'':'hidden'}>${I.phone} Install now</button>`}<button type="button" class="btn" data-share="${esc(BASE)}">${I.share} Send link to your phone</button></div></section>
+   <div class="guide-grid">${ios?iphone+android:android+iphone}</div>
+   <section class="glass pad prose"><div class="card-h"><h2>On a computer</h2></div><p>In Chrome or Edge, click the install icon at the right end of the address bar, or open the browser menu and choose <b>Install EAL Tracker</b>. In Safari on a Mac, choose <b>File → Add to Dock</b>.</p>
+   <p class="muted" style="font-size:.86rem">The menu wording can differ slightly between browser versions. Removing it works like any other app: press and hold the icon, then remove it.</p></section>`;
+}
+function bindApp(){const b=document.getElementById('inst-now');if(b)b.onclick=async()=>{if(!instEvt)return;instEvt.prompt();try{await instEvt.userChoice}catch(e){}instEvt=null;b.hidden=true}}
+/* ---------- feedback ---------- */
+const FB_URL=__FEEDBACK__;
+function viewFeedback(){
+  const from=store.get('ea-last-page')||'';
+  return `<section class="glass hero"><div class="hero-deco" aria-hidden="true"></div><div class="eyebrow" style="color:var(--accent-2)">Feedback</div><h1>Tell us <em>what you think</em></h1>
+    <p class="lead">Ideas, something that looks broken, or anything else. Every message is read.</p></section>
+   <section class="glass pad">${FB_URL?`<form class="fb" id="fb" novalidate>
+     <fieldset style="border:0;padding:0;margin:0;display:grid;gap:8px"><legend style="font-weight:700;font-size:.86rem;letter-spacing:.04em;margin-bottom:6px">What's this about?</legend><div class="kinds">
+      <label><input type="radio" name="kind" value="Idea" checked><span>Idea</span></label><label><input type="radio" name="kind" value="Something's broken"><span>Something's broken</span></label><label><input type="radio" name="kind" value="Other"><span>Other</span></label></div></fieldset>
+     <label for="fb-msg">Message<textarea id="fb-msg" name="message" maxlength="3000" required placeholder="What would make the tracker better for you?"></textarea></label>
+     <label for="fb-em">Your email <small>Optional. Only used to reply to you.</small><input id="fb-em" type="email" name="email" autocomplete="email" placeholder="you@example.com"></label>
+     <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+     <input type="hidden" name="page" value="${esc(from)}">
+     <div id="fb-out" role="status"></div>
+     <div><button type="submit" class="btn primary" id="fb-send">Send feedback</button></div>
+     <p class="muted" style="margin:0;font-size:.84rem"><b>Wrong score or missing game?</b> Scores come straight from the league's data and can't be edited here. The club needs to ask the league to correct it, and the fix shows up here at the next update.</p>
+    </form>`:`<p style="margin:0">The feedback form isn't open yet. Check back soon.</p>`}</section>`;
+}
+function bindFeedback(){
+  const f=document.getElementById('fb');if(!f)return;
+  f.onsubmit=async e=>{e.preventDefault();const out=document.getElementById('fb-out'),btn=document.getElementById('fb-send');
+    const fd=new FormData(f);const msg=(fd.get('message')||'').trim(),em=(fd.get('email')||'').trim();
+    if(fd.get('_honey'))return;
+    if(msg.length<3){out.innerHTML='<div class="fb-msg err">Please write a message first.</div>';f.message.focus();return}
+    if(em&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){out.innerHTML='<div class="fb-msg err">That email doesn\'t look right. Fix it, or leave it empty.</div>';f.email.focus();return}
+    btn.disabled=true;btn.textContent='Sending…';out.innerHTML='';
+    const body={_subject:`EAL Tracker feedback: ${fd.get('kind')}`,kind:fd.get('kind'),message:msg,page:fd.get('page')||'',_template:'table',_captcha:'false'};
+    if(em){body.email=em;body._replyto=em}
+    try{const r=await fetch(FB_URL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)});
+      if(!r.ok)throw new Error(r.status);
+      f.reset();out.innerHTML='<div class="fb-msg ok"><b>Thanks, it\'s sent.</b>'+(em?' If it needs a reply, it will go to the email you gave.':'')+'</div>'}
+    catch(err){out.innerHTML='<div class="fb-msg err">It didn\'t send. Check your connection and try again in a minute.</div>'}
+    btn.disabled=false;btn.textContent='Send feedback'};
 }
 
 /* ---------- shared header ---------- */
@@ -1002,9 +1223,9 @@ function nextMatchCard(t){
    <div class="foot"><span>${I.pin.replace('<svg','<svg width="15" height="15" style="vertical-align:-2px;margin-right:6px"')}${esc(vname(m.v))}</span>${wxSlot(m)||'<span class="muted">Tap for match details</span>'}</div></button>`;
 }
 function standingsCard(t){
-  const rows=tableOf(t).map(r=>{const gd=r.gf-r.ga;return `<tr class="${r===t?'me':''}"><td>${r.rank}</td><td class="l t"><a href="#${tkey(r)}">${crest(r.club,'sm',r.name)}<span>${esc(r.name)}</span></a></td><td>${r.mp}</td><td class="so">${r.w}-${r.d}-${r.l}</td><td class="hm">${r.w}</td><td class="hm">${r.d}</td><td class="hm">${r.l}</td><td class="hm">${r.gf}</td><td class="hm">${r.ga}</td><td>${sgn(gd)}</td><td class="hm">${esc(r.ppm)}</td><td class="pts">${r.pts}</td></tr>`}).join('');
+  const rows=tableOf(t).map(r=>{const gd=r.gf-r.ga;return `<tr class="${r===t?'me':''}"><td>${r.rank}</td><td class="l t"><a href="#${tkey(r)}">${crest(r.club,'sm',r.name)}<span>${esc(r.name)}</span></a></td><td>${r.mp}</td><td class="so">${r.w}-${r.d}-${r.l}</td><td class="hm">${r.w}</td><td class="hm">${r.d}</td><td class="hm">${r.l}</td><td class="hm">${r.gf}</td><td class="hm">${r.ga}</td><td>${sgn(gd)}</td><td class="hm">${esc(r.ppm)}</td><td class="hm">${fdots(r)}</td><td class="pts">${r.pts}</td></tr>`}).join('');
   return `<section class="stack" style="gap:10px"><div class="sec-h"><h2>Standings</h2><span class="muted" style="font-size:.88rem">${esc(t.age)} ${esc(t.div)} · ${esc(cmpName(t.comp))}</span></div>
-   <div class="glass" style="padding:0 18px"><div class="tw"><table><thead><tr><th>#</th><th class="l">Team</th><th>P</th><th class="so">W-D-L</th><th class="hm">W</th><th class="hm">D</th><th class="hm">L</th><th class="hm">GF</th><th class="hm">GA</th><th>GD</th><th class="hm">PPM</th><th>Pts</th></tr></thead><tbody>${rows||'<tr><td colspan="11" class="l">This team is not in the league table.</td></tr>'}</tbody></table></div></div>
+   <div class="glass" style="padding:0 18px"><div class="tw"><table><thead><tr><th>#</th><th class="l">Team</th><th>P</th><th class="so">W-D-L</th><th class="hm">W</th><th class="hm">D</th><th class="hm">L</th><th class="hm">GF</th><th class="hm">GA</th><th>GD</th><th class="hm">PPM</th><th class="hm">Form</th><th>Pts</th></tr></thead><tbody>${rows||'<tr><td colspan="13" class="l">This team is not in the league table.</td></tr>'}</tbody></table></div></div>
    <p class="table-note">Official Elite Academy League table order, as published by the league. PPM is points per match. Win 3, draw 1, loss 0.</p></section>`;
 }
 function matchCard(t,m){
@@ -1029,8 +1250,60 @@ function viewTeam(t){
   const others=c.teams.filter(x=>x.tid&&x.comp!==t.comp&&x.age===t.age);
   const sub=`${t.age} · ${t.div}${t.div.length<26?' Division':''}`;
   return header(c,t.comp,t.name,sub,clubTabs(c,t.comp,t),compSeg(c,t.comp,x=>{const o=others.find(y=>y.comp===x);return o?'#'+tkey(o):'#club-'+c.id+'-'+CK[x]}),`<a class="btn" href="#rankings" data-rk="${t.comp}|${t.age}">${I.trophy} ${esc(t.age)} Rankings</a>`,teamUrl(t),favBtn('t',tkey(t),t.name+' '+t.age)+calBtn('t',tkey(t)))+
-    nextMatchCard(t)+standingsCard(t)+scheduleSec(t);
+    nextMatchCard(t)+standingsCard(t)+trendSec(t)+scheduleSec(t);
 }
+
+
+/* ---------- trend charts ---------- */
+function lineSvg(series,o){
+  const W=560,H=210,L=34,R=12,Tp=12,B=26;
+  const xs=series.flatMap(s=>s.pts.map(p=>p[0])),ys=series.flatMap(s=>s.pts.map(p=>p[1]));
+  const x0=o.x0??Math.min(...xs),x1=o.x1??Math.max(...xs);
+  let y0=o.y0??Math.min(0,...ys),y1=o.y1??Math.max(...ys);if(y1===y0)y1=y0+1;
+  const X=x=>L+(x1===x0?0.5:(x-x0)/(x1-x0))*(W-L-R),Y=y=>o.inv?Tp+(y-y0)/(y1-y0)*(H-Tp-B):H-B-(y-y0)/(y1-y0)*(H-Tp-B);
+  const ticks=o.yt||[y0,Math.round((y0+y1)/2),y1];
+  let g=ticks.map(t=>`<line x1="${L}" x2="${W-R}" y1="${Y(t)}" y2="${Y(t)}" stroke="rgba(255,255,255,.07)"/><text x="${L-6}" y="${Y(t)+4}" text-anchor="end" font-size="11" fill="#8796ad" font-family="JetBrains Mono,monospace">${o.yf?o.yf(t):t}</text>`).join('');
+  g+=(o.xt||[]).map(([x,l],i,a)=>`<text x="${X(x)}" y="${H-6}" text-anchor="${i===0&&a.length>1?'start':i===a.length-1&&a.length>1?'end':'middle'}" font-size="11" fill="#8796ad">${esc(l)}</text>`).join('');
+  const lines=series.map(s=>{const pts=s.pts.filter(p=>p[1]!=null);if(!pts.length)return '';const d=(s.step?pts.flatMap((p,i)=>i?[[p[0],pts[i-1][1]],p]:[p]):pts).map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)).join('');
+    const end=pts[pts.length-1];
+    return `<path d="${d}" fill="none" stroke="${s.c}" stroke-width="${s.w||2.5}" ${s.dash?'stroke-dasharray="5 4"':''} stroke-linejoin="round" stroke-linecap="round"/>${s.dots!==false?pts.map(p=>`<circle cx="${X(p[0]).toFixed(1)}" cy="${Y(p[1]).toFixed(1)}" r="${s.r||2.6}" fill="${s.c}"/>`).join(''):`<circle cx="${X(end[0]).toFixed(1)}" cy="${Y(end[1]).toFixed(1)}" r="3.5" fill="${s.c}"/>`}`}).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.label)}">${g}${lines}</svg>`;
+}
+const shortD=d=>d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+function cumPts(t){let p=0;const out=[];results(t).forEach(m=>{const r=resFor(t,m);p+=r==='W'?3:r==='D'?1:0;out.push([+m.dt,p])});return out}
+function trendSec(t){
+  const cards=[];
+  const mine=cumPts(t);
+  if(mine.length>=2){
+    const tbl=tableOf(t);const rival=tbl[0]&&tbl[0]!==t?tbl[0]:tbl[1];
+    const rp=rival?cumPts(rival):[];
+    const all=[...mine,...rp];const x0=Math.min(...all.map(p=>p[0])),x1=Math.max(...all.map(p=>p[0]));
+    const s=[{pts:rp,c:'#8796ad',dash:true,w:2,step:true,dots:false},{pts:mine,c:'var(--clubc)',step:true}];
+    const y1=Math.max(...all.map(p=>p[1]));
+    cards.push(`<div class="glass chart"><div class="card-h"><h2>Points through the season</h2></div>
+      <div class="big-n">${mine[mine.length-1][1]}<small>points from ${mine.length} games</small></div>
+      ${lineSvg(s.filter(x=>x.pts.length),{label:`Points through the season for ${t.name}${rival?' and '+rival.name:''}`,x0,x1,y0:0,y1,yt:[0,Math.round(y1/2),y1],xt:[[x0,shortD(new Date(x0))],[x1,shortD(new Date(x1))]]})}
+      <div class="lg"><span><i style="background:var(--clubc)"></i>${esc(t.name)}</span>${rival?`<span><i class="dash"></i>${esc(rival.name)} (${rival===tbl[0]?'division leader':'2nd in division'})</span>`:''}</div>
+      <p class="note">Built from the match scores. Win 3, draw 1, loss 0.</p></div>`);
+  }
+  const rh=D.rh,ser=rh&&rh.r[t.i];
+  const gk=`${t.comp}|${t.age}`;
+  if(ser&&ser.filter(x=>x!=null).length>=2){
+    const ds=rh.d.map(d=>new Date(+d.slice(0,4),+d.slice(5,7)-1,+d.slice(8,10)));
+    const pts=ser.map((r,i)=>[+ds[i],r]).filter(p=>p[1]!=null);
+    const n=Math.max(...(rh.n[gk]||[pts.length]));
+    const worst=Math.max(...pts.map(p=>p[1])),best=Math.min(...pts.map(p=>p[1]));
+    const y0=1,y1=Math.max(worst+1,Math.min(n,best+10));
+    const cur=pts[pts.length-1][1],first=pts[0][1],ch=first-cur;
+    cards.push(`<div class="glass chart"><div class="card-h"><h2>National ranking</h2></div>
+      <div class="big-n">#${cur}<small>of ${(rh.n[gk]||[])[rh.n[gk]?rh.n[gk].length-1:0]||n} · ${ch>0?`up ${ch}`:ch<0?`down ${-ch}`:'no change'} since ${shortD(new Date(pts[0][0]))}</small></div>
+      ${lineSvg([{pts,c:'var(--clubc)'}],{label:`National ranking over time for ${t.name}`,inv:true,y0,y1,yt:[1,Math.round((1+y1)/2),y1],yf:v=>'#'+v,xt:[[pts[0][0],shortD(new Date(pts[0][0]))],[pts[pts.length-1][0],shortD(new Date(pts[pts.length-1][0]))]]})}
+      <p class="note">EAL Tracker's results-based ranking for ${esc(t.age)} ${esc(cmpName(t.comp))}, saved daily since Nov 16, 2026. Higher on the chart is better.</p></div>`);
+  }
+  if(!cards.length)return '';
+  return `<section class="stack" style="gap:10px"><div class="sec-h"><h2>Season trend</h2></div><div class="trend-grid">${cards.join('')}</div></section>`;
+}
+const fdots=t=>{const f=form(t);return f.length?`<span class="fdots" title="Last ${f.length}, oldest first: ${f.join(' ')}">${f.map(r=>`<i class="${r}"></i>`).join('')}</span>`:''};
 
 /* ---------- rankings ---------- */
 const RK={comp:0,age:'U14',div:'',q:''};
@@ -1550,10 +1823,13 @@ function render(scroll){
   else if((m=h.match(/^compare(?:-(\d+)-(\d+)(?:-(ea|national|ea2))?)?$/))){document.getElementById('nav-ct').classList.add('on');if(m[1]!=null){CMP.a=+m[1]&&clubBy.get(+m[1])?+m[1]:0;CMP.b=+m[2]&&clubBy.get(+m[2])?+m[2]:0;if(m[3])CMP.comp=CK.indexOf(m[3])}app.innerHTML=viewCompare();const A=clubBy.get(CMP.a),B=clubBy.get(CMP.b);setTitle(A&&B?`${A.name} vs ${B.name}`:'Compare clubs')}
   else if(h==='club-table'){document.getElementById('nav-ct').classList.add('on');app.innerHTML=viewClubTable();bindClubTable();setTitle(`${cmpName(CT.comp)} Club vs Club`)}
   else if(h==='rankings'){document.getElementById('nav-rank').classList.add('on');app.innerHTML=viewRank();bindRank();setTitle(`${RK.age} National Rankings`)}
+  else if(h==='app'){app.innerHTML=viewApp();bindApp();setTitle('Get the app')}
+  else if(h==='feedback'){app.innerHTML=viewFeedback();bindFeedback();setTitle('Feedback')}
   else if(h==='about'){document.getElementById('nav-about').classList.add('on');app.innerHTML=viewAbout();setTitle('Data notes')}
   else if((m=h.match(/^club-(\d+)(?:-(ea|national|ea2))?$/))&&clubBy.get(+m[1])){const c=clubBy.get(+m[1]);let comp=m[2]?CK.indexOf(m[2]):[0,1,2].find(x=>c.teams.some(t=>t.comp===x));if(!c.teams.some(t=>t.comp===comp))comp=[0,1,2].find(x=>c.teams.some(t=>t.comp===x));tint(c.id);app.innerHTML=viewClub(c,comp);setTitle(c.name)}
   else if(tby.has(h)){const t=tby.get(h);tint(t.club);app.innerHTML=viewTeam(t);setTitle(`${t.name} ${t.age}`);const sf=document.getElementById('sf');sf&&sf.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;schedFilter=b.dataset.f;const y=window.scrollY;render(false);window.scrollTo(0,y)})}
   else{document.getElementById('nav-home').classList.add('on');app.innerHTML=viewHome();bindHome();setTitle('')}
+  if(h!=='feedback')store.set('ea-last-page','#'+h);
   if(scroll!==false)window.scrollTo(0,0);
   hydrateWx(app);
 }
@@ -1563,6 +1839,7 @@ app.addEventListener('click',e=>{
   const sw=e.target.closest('[data-cmp-swap]');if(sw){location.hash=cmpHash(CMP.b,CMP.a,CMP.comp);return}
   const fv=e.target.closest('[data-fav]');if(fv){favToggle(fv);return}
   const cb=e.target.closest('[data-cal]');if(cb){const [k,v]=cb.dataset.cal.split('|');openCal(k,v);return}
+  const ws=e.target.closest('[data-wkset]');if(ws){WK.off=+ws.dataset.wkset;return}
   const wb=e.target.closest('[data-wk]');if(wb){WK.off=wb.dataset.wk==='0'?0:WK.off+(+wb.dataset.wk);render(false);return}
   const ri=e.target.closest('[data-recap-img]');if(ri){const [id,cp]=ri.dataset.recapImg.split('|');recapImage(clubBy.get(+id),+cp);return}
   const rt=e.target.closest('[data-recap-txt]');if(rt){const [id,cp]=rt.dataset.recapTxt.split('|');copyText(recapText(clubBy.get(+id),+cp),'Recap copied');return}
@@ -1571,6 +1848,7 @@ app.addEventListener('click',e=>{
 });
 
 document.getElementById('asof').textContent=D.asOfLong;
+if(!FB_URL){const f=document.getElementById('ft-fb');if(f)f.remove()}
 window.addEventListener('hashchange',()=>render());
 render();
 })();

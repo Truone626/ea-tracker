@@ -84,12 +84,35 @@ CRESTS=sorted(int(f[:-5]) for f in os.listdir('crests') if f.endswith('.webp')) 
 import site_extras as X
 SITE=os.environ.get('SITE_URL','https://ealtracker.com/').rstrip('/')+'/'
 SLUGS=X.club_slugs({str(k):v for k,v in clubs.items()})
+# Ranking history for the trend charts: daily for the last 14 days, then one per week, up to 26 points.
+def rank_history():
+    files=sorted(f for f in os.listdir(HIST) if f.endswith('.json'))
+    days=[D.date.fromisoformat(f[:10]) for f in files]
+    keep=[];seen=set()
+    for d in sorted(days,reverse=True):
+        if d>today-D.timedelta(days=14): keep.append(d);continue
+        wk=d.isocalendar()[:2]
+        if wk not in seen: seen.add(wk);keep.append(d)
+    keep=sorted(keep[:26])
+    snaps=[json.load(open(f'{HIST}/{d.isoformat()}.json')) for d in keep]
+    out={}
+    for i,t in enumerate(teams):
+        r=[sn.get(tkey(t)) for sn in snaps]
+        if any(x is not None for x in r): out[i]=r
+    sizes={}
+    for j,sn in enumerate(snaps):
+        for k in sn:
+            g=k.rsplit('|',1)[0];sizes.setdefault(g,[0]*len(snaps))[j]+=1
+    return dict(d=[d.isoformat() for d in keep],r=out,n=sizes)
+RH=rank_history()
 COLORS={int(k):v for k,v in json.load(open('crests/colors.json')).items()} if os.path.exists('crests/colors.json') else {}
-data=dict(site=SITE,slugs=SLUGS,season='2026–27',comps=COMPS,asOfLong=asof,asOfIso=local.isoformat(),clubs=clubs,teams=teams,matches=matches,venues=venues,crests=CRESTS,colors=COLORS,
+data=dict(site=SITE,slugs=SLUGS,season='2026–27',comps=COMPS,asOfLong=asof,asOfIso=local.isoformat(),clubs=clubs,teams=teams,matches=matches,venues=venues,crests=CRESTS,colors=COLORS,rh=RH,
  moveSince=base[0].strftime('%b %-d, %Y') if base else None,
  check=dict(ok=ok,diff=diff,total=ok+diff,tbdPast=tbd,futureScored=fut,midnight=mid,noTable=sorted(no)))
 js=json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')
-html=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'template.html'),encoding='utf8').read().replace('__DATA__',js).replace('__SITE__',SITE).replace('<!--ANALYTICS-->',X.analytics_snippet(os.environ.get('GOATCOUNTER_CODE','')))
+FEEDBACK=os.environ.get('FEEDBACK_ENDPOINT','').strip()
+if not re.fullmatch(r'https://[^\s"<>]+',FEEDBACK): FEEDBACK=''
+html=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'template.html'),encoding='utf8').read().replace('__DATA__',js).replace('__SITE__',SITE).replace('<!--ANALYTICS-->',X.analytics_snippet(os.environ.get('GOATCOUNTER_CODE',''))).replace('__FEEDBACK__',json.dumps(FEEDBACK))
 os.makedirs(os.path.dirname(OUT) or '.',exist_ok=True)
 open(OUT,'w',encoding='utf8').write(html)
 if CRESTS:
