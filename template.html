@@ -696,6 +696,33 @@ body{--clubc:var(--club,#2dd4bf)}
 .fdots{display:inline-flex;gap:3px;vertical-align:middle}
 .fdots i{width:8px;height:8px;border-radius:50%;display:inline-block}
 .fdots i.W{background:var(--win)}.fdots i.D{background:var(--draw)}.fdots i.L{background:var(--loss)}
+/* home hero: pitch markings, floodlights and a moving wall of club crests */
+.hero.home{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;overflow:visible}
+.hero.home .hero-main{min-width:0;position:relative;z-index:2}
+.hero.home .hero-deco{background:radial-gradient(520px 340px at 92% -10%,rgba(45,212,191,.22),transparent 70%),radial-gradient(420px 300px at 55% 115%,rgba(79,140,255,.18),transparent 70%)}
+.hero.home .hero-deco::after{display:none}
+.hero.home .pitch{position:absolute;inset:0;opacity:.5;background:
+  radial-gradient(circle at 74% 50%,transparent 0 118px,rgba(255,255,255,.10) 119px 121px,transparent 122px),
+  radial-gradient(circle at 74% 50%,rgba(255,255,255,.14) 0 5px,transparent 6px),
+  linear-gradient(90deg,transparent calc(74% - 1px),rgba(255,255,255,.10) calc(74% - 1px) calc(74% + 1px),transparent calc(74% + 1px)),
+  repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0 64px,transparent 64px 128px)}
+.cwall{position:relative;z-index:1;display:grid;gap:12px;align-content:center;min-width:0;overflow:hidden;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.cw-row{overflow:hidden}
+.cw-track{display:flex;gap:12px;width:max-content;animation:cw var(--d,80s) linear infinite}
+.cw-row.rev .cw-track{animation-direction:reverse}
+.cwall:hover .cw-track{animation-play-state:paused}
+.cw-track a{width:64px;height:64px;flex:none;border-radius:16px;background:#f2f5fa;display:grid;place-items:center;box-shadow:0 10px 24px -14px #000,0 0 0 1px rgba(255,255,255,.08);transition:transform .2s}
+.cw-track a:hover{transform:translateY(-3px) scale(1.06)}
+.cw-track img{width:50px;height:50px;object-fit:contain}
+@keyframes cw{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.cw-track{animation:none}}
+@media (min-width:980px){
+  .hero.home{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:center}
+  .cwall{transform:perspective(900px) rotateY(-14deg) rotateX(4deg);gap:14px;margin-right:-12px}
+  .cw-track a{width:72px;height:72px;border-radius:18px}.cw-track img{width:56px;height:56px}
+}
+@media (max-width:979px){.hero.home{gap:18px}.hero.home .pitch{background-size:auto}.cwall{order:-1;margin:0 calc(-1 * clamp(22px,4vw,42px));gap:10px}.cw-row:nth-child(n+3){display:none}.cw-track{gap:10px}.cw-track a{width:54px;height:54px;border-radius:14px}.cw-track img{width:42px;height:42px}}
 /* rankings */
 .rhead{text-align:center;padding:24px 18px;display:grid;justify-items:center;gap:10px;grid-template-columns:minmax(0,1fr)}
 .rhead>*{max-width:100%;min-width:0}
@@ -926,7 +953,8 @@ const HOME={comp:-1,letter:'All'};
 function viewHome(){
   const saved=clubBy.get(+store.get('ea-club'));
   const played_=M.filter(played).length;
-  return `<section class="glass hero"><div class="hero-deco" aria-hidden="true"></div>
+  return `<section class="glass hero home"><div class="hero-deco" aria-hidden="true"><div class="pitch"></div></div>
+    <div class="hero-main">
     <div class="eyebrow" style="color:var(--accent-2)">Elite Academy League · EA · EA National · EA2 · ${esc(D.season)}</div>
     <h1>Find your<br><em>Elite Academy</em> club</h1>
     <p class="lead">Standings, schedules, results and rankings for every team, without clicking through each age group.</p>
@@ -938,6 +966,8 @@ function viewHome(){
       ${saved?`<a class="btn" href="#club-${saved.id}">${crest(saved.id,'xs')} Back to ${esc(saved.name)}</a>`:''}
     </div>
     <div class="stats"><span><b>${clubs.length}</b> clubs</span><span><b>${T.length.toLocaleString()}</b> teams</span><span><b>${played_.toLocaleString()}</b> results</span><span><b>${M.filter(m=>!played(m)&&m.dt>=now).length.toLocaleString()}</b> matches to play</span></div>
+    </div>
+    ${crestWall()}
   </section>
   ${installBanner()}
   ${myTeams()}
@@ -952,6 +982,17 @@ function viewHome(){
     <div class="letters" id="letters" aria-label="Filter by first letter"></div>
     <div class="grid-clubs" id="grid"></div>
   </section>`;
+}
+
+function crestWall(){
+  const ids=clubs.filter(c=>crestSet.has(c.id)).map(c=>c);
+  if(ids.length<12)return '';
+  for(let i=ids.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ids[i],ids[j]]=[ids[j],ids[i]]}
+  const rows=4,per=Math.ceil(ids.length/rows);
+  const row=(k)=>{const set=ids.slice(k*per,(k+1)*per);if(!set.length)return '';
+    const tiles=set.map(c=>`<a href="#club-${c.id}" tabindex="-1" title="${esc(c.name)}"><img src="crests/${c.id}.webp" alt="" loading="lazy" decoding="async" width="128" height="128"></a>`).join('');
+    return `<div class="cw-row ${k%2?'rev':''}" style="--d:${70+k*9}s"><div class="cw-track">${tiles}${tiles}</div></div>`};
+  return `<div class="cwall" aria-hidden="true">${[0,1,2,3].map(row).join('')}</div>`;
 }
 function clubAges(c,comp){const ts=c.teams.filter(t=>comp<0||t.comp===comp);return [...new Set(ts.map(t=>t.age))].sort((a,b)=>AGES.indexOf(a)-AGES.indexOf(b))}
 function bindHome(){
