@@ -991,7 +991,7 @@ function crestWall(){
   const rows=4,per=Math.ceil(ids.length/rows);
   const row=(k)=>{const set=ids.slice(k*per,(k+1)*per);if(!set.length)return '';
     const tiles=set.map(c=>`<a href="#club-${c.id}" tabindex="-1" title="${esc(c.name)}"><img src="crests/${c.id}.webp" alt="" loading="lazy" decoding="async" width="128" height="128"></a>`).join('');
-    return `<div class="cw-row ${k%2?'rev':''}" style="--d:${70+k*9}s"><div class="cw-track">${tiles}${tiles}</div></div>`};
+    return `<div class="cw-row ${k%2?'rev':''}" style="--d:${150+k*20}s"><div class="cw-track">${tiles}${tiles}</div></div>`};
   return `<div class="cwall" aria-hidden="true">${[0,1,2,3].map(row).join('')}</div>`;
 }
 function clubAges(c,comp){const ts=c.teams.filter(t=>comp<0||t.comp===comp);return [...new Set(ts.map(t=>t.age))].sort((a,b)=>AGES.indexOf(a)-AGES.indexOf(b))}
